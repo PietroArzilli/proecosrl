@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PROECO — Engineering the Future, Boldly.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --silver: #a8b2c0;
+    --silver-dim: #5a6470;
+    --steel: #c8d0da;
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --border: rgba(168,178,192,0.15);
+    --border-bright: rgba(168,178,192,0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: #000; }
+
+  body {
+    background: #000000;
+    color: #e8ecf0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ─── CUSTOM CURSOR ─── */
+  .cursor-dot {
+    width: 6px; height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(168,178,192,0.6);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.18s ease, width 0.2s, height 0.2s, border-color 0.2s;
+  }
+
+  /* ─── FONTS ─── */
+  .font-syne { font-family: 'Syne', sans-serif; }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: #000; }
+  ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .nav-logo span {
+    background: linear-gradient(135deg, #fff 0%, var(--silver) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 1px;
+    background: var(--silver);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+  .nav-link:hover { color: #fff; }
+  .nav-link:hover::after { transform: scaleX(1); }
+
+  .btn-contact {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 9px 22px;
+    border: 1px solid var(--border-bright);
+    border-radius: 100px;
+    color: var(--steel);
+    background: transparent;
+    transition: all 0.25s;
+    cursor: none;
+  }
+  .btn-contact:hover {
+    background: rgba(168,178,192,0.08);
+    border-color: var(--silver);
+    color: #fff;
+  }
+
+  /* ─── HERO ─── */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(168,178,192,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168,178,192,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%);
+  }
+  .hero-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(100,130,180,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .hero-orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #3060a0, transparent);
+    top: -100px; right: -100px;
+    animation: drift 18s ease-in-out infinite;
+  }
+  .hero-orb-2 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, #204070, transparent);
+    bottom: 0; left: -50px;
+    animation: drift 22s ease-in-out infinite reverse;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(30px, -20px); }
+    66% { transform: translate(-20px, 15px); }
+  }
+
+  .hero-tagline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+  .hero-tagline .shimmer {
+    background: linear-gradient(135deg, #ffffff 0%, #8090a8 50%, #c0c8d4 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--silver-dim);
+    letter-spacing: 0.02em;
+    line-height: 1.7;
+    max-width: 460px;
+  }
+
+  .parlym-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid var(--border-bright);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--silver);
+    background: rgba(168,178,192,0.04);
+  }
+  .parlym-badge .dot {
+    width: 5px; height: 5px;
+    background: var(--silver);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--silver-dim);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: fadeInUp 1s 1.5s both;
+  }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, transparent, var(--silver-dim));
+    animation: grow 2s ease-in-out infinite;
+  }
+  @keyframes grow {
+    0%, 100% { opacity: 0.3; height: 32px; }
+    50% { opacity: 1; height: 56px; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTION LABELS ─── */
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--silver-dim);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #fff;
+  }
+
+  /* ─── SECTOR CARDS ─── */
+  .sector-card {
+    position: relative;
+    background: rgba(10,10,10,0.8);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: none;
+  }
+  .sector-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(168,178,192,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .sector-card:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,178,192,0.08);
+  }
+  .sector-card:hover::before { opacity: 1; }
+
+  .sector-pct {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff, var(--silver));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .sector-icon {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--silver);
+    margin-bottom: 16px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .sector-card:hover .sector-icon {
+    border-color: var(--border-bright);
+    color: #fff;
+  }
+  .sector-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .sector-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--silver-dim);
+    line-height: 1.6;
+  }
+  .sector-bar {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--silver-dim), transparent);
+    transition: width 0.6s ease;
+  }
+
+  /* ─── SERVICE GRID ─── */
+  .service-item {
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(8,8,8,0.9);
+    transition: all 0.3s;
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-item::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--silver-dim), transparent);
+    transition: width 0.5s ease;
+  }
+  .service-item:hover {
+    border-color: rgba(168,178,192,0.2);
+    background: rgba(15,15,15,0.9);
+  }
+  .service-item:hover::after { width: 100%; }
+
+  .service-icon-wrap {
+    width: 40px; height: 40px;
+    margin-bottom: 18px;
+    color: var(--silver-dim);
+    transition: color 0.3s;
+  }
+  .service-item:hover .service-icon-wrap { color: var(--silver); }
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .service-desc {
+    font-size: 12px;
+    color: var(--silver-dim);
+    line-height: 1.65;
+  }
+
+  /* ─── BLUEPRINT SECTION ─── */
+  .blueprint-section {
+    background: #000;
+    position: relative;
+    overflow: hidden;
+  }
+  .blueprint-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(60,100,180,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60,100,180,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .blueprint-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(60,100,180,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60,100,180,0.04) 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+  .blueprint-corner {
+    position: absolute;
+    width: 40px; height: 40px;
+    border-color: rgba(80,120,200,0.4);
+    border-style: solid;
+  }
+  .bc-tl { top: 24px; left: 24px; border-width: 1px 0 0 1px; }
+  .bc-tr { top: 24px; right: 24px; border-width: 1px 1px 0 0; }
+  .bc-bl { bottom: 24px; left: 24px; border-width: 0 0 1px 1px; }
+  .bc-br { bottom: 24px; right: 24px; border-width: 0 1px 1px 0; }
+
+  .tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(60,100,180,0.08);
+    border: 1px solid rgba(60,100,180,0.2);
+    border-radius: 6px;
+    font-family: 'Inter', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(140,180,255,0.8);
+  }
+  .tech-badge .icon { color: rgba(100,150,255,0.6); }
+
+  .blueprint-stat {
+    padding: 24px;
+    border: 1px solid rgba(60,100,180,0.15);
+    border-radius: 12px;
+    background: rgba(20,30,60,0.15);
+    backdrop-filter: blur(4px);
+  }
+  .blueprint-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: rgba(150,190,255,0.9);
+  }
+  .blueprint-stat-label {
+    font-size: 11px;
+    color: rgba(100,140,200,0.7);
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+
+  /* ─── STATS ─── */
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(52px, 6vw, 80px);
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, var(--silver) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .stat-unit {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 700;
+    color: var(--silver-dim);
+  }
+  .stat-label {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--silver-dim);
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border-bright), transparent);
+    align-self: stretch;
+  }
+
+  /* ─── MOBILE MENU ─── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 65px;
+    left: 0; right: 0;
+    background: rgba(0,0,0,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 32px;
+    z-index: 499;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .mobile-menu.open { display: flex; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    background: #000;
+  }
+  .footer-motto {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+  }
+  .footer-link {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--silver-dim);
+    transition: color 0.2s;
+    cursor: none;
+  }
+  .footer-link:hover { color: #fff; }
+
+  /* ─── AOS OVERRIDES ─── */
+  [data-aos] { pointer-events: none; }
+  [data-aos].aos-animate { pointer-events: auto; }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav>
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+    <a href="#" class="nav-logo"><span>PROECO</span></a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#expertise" class="nav-link">Expertise</a>
+      <a href="#growth" class="nav-link">Growth</a>
+      <a href="#tech" class="nav-link">Tech</a>
+    </div>
+
+    <div class="hidden md:flex items-center gap-4">
+      <span style="font-size:11px;letter-spacing:.08em;color:var(--silver-dim);font-weight:300">Part of <span style="color:var(--silver)">Parlym Group</span></span>
+      <a href="#contact" class="btn-contact">Contact</a>
+    </div>
+
+    <!-- Hamburger -->
+    <button class="md:hidden text-gray-400 hover:text-white transition-colors cursor-none" onclick="toggleMenu()" id="hamburger">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#expertise" class="nav-link text-base" onclick="toggleMenu()">Expertise</a>
+  <a href="#growth" class="nav-link text-base" onclick="toggleMenu()">Growth</a>
+  <a href="#tech" class="nav-link text-base" onclick="toggleMenu()">Tech</a>
+  <a href="#contact" class="btn-contact text-center" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10 py-24 md:py-36">
+    <div class="max-w-4xl">
+
+      <div class="parlym-badge mb-10" style="animation: fadeInUp 0.8s 0.2s both">
+        <span class="dot"></span>
+        Part of Parlym Group · Since 1998
+      </div>
+
+      <h1 class="hero-tagline mb-6" style="animation: fadeInUp 0.8s 0.4s both">
+        Engineering<br/>
+        the Future,<br/>
+        <span class="shimmer">Boldly.</span>
+      </h1>
+
+      <p class="hero-sub mb-12" style="animation: fadeInUp 0.8s 0.6s both">
+        Multidisciplinary engineering solutions for Energy &amp; Industry. From process design to 3D digital twin technology — we build what others can't.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-5" style="animation: fadeInUp 0.8s 0.8s both">
+        <a href="#expertise" class="btn-contact" style="padding:13px 32px;font-size:12px">
+          Explore Expertise
+        </a>
+        <a href="#contact" style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim);transition:color .2s" class="hover:text-white flex items-center gap-3 cursor-none">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          Contact us
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator absolute bottom-12 left-1/2 -translate-x-1/2">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MARKET SECTORS ═══════════ -->
+<section id="expertise" class="py-28 md:py-36 px-6 md:px-10 max-w-7xl mx-auto">
+  <div data-aos="fade-up">
+    <div class="section-label mb-5">Market Sectors</div>
+    <h2 class="section-title mb-4">Where We <br/>Operate</h2>
+    <p class="text-sm font-light leading-relaxed mb-16" style="color:var(--silver-dim);max-width:420px">Deep expertise across the most demanding industrial verticals. Built on 25+ years of delivering precision engineering at scale.</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+    <!-- Oil & Gas -->
+    <div class="sector-card" data-aos="fade-up" data-aos-delay="0">
+      <div class="sector-bar" style="width:45%"></div>
+      <div class="sector-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2v6M8 8l4-6 4 6"/><path d="M4 12h16M4 12a8 8 0 0016 0"/><path d="M9 16v4M15 16v4M7 20h10"/></svg>
+      </div>
+      <div class="sector-pct mb-2">45%</div>
+      <div class="sector-name">Oil &amp; Gas</div>
+      <div class="sector-desc">Offshore platforms, onshore facilities, drilling engineering and pipeline systems.</div>
+    </div>
+
+    <!-- Green Energy -->
+    <div class="sector-card" data-aos="fade-up" data-aos-delay="80">
+      <div class="sector-bar" style="width:25%"></div>
+      <div class="sector-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="sector-pct mb-2">25%</div>
+      <div class="sector-name">Green Energy</div>
+      <div class="sector-desc">Industrial energy efficiency, sustainability projects and renewable systems integration.</div>
+    </div>
+
+    <!-- Chemical -->
+    <div class="sector-card" data-aos="fade-up" data-aos-delay="160">
+      <div class="sector-bar" style="width:20%"></div>
+      <div class="sector-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11l-4 7h14l-4-7V3"/></svg>
+      </div>
+      <div class="sector-pct mb-2">20%</div>
+      <div class="sector-name">Chemical</div>
+      <div class="sector-desc">Process design, safety engineering and full lifecycle support for chemical plants.</div>
+    </div>
+
+    <!-- Power -->
+    <div class="sector-card" data-aos="fade-up" data-aos-delay="240">
+      <div class="sector-bar" style="width:10%"></div>
+      <div class="sector-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <div class="sector-pct mb-2">10%</div>
+      <div class="sector-name">Power</div>
+      <div class="sector-desc">Electrical and instrumentation engineering for generation and distribution systems.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section id="growth" class="py-28 md:py-36 border-t" style="border-color:var(--border)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+      <div data-aos="fade-right">
+        <div class="section-label mb-5">Engineering Services</div>
+        <h2 class="section-title">Full-Spectrum<br/>Capability</h2>
+      </div>
+      <p class="text-sm font-light leading-relaxed md:max-w-xs" style="color:var(--silver-dim)" data-aos="fade-left">An integrated team of 75+ internal specialists covering every engineering discipline required for complex industrial projects.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <div class="service-item" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+        </div>
+        <div class="service-title">Process Engineering</div>
+        <div class="service-desc">PFD, P&amp;ID, HAZOP, process simulation, hydraulic calculations and feasibility studies from concept to detail.</div>
+      </div>
+
+      <div class="service-item" data-aos="fade-up" data-aos-delay="60">
+        <div class="service-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="service-title">Civil &amp; Structural</div>
+        <div class="service-desc">Foundations, steel structures, concrete design, piping supports and plot plans for industrial facilities.</div>
+      </div>
+
+      <div class="service-item" data-aos="fade-up" data-aos-delay="120">
+        <div class="service-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3"/></svg>
+        </div>
+        <div class="service-title">Mechanical &amp; Piping</div>
+        <div class="service-desc">Equipment specification, stress analysis, 3D piping design, skids &amp; packages engineering.</div>
+      </div>
+
+      <div class="service-item" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="service-title">Electrical &amp; Instrumentation</div>
+        <div class="service-desc">Power systems, single-line diagrams, instrument datasheets, control philosophy and SIL studies.</div>
+      </div>
+
+      <div class="service-item" data-aos="fade-up" data-aos-delay="60">
+        <div class="service-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="7" width="6" height="10" rx="1"/><rect x="16" y="7" width="6" height="10" rx="1"/><path d="M8 12h8M12 7V5a2 2 0 012-2h0a2 2 0 012 2v1M12 17v2a2 2 0 01-2 2h0a2 2 0 01-2-2v-1"/></svg>
+        </div>
+        <div class="service-title">Automation &amp; Control</div>
+        <div class="service-desc">DCS/PLC architecture, cause &amp; effect diagrams, safety instrumented systems and SCADA engineering.</div>
+      </div>
+
+      <div class="service-item" data-aos="fade-up" data-aos-delay="120">
+        <div class="service-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="service-title">Fire &amp; Safety</div>
+        <div class="service-desc">Fire protection systems, QRA, risk assessment, emergency response engineering and ATEX classification.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ INNOVATION / 3D ═══════════ -->
+<section id="tech" class="blueprint-section py-28 md:py-36 relative overflow-hidden">
+  <div class="blueprint-grid"></div>
+  <div class="bc-tl blueprint-corner"></div>
+  <div class="bc-tr blueprint-corner"></div>
+  <div class="bc-bl blueprint-corner"></div>
+  <div class="bc-br blueprint-corner"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
+
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <div data-aos="fade-right">
+        <div class="section-label mb-5">Innovation</div>
+        <h2 class="section-title mb-6">Digital<br/> Engineering<br/><span style="color:rgba(140,180,255,0.85)">at Its Peak</span></h2>
+        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">We operate at the frontier of engineering technology, combining 3D Laser Scanning with intelligent modelling platforms to deliver unmatched precision and speed.</p>
+
+        <div class="flex flex-wrap gap-3 mb-10">
+          <span class="tech-badge"><span class="icon">⬡</span> SmartPlant 3D</span>
+          <span class="tech-badge"><span class="icon">⬡</span> 3D Laser Scanning</span>
+          <span class="tech-badge"><span class="icon">⬡</span> Digital Twin</span>
+          <span class="tech-badge"><span class="icon">⬡</span> Point Cloud</span>
+          <span class="tech-badge"><span class="icon">⬡</span> BIM Integration</span>
+        </div>
+
+        <a href="#contact" class="btn-contact inline-flex items-center gap-2 cursor-none" style="border-color:rgba(60,100,180,0.3);color:rgba(140,180,255,0.8)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Learn More
+        </a>
+      </div>
+
+      <div data-aos="fade-left" data-aos-delay="100">
+        <!-- Blueprint visualization -->
+        <div class="relative" style="background:rgba(10,20,50,0.4);border:1px solid rgba(60,100,180,0.2);border-radius:16px;padding:32px;overflow:hidden">
+
+          <!-- Animated scan lines -->
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(80,140,255,0.6),transparent);animation:scanX 3s ease-in-out infinite"></div>
+          <div style="position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(80,140,255,0.4),transparent);animation:scanY 4s ease-in-out infinite"></div>
+
+          <style>
+            @keyframes scanX { 0%,100%{transform:translateX(-100%)} 50%{transform:translateX(200%)} }
+            @keyframes scanY { 0%,100%{transform:translateY(-100%)} 50%{transform:translateY(300%)} }
+          </style>
+
+          <div class="text-xs font-mono mb-6" style="color:rgba(80,120,200,0.6);letter-spacing:.08em">
+            // PROECO 3D_SCAN_SYSTEM v4.2.1
+          </div>
+
+          <!-- 3D wireframe visualization SVG -->
+          <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;opacity:0.85">
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <!-- Process vessel wireframe -->
+            <g stroke="rgba(80,140,255,0.5)" fill="none" stroke-width="0.6">
+              <!-- Main vessel -->
+              <ellipse cx="160" cy="60" rx="40" ry="12" filter="url(#glow)"/>
+              <ellipse cx="160" cy="140" rx="40" ry="12"/>
+              <line x1="120" y1="60" x2="120" y2="140"/>
+              <line x1="200" y1="60" x2="200" y2="140"/>
+              <!-- Nozzles -->
+              <line x1="120" y1="95" x2="95" y2="95"/>
+              <ellipse cx="93" cy="95" rx="4" ry="8"/>
+              <line x1="200" y1="95" x2="225" y2="95"/>
+              <ellipse cx="227" cy="95" rx="4" ry="8"/>
+              <!-- Top head -->
+              <path d="M120,60 Q130,30 160,25 Q190,30 200,60"/>
+              <!-- Bottom head -->
+              <path d="M120,140 Q130,168 160,172 Q190,168 200,140"/>
+              <!-- Pipeline -->
+              <line x1="93" y1="87" x2="60" y2="87"/>
+              <line x1="60" y1="87" x2="60" y2="160"/>
+              <line x1="60" y1="160" x2="227" y2="160"/>
+              <!-- Dimension lines -->
+              <line x1="240" y1="60" x2="240" y2="140" stroke="rgba(80,140,255,0.25)"/>
+              <line x1="236" y1="60" x2="244" y2="60" stroke="rgba(80,140,255,0.25)"/>
+              <line x1="236" y1="140" x2="244" y2="140" stroke="rgba(80,140,255,0.25)"/>
+              <!-- Cross-section markers -->
+              <line x1="115" y1="100" x2="115" y2="100" stroke-dasharray="2,2"/>
+            </g>
+            <!-- Scan point cloud -->
+            <g fill="rgba(100,180,255,0.6)">
+              <circle cx="145" cy="85" r="1"/>
+              <circle cx="175" cy="75" r="1"/>
+              <circle cx="155" cy="115" r="1"/>
+              <circle cx="130" cy="100" r="0.8"/>
+              <circle cx="185" cy="110" r="0.8"/>
+              <circle cx="162" cy="55" r="1"/>
+              <circle cx="148" cy="130" r="0.8"/>
+              <circle cx="172" cy="125" r="1"/>
+              <circle cx="138" cy="70" r="0.8"/>
+              <circle cx="192" cy="90" r="0.8"/>
+            </g>
+            <!-- Labels -->
+            <text x="248" y="103" fill="rgba(80,140,255,0.5)" font-size="7" font-family="monospace">H: 8.2m</text>
+            <text x="125" y="22" fill="rgba(80,140,255,0.5)" font-size="7" font-family="monospace">TK-101</text>
+            <text x="30" y="85" fill="rgba(80,140,255,0.4)" font-size="6" font-family="monospace">IN</text>
+            <text x="228" y="92" fill="rgba(80,140,255,0.4)" font-size="6" font-family="monospace">OUT</text>
+          </svg>
+
+          <div class="grid grid-cols-3 gap-3 mt-6">
+            <div class="blueprint-stat">
+              <div class="blueprint-stat-num">±2mm</div>
+              <div class="blueprint-stat-label">Scan Accuracy</div>
+            </div>
+            <div class="blueprint-stat">
+              <div class="blueprint-stat-num">360°</div>
+              <div class="blueprint-stat-label">Coverage</div>
+            </div>
+            <div class="blueprint-stat">
+              <div class="blueprint-stat-num">As-built</div>
+              <div class="blueprint-stat-label">3D Model</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ STATS ═══════════ -->
+<section class="py-28 md:py-36 border-t" style="border-color:var(--border)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+
+    <div class="section-label mb-16" data-aos="fade-up">Key Figures</div>
+
+    <div class="flex flex-col md:flex-row items-stretch gap-0">
+
+      <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="0">
+        <div class="stat-number" id="count-revenue">0</div>
+        <div class="stat-unit">M€</div>
+        <div class="stat-label">Revenue Target 2026</div>
+      </div>
+
+      <div class="stat-divider hidden md:block mx-4"></div>
+      <div class="border-b md:hidden" style="border-color:var(--border)"></div>
+
+      <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-number" id="count-experts">0</div>
+        <div class="stat-unit">+</div>
+        <div class="stat-label">Internal Experts</div>
+      </div>
+
+      <div class="stat-divider hidden md:block mx-4"></div>
+      <div class="border-b md:hidden" style="border-color:var(--border)"></div>
+
+      <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-number">25</div>
+        <div class="stat-unit">+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+
+      <div class="stat-divider hidden md:block mx-4"></div>
+      <div class="border-b md:hidden" style="border-color:var(--border)"></div>
+
+      <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-number">8</div>
+        <div class="stat-unit">+</div>
+        <div class="stat-label">Market Sectors</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT CTA ═══════════ -->
+<section id="contact" class="py-28 md:py-36 border-t" style="border-color:var(--border)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 text-center">
+
+    <div data-aos="fade-up">
+      <div class="section-label justify-center mb-8">Get in Touch</div>
+      <h2 class="section-title mb-6" style="font-size:clamp(40px,5vw,72px)">Let's Build <br/>Something<br/><span style="background:linear-gradient(135deg,#fff,var(--silver));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Exceptional.</span></h2>
+      <p class="text-sm font-light leading-relaxed mb-12" style="color:var(--silver-dim);max-width:380px;margin-left:auto;margin-right:auto">Tell us about your project. Our multidisciplinary team is ready to engineer solutions that exceed expectations.</p>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="mailto:info@proecosrl.it" class="btn-contact cursor-none" style="padding:14px 36px;font-size:12px">
+          info@proecosrl.it
+        </a>
+        <a href="tel:+390543" class="btn-contact cursor-none" style="padding:14px 36px;font-size:12px;border-color:var(--border)">
+          +39 0543 · Forlì
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="py-12 md:py-16">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+
+      <div>
+        <div class="nav-logo mb-3"><span>PROECO</span></div>
+        <div class="footer-motto">Proud to Develop Solutions</div>
+        <div class="text-xs font-light mt-2" style="color:var(--silver-dim)">Part of Parlym Group · www.proecosrl.it</div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-4 text-left">
+        <div>
+          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Company</div>
+          <div class="flex flex-col gap-2">
+            <a href="#" class="footer-link">Vision &amp; Mission</a>
+            <a href="#" class="footer-link">History</a>
+            <a href="#" class="footer-link">Management</a>
+            <a href="#" class="footer-link">Careers</a>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Services</div>
+          <div class="flex flex-col gap-2">
+            <a href="#" class="footer-link">Process</a>
+            <a href="#" class="footer-link">Mechanical</a>
+            <a href="#" class="footer-link">Electrical</a>
+            <a href="#" class="footer-link">3D &amp; Innovation</a>
+          </div>
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Headquarters</div>
+          <div class="text-xs font-light leading-relaxed" style="color:var(--silver-dim)">
+            Forlì, Emilia-Romagna<br/>Italy<br/><br/>
+            <span style="color:var(--silver)">info@proecosrl.it</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t mt-10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-light" style="border-color:var(--border);color:var(--silver-dim)">
+      <span>© 2025 PROECO S.r.l. All rights reserved.</span>
+      <span>Engineered with precision · Forlì, Italy</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+// ─── AOS INIT ───
+AOS.init({
+  duration: 800,
+  easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  once: true,
+  offset: 80
+});
+
+// ─── CUSTOM CURSOR ───
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  dot.style.transform = `translate(${mouseX - 3}px, ${mouseY - 3}px)`;
+});
+
+// Smooth ring follow
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) *.12;
+  ring.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`;
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// Hover effect
+document.querySelectorAll('a, button, [data-hover]').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width = '52px';
+    ring.style.height = '52px';
+    ring.style.borderColor = 'rgba(168,178,192,0.8)';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = '32px';
+    ring.style.height = '32px';
+    ring.style.borderColor = 'rgba(168,178,192,0.6)';
+  });
+});
+
+// ─── MOBILE MENU ───
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ─── ANIMATED COUNTERS ───
+function animateCounter(el, target, duration, decimals = 0) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) {
+      start = target;
+      clearInterval(timer);
+    }
+    el.textContent = decimals ? start.toFixed(1) : Math.floor(start);
+  }, 16);
+}
+
+// Trigger counters when stats section enters view
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(document.getElementById('count-revenue'), 17, 1800);
+      animateCounter(document.getElementById('count-experts'), 75, 1600);
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+const revenueEl = document.getElementById('count-revenue');
+if (revenueEl) statsObserver.observe(revenueEl.closest('section'));
+
+// ─── SECTOR CARD BARS (animate on scroll) ───
+const barObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.sector-bar').forEach(bar => {
+        bar.style.transition = 'width 1.2s cubic-bezier(0.4,0,0.2,1)';
+      });
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.sector-card').forEach(card => {
+  const bar = card.querySelector('.sector-bar');
+  if (bar) { const w = bar.style.width; bar.style.width = '0%'; }
+  barObserver.observe(card);
+});
+
+// Reveal bars after slight delay
+setTimeout(() => {
+  document.querySelectorAll('.sector-card').forEach(card => {
+    const bar = card.querySelector('.sector-bar');
+    if (bar) {
+      const target = bar.getAttribute('data-w') || bar.style.width;
+      bar.setAttribute('data-w', target || '30%');
+    }
+  });
+}, 100);
+
+// ─── NAVBAR SCROLL EFFECT ───
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(0,0,0,0.9)';
+  } else {
+    nav.style.background = 'rgba(0,0,0,0.6)';
+  }
+});
+</script>
+
+</body>
+</html>
