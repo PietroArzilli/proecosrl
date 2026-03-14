@@ -320,6 +320,20 @@
     margin-bottom: 6px;
   }
   .sector-desc { font-size: 12px; font-weight: 300; color: var(--silver-dim); line-height: 1.6; }
+  .sector-card .click-hint {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    margin-top: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .sector-card:hover .click-hint { opacity: 1; }
   .sector-bar {
     position: absolute;
     bottom: 0; left: 0;
@@ -488,9 +502,10 @@
       </svg>
     </a>
     <div class="hidden md:flex items-center gap-8">
-      <a href="#expertise" class="nav-link">Expertise</a>
-      <a href="#growth" class="nav-link">Growth</a>
-      <a href="#tech" class="nav-link">Tech</a>
+      <a href="#expertise" class="nav-link">Sectors</a>
+      <a href="#growth" class="nav-link">Services</a>
+      <a href="#tech" class="nav-link">Technology</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </div>
     <div class="hidden md:flex items-center gap-4">
       <span style="font-size:11px;letter-spacing:.08em;color:var(--silver-dim);font-weight:300">Part of <span style="color:var(--silver)">Parlym Group</span></span>
@@ -503,10 +518,11 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#expertise" class="nav-link text-base" onclick="toggleMenu()">Expertise</a>
-  <a href="#growth" class="nav-link text-base" onclick="toggleMenu()">Growth</a>
-  <a href="#tech" class="nav-link text-base" onclick="toggleMenu()">Tech</a>
-  <a href="#contact" class="btn-contact text-center" onclick="toggleMenu()">Contact</a>
+  <a href="#expertise" class="nav-link text-base" onclick="toggleMenu()">Sectors</a>
+  <a href="#growth" class="nav-link text-base" onclick="toggleMenu()">Services</a>
+  <a href="#tech" class="nav-link text-base" onclick="toggleMenu()">Technology</a>
+  <a href="#contact" class="nav-link text-base" onclick="toggleMenu()">Contact</a>
+  <a href="#contact" class="btn-contact text-center" onclick="toggleMenu()">Get in Touch</a>
 </div>
 
 <!-- HERO -->
@@ -552,7 +568,7 @@
     <p class="text-sm font-light leading-relaxed mb-16" style="color:var(--silver-dim);max-width:420px">Deep expertise across the most demanding industrial verticals. Built on 25+ years of delivering precision engineering at scale.</p>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    <div class="sector-card" data-aos="fade-up" data-aos-delay="0">
+    <div class="sector-card" data-aos="fade-up" data-aos-delay="0" onclick="openSector('oilgas')" style="cursor:none">
       <div class="sector-bar" style="width:45%"></div>
       <div class="sector-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2v6M8 8l4-6 4 6"/><path d="M4 12h16M4 12a8 8 0 0016 0"/><path d="M9 16v4M15 16v4M7 20h10"/></svg>
@@ -560,8 +576,9 @@
       <div class="sector-pct mb-2">45%</div>
       <div class="sector-name">Oil &amp; Gas</div>
       <div class="sector-desc">Offshore platforms, onshore facilities, drilling engineering and pipeline systems.</div>
+      <div class="click-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg> Explore sector</div>
     </div>
-    <div class="sector-card" data-aos="fade-up" data-aos-delay="80">
+    <div class="sector-card" data-aos="fade-up" data-aos-delay="80" onclick="openSector('green')" style="cursor:none">
       <div class="sector-bar" style="width:25%"></div>
       <div class="sector-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 22V12"/><path d="M12 12C12 12 12 4 20 3C20 11 12 12 12 12Z"/><path d="M12 12C12 12 12 6 4 4C4 12 12 12 12 12Z"/></svg>
@@ -569,8 +586,9 @@
       <div class="sector-pct mb-2">25%</div>
       <div class="sector-name">Green Energy</div>
       <div class="sector-desc">Industrial energy efficiency, sustainability projects and renewable systems integration.</div>
+      <div class="click-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg> Explore sector</div>
     </div>
-    <div class="sector-card" data-aos="fade-up" data-aos-delay="160">
+    <div class="sector-card" data-aos="fade-up" data-aos-delay="160" onclick="openSector('chemical')" style="cursor:none">
       <div class="sector-bar" style="width:20%"></div>
       <div class="sector-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11l-4 7h14l-4-7V3"/></svg>
@@ -578,8 +596,9 @@
       <div class="sector-pct mb-2">20%</div>
       <div class="sector-name">Chemical</div>
       <div class="sector-desc">Process design, safety engineering and full lifecycle support for chemical plants.</div>
+      <div class="click-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg> Explore sector</div>
     </div>
-    <div class="sector-card" data-aos="fade-up" data-aos-delay="240">
+    <div class="sector-card" data-aos="fade-up" data-aos-delay="240" onclick="openSector('power')" style="cursor:none">
       <div class="sector-bar" style="width:10%"></div>
       <div class="sector-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -587,9 +606,146 @@
       <div class="sector-pct mb-2">10%</div>
       <div class="sector-name">Power</div>
       <div class="sector-desc">Electrical and instrumentation engineering for generation and distribution systems.</div>
+      <div class="click-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg> Explore sector</div>
     </div>
   </div>
 </section>
+
+<!-- SECTOR DETAILS -->
+<section id="sector-details" class="border-t" style="border-color:var(--border);display:none">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+
+    <!-- Back button -->
+    <div class="py-8 border-b" style="border-color:var(--border)">
+      <button onclick="closeSector()" style="display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid var(--border);color:var(--silver-dim);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:8px 18px;border-radius:100px;cursor:none;transition:all .2s" onmouseenter="this.style.borderColor='var(--silver)';this.style.color='#fff'" onmouseleave="this.style.borderColor='var(--border)';this.style.color='var(--silver-dim)'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Sectors
+      </button>
+    </div>
+
+    <!-- OIL & GAS -->
+    <div id="detail-oilgas" class="sector-detail-panel py-20" style="display:none">
+      <div class="grid md:grid-cols-2 gap-16 items-start">
+        <div data-aos="fade-right">
+          <div class="section-label mb-5">Oil &amp; Gas · 45%</div>
+          <h2 class="section-title mb-6">Offshore &amp;<br/>Onshore<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Expertise</span></h2>
+          <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">PROECO operates across the entire Oil &amp; Gas value chain — from deep-water offshore platforms to onshore upstream facilities — delivering full-scope multidisciplinary engineering from concept to commissioning.</p>
+          <p class="text-sm font-light leading-relaxed" style="color:var(--silver-dim)">With decades of consolidated experience, our team supports major operators in the design, engineering and revamping of production infrastructure in some of the world's most demanding environments.</p>
+        </div>
+        <div data-aos="fade-left" class="grid grid-cols-1 gap-4">
+          <div class="service-item">
+            <div class="service-title">Offshore Platforms &amp; FPSO</div>
+            <div class="service-desc">Engineering and revamping of fixed and floating offshore platforms. Full FPSO design including oil/gas systems, re-injection and subsea well systems. Topsides, modules and utilities.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Onshore — Oil &amp; Gas Upstream</div>
+            <div class="service-desc">Complete upstream facilities for gas and oil extraction: wellheads, treatment and separation plants, pipeline connections, gas liquefaction and LNG terminals import/export.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Pipelines &amp; Transport</div>
+            <div class="service-desc">Design and engineering of onshore and offshore pipeline systems, including stress analysis, cathodic protection, leak detection and pig launchers/receivers.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Drilling Engineering</div>
+            <div class="service-desc">Deep-water drilling vessels, semi-submersibles, onshore drilling rigs and all auxiliary drilling systems. Full engineering from concept to detailed design.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GREEN ENERGY -->
+    <div id="detail-green" class="sector-detail-panel py-20" style="display:none">
+      <div class="grid md:grid-cols-2 gap-16 items-start">
+        <div data-aos="fade-right">
+          <div class="section-label mb-5">Green Energy · 25%</div>
+          <h2 class="section-title mb-6">Sustainable<br/>Engineering<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">for the Future</span></h2>
+          <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">PROECO is committed to the energy transition, providing engineering services for renewable energy plants, combined cycle power stations and industrial energy efficiency programs.</p>
+          <p class="text-sm font-light leading-relaxed" style="color:var(--silver-dim)">Our multidisciplinary team integrates process, mechanical, electrical and automation engineering to deliver low-carbon solutions that meet both regulatory requirements and client sustainability targets.</p>
+        </div>
+        <div data-aos="fade-left" class="grid grid-cols-1 gap-4">
+          <div class="service-item">
+            <div class="service-title">Renewable Energy Plants</div>
+            <div class="service-desc">Engineering for solar, wind and biomass power generation plants. Balance of plant design, grid connection studies, electrical infrastructure and control systems.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Combined Cycle Power Stations</div>
+            <div class="service-desc">Full engineering for gas turbine combined cycle plants, heat recovery steam generators (HRSG), steam turbines and associated auxiliary systems.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Industrial Energy Efficiency</div>
+            <div class="service-desc">Energy audits, heat integration studies, waste heat recovery systems and retrofit engineering to reduce consumption and carbon footprint of existing industrial facilities.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Sustainability &amp; Decarbonisation</div>
+            <div class="service-desc">CO2 capture studies, green hydrogen integration, environmental impact assessment and sustainability reporting support for industrial clients.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHEMICAL -->
+    <div id="detail-chemical" class="sector-detail-panel py-20" style="display:none">
+      <div class="grid md:grid-cols-2 gap-16 items-start">
+        <div data-aos="fade-right">
+          <div class="section-label mb-5">Chemical · 20%</div>
+          <h2 class="section-title mb-6">Process<br/>Plant<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Engineering</span></h2>
+          <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">PROECO brings deep process engineering expertise to chemical and petrochemical plants, covering the full project lifecycle from feasibility studies and FEED through to detailed engineering and commissioning support.</p>
+          <p class="text-sm font-light leading-relaxed" style="color:var(--silver-dim)">Our engineers are experienced in handling complex chemical processes, ensuring compliance with the most stringent safety and environmental standards including ATEX, SEVESO and REACH.</p>
+        </div>
+        <div data-aos="fade-left" class="grid grid-cols-1 gap-4">
+          <div class="service-item">
+            <div class="service-title">Chemical Plants</div>
+            <div class="service-desc">Engineering for specialty chemical, agrochemical and fine chemical production facilities. Reactor design, separation columns, heat exchangers and utilities integration.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Refineries</div>
+            <div class="service-desc">Revamping and new unit engineering for crude oil refining: atmospheric and vacuum distillation, hydrotreating, reforming, fluid catalytic cracking and associated utilities.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Industrial Process Plants</div>
+            <div class="service-desc">Design of process plants for petrochemicals, polymers, fertilizers and specialty materials. Process simulation, heat and mass balance, equipment sizing and P&amp;ID development.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Safety &amp; HAZOP Studies</div>
+            <div class="service-desc">Comprehensive process hazard analysis, HAZOP facilitation, SIL assessment, QRA studies and safety case preparation for chemical and petrochemical facilities.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POWER -->
+    <div id="detail-power" class="sector-detail-panel py-20" style="display:none">
+      <div class="grid md:grid-cols-2 gap-16 items-start">
+        <div data-aos="fade-right">
+          <div class="section-label mb-5">Power · 10%</div>
+          <h2 class="section-title mb-6">Electrical<br/>Power<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Systems</span></h2>
+          <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">PROECO provides complete electrical and instrumentation engineering services for power generation and distribution infrastructure, combining technical depth with a practical, project-driven approach.</p>
+          <p class="text-sm font-light leading-relaxed" style="color:var(--silver-dim)">Our electrical engineers work alongside process and mechanical disciplines to deliver fully integrated solutions for conventional power plants, cogeneration systems and industrial power networks.</p>
+        </div>
+        <div data-aos="fade-left" class="grid grid-cols-1 gap-4">
+          <div class="service-item">
+            <div class="service-title">Power Generation Plants</div>
+            <div class="service-desc">Engineering for gas turbine, steam turbine and diesel generator-based power plants. Electrical single-line diagrams, protection relay settings, load flow and short circuit analysis.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Combined Cycle &amp; Cogeneration</div>
+            <div class="service-desc">Electrical and control systems engineering for combined heat and power plants, including turbine control interfaces, synchronisation logic and grid protection systems.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">HV/MV/LV Distribution</div>
+            <div class="service-desc">Design of high, medium and low voltage distribution networks for industrial plants. Substation layout, cable routing, earthing systems and lightning protection.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-title">Instrumentation &amp; Control</div>
+            <div class="service-desc">Instrument datasheets, hook-up drawings, cable schedules, DCS/PLC architecture and control narratives for power generation and industrial applications.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
 <!-- ENGINEERING SERVICES -->
 <section id="growth" class="py-28 md:py-36 border-t" style="border-color:var(--border)">
@@ -770,7 +926,7 @@
       <h2 class="section-title mb-6" style="font-size:clamp(40px,5vw,72px)">Let's Build <br/>Something<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Exceptional.</span></h2>
       <p class="text-sm font-light leading-relaxed mb-12" style="color:var(--silver-dim);max-width:380px;margin-left:auto;margin-right:auto">Tell us about your project. Our multidisciplinary team is ready to engineer solutions that exceed expectations.</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="mailto:info@proecosrl.it" class="btn-contact cursor-none" style="padding:14px 36px;font-size:12px">info@proecosrl.it</a>
+        <a href="/cdn-cgi/l/email-protection#d8b1b6beb798a8aab7bdbbb7abaab4f6b1ac" class="btn-contact cursor-none" style="padding:14px 36px;font-size:12px"><span class="__cf_email__" data-cfemail="91f8fff7fed1e1e3fef4f2fee2e3fdbff8e5">[email&#160;protected]</span></a>
         <a href="tel:+390543795830" class="btn-contact cursor-none" style="padding:14px 36px;font-size:12px;border-color:var(--border)">0543795830</a>
       </div>
     </div>
@@ -814,7 +970,7 @@
           <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Headquarters</div>
           <div class="text-xs font-light leading-relaxed" style="color:var(--silver-dim)">
             Forli, Emilia-Romagna<br/>Italy<br/><br/>
-            <span style="color:var(--silver)">info@proecosrl.it</span>
+            <span style="color:var(--silver)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="056c6b636a4575776a60666a7677692b6c71">[email&#160;protected]</a></span>
           </div>
         </div>
       </div>
@@ -826,7 +982,7 @@
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 AOS.init({ duration: 800, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', once: true, offset: 80 });
 
@@ -884,15 +1040,4 @@ const barObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.2 });
 document.querySelectorAll('.sector-card').forEach(card => {
-  const bar = card.querySelector('.sector-bar');
-  if (bar) { bar.setAttribute('data-w', bar.style.width); bar.style.width = '0%'; }
-  barObserver.observe(card);
-});
-
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('nav');
-  nav.style.background = window.scrollY > 50 ? 'rgba(0,0,0,0.9)' : 'rgba(0,0,0,0.6)';
-});
-</script>
-</body>
-</html>
+  const ba
