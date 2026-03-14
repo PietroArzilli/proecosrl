@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PROECO — Market Sectors</title>
+<title>PROECO — Digital Engineering</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
 <style>
-  :root{--silver:#a8b2c0;--silver-dim:#9aa3ae;--steel:#c8d0da;--border:rgba(168,178,192,0.2);--border-bright:rgba(168,178,192,0.45);}
+  :root{--silver:#a8b2c0;--silver-dim:#9aa3ae;--steel:#c8d0da;--border:rgba(168,178,192,0.2);--border-bright:rgba(168,178,192,0.45);--orange:#e87830;--orange-dim:rgba(232,120,48,0.7);}
   *{box-sizing:border-box;}
   html{background:#2e2e2e;}
   body{background:#2e2e2e;color:#e8ecf0;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
@@ -20,43 +20,61 @@
   .nav-link{font-family:'Inter',sans-serif;font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver-dim);transition:color 0.2s;position:relative;}
   .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--silver);transform:scaleX(0);transition:transform 0.2s;}
   .nav-link:hover{color:#fff;}.nav-link:hover::after{transform:scaleX(1);}
-  .btn-contact{font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:9px 22px;border:1px solid var(--border-bright);border-radius:100px;color:var(--steel);background:transparent;transition:all 0.25s;cursor:none;}
+  .btn-contact{font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:9px 22px;border:1px solid var(--border-bright);border-radius:100px;color:var(--steel);background:transparent;transition:all 0.25s;cursor:none;text-decoration:none;display:inline-block;}
   .btn-contact:hover{background:rgba(168,178,192,0.08);border-color:var(--silver);color:#fff;}
+  .btn-orange{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:14px 36px;border:1px solid rgba(232,120,48,0.5);border-radius:100px;color:#e87830;background:transparent;transition:all 0.25s;cursor:none;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+  .btn-orange:hover{background:rgba(232,120,48,0.1);border-color:#e87830;color:#ffaa60;}
   .mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;background:rgba(0,0,0,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:24px 32px;z-index:499;flex-direction:column;gap:20px;}
   .mobile-menu.open{display:flex;}
   .section-label{font-family:'Inter',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--silver-dim);display:flex;align-items:center;gap:12px;}
   .section-label::before{content:'';width:32px;height:1px;background:var(--silver-dim);}
   .section-title{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:#fff;}
-  .service-item{padding:28px 24px;border:1px solid var(--border);border-radius:14px;background:#1c1c1c;transition:all 0.3s;cursor:none;position:relative;overflow:hidden;}
-  .service-item::after{content:'';position:absolute;top:0;left:0;width:0;height:1px;background:linear-gradient(90deg,transparent,var(--silver-dim),transparent);transition:width 0.5s ease;}
-  .service-item:hover{border-color:var(--border-bright);background:#222;}
-  .service-item:hover::after{width:100%;}
-  .service-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:#fff;margin-bottom:8px;}
-  .service-desc{font-size:12px;color:var(--silver-dim);line-height:1.65;}
-  footer{border-top:1px solid var(--border);background:#0d0d0d;}
-  .footer-motto{font-family:'Syne',sans-serif;font-size:clamp(14px,2vw,18px);font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--silver-dim);}
-  .footer-link{font-size:12px;font-weight:300;color:var(--silver-dim);transition:color 0.2s;cursor:none;}
-  .footer-link:hover{color:#fff;}
-  [data-aos]{pointer-events:none;}[data-aos].aos-animate{pointer-events:auto;}
-  .sector-hero{position:relative;padding:140px 0 80px;overflow:hidden;background:#2e2e2e;}
-  .sector-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(168,178,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(168,178,192,0.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,black 20%,transparent 100%);}
-  .sector-block{border-top:1px solid var(--border);scroll-margin-top:90px;}
-  .sector-number{font-family:'Syne',sans-serif;font-size:clamp(80px,10vw,140px);font-weight:800;line-height:1;letter-spacing:-0.04em;color:rgba(255,255,255,0.04);position:absolute;right:0;top:50%;transform:translateY(-50%);pointer-events:none;user-select:none;}
-  .tag-pill{display:inline-flex;align-items:center;padding:5px 12px;border:1px solid var(--border);border-radius:100px;font-size:11px;font-weight:400;letter-spacing:0.08em;color:var(--silver-dim);background:rgba(168,178,192,0.05);}
+  .orange-grad{background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .service-card{padding:32px;border:1px solid var(--border);border-radius:16px;background:#1c1c1c;transition:all 0.3s;position:relative;overflow:hidden;}
+  .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#e87830,transparent);opacity:0;transition:opacity 0.3s;}
+  .service-card:hover{border-color:var(--border-bright);background:#222;transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.4);}
+  .service-card:hover::before{opacity:1;}
+  .card-icon{width:48px;height:48px;border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--orange);margin-bottom:20px;transition:border-color 0.3s;}
+  .service-card:hover .card-icon{border-color:rgba(232,120,48,0.4);}
+  .card-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:600;color:#fff;margin-bottom:10px;}
+  .card-desc{font-size:13px;color:var(--silver-dim);line-height:1.7;}
+  .benefit-row{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+  .benefit-row:last-child{border-bottom:none;}
+  .benefit-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:rgba(232,120,48,0.25);line-height:1;flex-shrink:0;width:56px;}
+  .benefit-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#fff;margin-bottom:6px;}
+  .benefit-desc{font-size:13px;color:var(--silver-dim);line-height:1.65;}
+  .tech-tag{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:rgba(232,120,48,0.07);border:1px solid rgba(232,120,48,0.2);border-radius:6px;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(255,170,100,0.9);}
+  .approach-block{padding:28px;border:1px solid var(--border);border-radius:14px;background:#1c1c1c;}
+  .approach-icon{color:#e87830;margin-bottom:14px;}
+  .approach-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:#fff;margin-bottom:8px;}
+  .approach-desc{font-size:12px;color:var(--silver-dim);line-height:1.65;}
+  .blueprint-bg{background:#2e2e2e;position:relative;overflow:hidden;}
+  .blueprint-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,100,30,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,100,30,0.05) 1px,transparent 1px);background-size:40px 40px;}
+  .hero-bg{position:absolute;inset:0;overflow:hidden;}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(168,178,192,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(168,178,192,0.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,black 20%,transparent 100%);}
+  .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.1;pointer-events:none;}
+  .hero-orb-1{width:500px;height:500px;background:radial-gradient(circle,#8b4000,transparent);top:-100px;right:-100px;animation:drift 18s ease-in-out infinite;}
+  .hero-orb-2{width:300px;height:300px;background:radial-gradient(circle,#3060a0,transparent);bottom:0;left:-50px;animation:drift 22s ease-in-out infinite reverse;}
+  @keyframes drift{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-20px)}66%{transform:translate(-20px,15px)}}
   .back-link{display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--silver-dim);transition:color .2s;cursor:none;text-decoration:none;}
   .back-link:hover{color:#fff;}
-  .sub-nav{position:sticky;top:65px;z-index:400;background:rgba(0,0,0,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);overflow-x:auto;}
-  .sub-nav-link{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim);padding:14px 20px;white-space:nowrap;transition:color .2s;border-bottom:2px solid transparent;display:block;text-decoration:none;}
-  .sub-nav-link:hover,.sub-nav-link.active{color:#fff;border-bottom-color:var(--silver);}
-  .stat-mini{border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;background:#1c1c1c;}
-  .stat-mini-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-  .stat-mini-label{font-size:11px;color:var(--silver-dim);margin-top:4px;letter-spacing:.06em;}
+  footer{border-top:1px solid var(--border);background:#0d0d0d;}
+  .footer-motto{font-family:'Syne',sans-serif;font-size:clamp(14px,2vw,18px);font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--silver-dim);}
+  .footer-link{font-size:12px;font-weight:300;color:var(--silver-dim);transition:color 0.2s;cursor:none;text-decoration:none;}
+  .footer-link:hover{color:#fff;}
+  [data-aos]{pointer-events:none;}[data-aos].aos-animate{pointer-events:auto;}
+  .stat-pill{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;border:1px solid var(--border);border-radius:12px;background:#1c1c1c;text-align:center;}
+  .stat-pill-num{font-family:'Syne',sans-serif;font-size:clamp(28px,3vw,40px);font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+  .stat-pill-label{font-size:11px;color:var(--silver-dim);margin-top:6px;letter-spacing:.06em;}
+  .quote-block{border-left:2px solid #e87830;padding:20px 24px;background:rgba(232,120,48,0.04);border-radius:0 10px 10px 0;}
+  .quote-text{font-family:'Syne',sans-serif;font-size:16px;font-weight:400;color:#e8ecf0;line-height:1.6;font-style:italic;}
 </style>
 </head>
 <body>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- NAVBAR -->
 <nav>
   <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
     <a href="index.html" style="display:flex;align-items:center;text-decoration:none;">
@@ -68,7 +86,7 @@
     <div class="hidden md:flex items-center gap-8">
       <a href="index.html#expertise" class="nav-link">Sectors</a>
       <a href="index.html#growth" class="nav-link">Services</a>
-      <a href="index.html#tech" class="nav-link">Technology</a>
+      <a href="index.html#tech" class="nav-link" style="color:#e87830">Technology</a>
       <a href="index.html#contact" class="nav-link">Contact</a>
     </div>
     <div class="hidden md:flex items-center gap-4">
@@ -88,136 +106,259 @@
   <a href="index.html#contact" class="btn-contact text-center" onclick="toggleMenu()">Get in Touch</a>
 </div>
 
-<div class="sector-hero">
-  <div class="sector-hero-grid"></div>
-  <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
-    <a href="index.html" class="back-link mb-8 inline-flex">
+<!-- HERO -->
+<section class="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10 py-24 md:py-36">
+    <a href="index.html#tech" class="back-link mb-10 inline-flex" data-aos="fade-up">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
       Back to Home
     </a>
-    <div class="section-label mb-5" data-aos="fade-up">Market Sectors</div>
-    <h1 class="section-title mb-4" style="font-size:clamp(40px,5vw,72px)" data-aos="fade-up" data-aos-delay="80">Where We<br/>Operate</h1>
-    <p class="text-sm font-light leading-relaxed" style="color:var(--silver-dim);max-width:480px" data-aos="fade-up" data-aos-delay="160">Deep expertise across the most demanding industrial verticals. Select a sector to explore our capabilities in detail.</p>
-  </div>
-</div>
-
-<div class="sub-nav">
-  <div class="max-w-7xl mx-auto px-6 md:px-10 flex items-center">
-    <a href="#oilgas" class="sub-nav-link">Oil &amp; Gas</a>
-    <a href="#green" class="sub-nav-link">Green Energy</a>
-    <a href="#chemical" class="sub-nav-link">Chemical</a>
-    <a href="#power" class="sub-nav-link">Power</a>
-  </div>
-</div>
-
-<section id="oilgas" class="sector-block">
-  <div class="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-32">
-    <div class="grid md:grid-cols-2 gap-16 items-start">
-      <div data-aos="fade-right">
-        <div class="flex flex-wrap items-center gap-3 mb-6">
-          <span class="tag-pill">45% of Revenue</span>
-          <span class="tag-pill">Offshore &amp; Onshore</span>
-        </div>
-        <h2 class="section-title mb-6">Oil &amp;<br/>Gas<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Expertise</span></h2>
-        <p class="text-sm font-light leading-relaxed mb-5" style="color:var(--silver-dim)">PROECO operates across the entire Oil &amp; Gas value chain — from deep-water offshore platforms to onshore upstream facilities — delivering full-scope multidisciplinary engineering from concept to commissioning.</p>
-        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">With decades of consolidated experience, our team supports major operators in the design, engineering and revamping of production infrastructure in some of the world's most demanding environments.</p>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="stat-mini"><div class="stat-mini-num">45%</div><div class="stat-mini-label">Revenue share</div></div>
-          <div class="stat-mini"><div class="stat-mini-num">25+</div><div class="stat-mini-label">Years experience</div></div>
-        </div>
+    <div class="max-w-4xl">
+      <div class="section-label mb-6" data-aos="fade-up" data-aos-delay="50">Digital Engineering</div>
+      <h1 class="section-title mb-6" style="font-size:clamp(44px,6vw,84px)" data-aos="fade-up" data-aos-delay="100">
+        We Don&apos;t Just Design<br/>
+        Plants. We Build<br/>
+        <span class="orange-grad">Their Digital Twin.</span>
+      </h1>
+      <p class="mb-10" style="font-size:16px;font-weight:300;color:var(--silver-dim);line-height:1.75;max-width:560px" data-aos="fade-up" data-aos-delay="180">
+        Before a single bolt is tightened, PROECO creates a precise virtual replica of your plant. Every pipe, every valve, every cable — modelled, simulated and validated in 3D. The result: fewer errors, faster delivery and zero surprises on site.
+      </p>
+      <div class="flex flex-wrap gap-3 mb-12" data-aos="fade-up" data-aos-delay="220">
+        <span class="tech-tag">SmartPlant 3D</span>
+        <span class="tech-tag">3D Laser Scanning</span>
+        <span class="tech-tag">Digital Twin</span>
+        <span class="tech-tag">Point Cloud</span>
+        <span class="tech-tag">BIM Integration</span>
+        <span class="tech-tag">PDMS / AVEVA</span>
+        <span class="tech-tag">Cadworx</span>
       </div>
-      <div data-aos="fade-left" class="grid grid-cols-1 gap-4 relative">
-        <div class="sector-number">01</div>
-        <div class="service-item"><div class="service-title">Offshore Platforms &amp; FPSO</div><div class="service-desc">Engineering and revamping of fixed and floating offshore platforms. Full FPSO design including oil/gas systems, re-injection and subsea well systems. Topsides, modules and utilities.</div></div>
-        <div class="service-item"><div class="service-title">Onshore — Oil &amp; Gas Upstream</div><div class="service-desc">Complete upstream facilities for gas and oil extraction: wellheads, treatment and separation plants, pipeline connections, gas liquefaction and LNG terminals import/export.</div></div>
-        <div class="service-item"><div class="service-title">Pipelines &amp; Transport</div><div class="service-desc">Design and engineering of onshore and offshore pipeline systems, including stress analysis, cathodic protection, leak detection and pig launchers/receivers.</div></div>
-        <div class="service-item"><div class="service-title">Drilling Engineering</div><div class="service-desc">Deep-water drilling vessels, semi-submersibles, onshore drilling rigs and all auxiliary drilling systems. Full engineering from concept to detailed design.</div></div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="260">
+        <div class="stat-pill"><div class="stat-pill-num">&#177;2mm</div><div class="stat-pill-label">Scan accuracy</div></div>
+        <div class="stat-pill"><div class="stat-pill-num">360&#176;</div><div class="stat-pill-label">Coverage</div></div>
+        <div class="stat-pill"><div class="stat-pill-num">30%</div><div class="stat-pill-label">Fewer site clashes</div></div>
+        <div class="stat-pill"><div class="stat-pill-num">25+</div><div class="stat-pill-label">Years of expertise</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="green" class="sector-block">
-  <div class="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-32">
-    <div class="grid md:grid-cols-2 gap-16 items-start">
+<!-- APPROACH -->
+<section class="py-24 md:py-32 border-t" style="border-color:var(--border)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
       <div data-aos="fade-right">
-        <div class="flex flex-wrap items-center gap-3 mb-6">
-          <span class="tag-pill">25% of Revenue</span>
-          <span class="tag-pill">Renewables &amp; Efficiency</span>
-        </div>
-        <h2 class="section-title mb-6">Green<br/>Energy<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Solutions</span></h2>
-        <p class="text-sm font-light leading-relaxed mb-5" style="color:var(--silver-dim)">PROECO is committed to the energy transition, providing engineering services for renewable energy plants, combined cycle power stations and industrial energy efficiency programs.</p>
-        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">Our multidisciplinary team integrates process, mechanical, electrical and automation engineering to deliver low-carbon solutions that meet both regulatory requirements and client sustainability targets.</p>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="stat-mini"><div class="stat-mini-num">25%</div><div class="stat-mini-label">Revenue share</div></div>
-          <div class="stat-mini"><div class="stat-mini-num">Net 0</div><div class="stat-mini-label">Commitment</div></div>
+        <div class="section-label mb-5">Our Approach</div>
+        <h2 class="section-title mb-6">Engineering starts<br/>with a<br/><span class="orange-grad">complete picture.</span></h2>
+        <p class="text-sm font-light leading-relaxed mb-6" style="color:var(--silver-dim)">
+          Think of a Digital Twin as a satellite navigation system for your plant. Just as GPS gives you real-time awareness of your surroundings before you make a move, a digital twin gives engineers complete, accurate knowledge of every element of a facility — before any physical work begins.
+        </p>
+        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">
+          At PROECO, we have integrated high-precision digital tools into every phase of the engineering workflow. This isn&apos;t a technology add-on — it is the foundation on which every complex project we deliver is built.
+        </p>
+        <div class="quote-block">
+          <div class="quote-text">&ldquo;Detecting a pipe clash in a 3D model costs almost nothing to fix. Detecting it on a live plant costs time, money, and potentially safety.&rdquo;</div>
+          <div class="text-xs mt-3" style="color:var(--silver-dim);letter-spacing:.06em">PROECO Engineering Team</div>
         </div>
       </div>
-      <div data-aos="fade-left" class="grid grid-cols-1 gap-4 relative">
-        <div class="sector-number">02</div>
-        <div class="service-item"><div class="service-title">Renewable Energy Plants</div><div class="service-desc">Engineering for solar, wind and biomass power generation plants. Balance of plant design, grid connection studies, electrical infrastructure and control systems.</div></div>
-        <div class="service-item"><div class="service-title">Combined Cycle Power Stations</div><div class="service-desc">Full engineering for gas turbine combined cycle plants, heat recovery steam generators (HRSG), steam turbines and associated auxiliary systems.</div></div>
-        <div class="service-item"><div class="service-title">Industrial Energy Efficiency</div><div class="service-desc">Energy audits, heat integration studies, waste heat recovery systems and retrofit engineering to reduce consumption and carbon footprint of existing industrial facilities.</div></div>
-        <div class="service-item"><div class="service-title">Sustainability &amp; Decarbonisation</div><div class="service-desc">CO2 capture studies, green hydrogen integration, environmental impact assessment and sustainability reporting support for industrial clients.</div></div>
+      <div data-aos="fade-left" class="grid grid-cols-1 gap-4">
+        <div class="approach-block">
+          <div class="approach-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M3.05 11a9 9 0 1 0 .5-3"/></svg></div>
+          <div class="approach-title">Integrated from Day One</div>
+          <div class="approach-desc">Digital modelling is not added at the end of a project — it runs in parallel with every engineering discipline from the first FEED study. This keeps all teams aligned and eliminates information silos.</div>
+        </div>
+        <div class="approach-block">
+          <div class="approach-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="approach-title">Clash-Free by Design</div>
+          <div class="approach-desc">Our 3D models are continuously clash-checked across all disciplines — process, piping, structural, electrical and instrumentation. Issues are resolved virtually, not on site.</div>
+        </div>
+        <div class="approach-block">
+          <div class="approach-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+          <div class="approach-title">Living Asset Documentation</div>
+          <div class="approach-desc">The digital model does not stop at construction. As-built 3D documentation becomes a permanent asset — ready for future maintenance, revamping or expansion projects.</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="chemical" class="sector-block">
-  <div class="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-32">
-    <div class="grid md:grid-cols-2 gap-16 items-start">
+<!-- KEY SERVICES -->
+<section class="py-24 md:py-32 blueprint-bg border-t" style="border-color:var(--border)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
       <div data-aos="fade-right">
-        <div class="flex flex-wrap items-center gap-3 mb-6">
-          <span class="tag-pill">20% of Revenue</span>
-          <span class="tag-pill">Process &amp; Refining</span>
+        <div class="section-label mb-5">Key Services</div>
+        <h2 class="section-title">Four capabilities.<br/><span class="orange-grad">One seamless workflow.</span></h2>
+      </div>
+      <p class="text-sm font-light leading-relaxed md:max-w-xs" style="color:var(--silver-dim)" data-aos="fade-left">Every service below connects directly to the others. Data captured in scanning feeds directly into modelling. Models feed into simulation. The result is a single, consistent source of truth.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 3l18 18M3 3v7m0-7h7m11 0v7m0-7h-7M3 21h7m-7 0v-7m18 7h-7m7 0v-7"/></svg>
         </div>
-        <h2 class="section-title mb-6">Chemical<br/>Plant<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Engineering</span></h2>
-        <p class="text-sm font-light leading-relaxed mb-5" style="color:var(--silver-dim)">PROECO brings deep process engineering expertise to chemical and petrochemical plants, covering the full project lifecycle from feasibility studies and FEED through to detailed engineering and commissioning support.</p>
-        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">Our engineers are experienced in handling complex chemical processes, ensuring compliance with the most stringent safety and environmental standards including ATEX, SEVESO and REACH.</p>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="stat-mini"><div class="stat-mini-num">20%</div><div class="stat-mini-label">Revenue share</div></div>
-          <div class="stat-mini"><div class="stat-mini-num">ATEX</div><div class="stat-mini-label">Certified</div></div>
+        <div class="card-title">3D Laser Scanning &amp; Point Cloud</div>
+        <div class="card-desc mb-4">Imagine photographing every surface of a facility with a beam of light that records millions of measurements per second, accurate to within 2mm. That is what laser scanning does. The output — a &ldquo;point cloud&rdquo; — is an exact digital replica of physical reality.</div>
+        <div class="card-desc" style="color:#e8ecf0">
+          <strong style="color:#e87830;font-weight:500">Why it matters for you:</strong> No more working from outdated paper drawings or guessing what is hidden behind a wall. Every revamping or expansion project starts from verified, as-is geometry — eliminating costly rework caused by dimensional surprises.
         </div>
       </div>
-      <div data-aos="fade-left" class="grid grid-cols-1 gap-4 relative">
-        <div class="sector-number">03</div>
-        <div class="service-item"><div class="service-title">Chemical Plants</div><div class="service-desc">Engineering for specialty chemical, agrochemical and fine chemical production facilities. Reactor design, separation columns, heat exchangers and utilities integration.</div></div>
-        <div class="service-item"><div class="service-title">Refineries</div><div class="service-desc">Revamping and new unit engineering for crude oil refining: atmospheric and vacuum distillation, hydrotreating, reforming, fluid catalytic cracking and associated utilities.</div></div>
-        <div class="service-item"><div class="service-title">Industrial Process Plants</div><div class="service-desc">Design of process plants for petrochemicals, polymers, fertilizers and specialty materials. Process simulation, heat and mass balance, equipment sizing and P&amp;ID development.</div></div>
-        <div class="service-item"><div class="service-title">Safety &amp; HAZOP Studies</div><div class="service-desc">Comprehensive process hazard analysis, HAZOP facilitation, SIL assessment, QRA studies and safety case preparation for chemical and petrochemical facilities.</div></div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="card-title">SmartPlant 3D &amp; Intelligent Modelling</div>
+        <div class="card-desc mb-4">SmartPlant 3D is not just a drawing tool — it is a database. Every object in the model (a pump, a nozzle, a cable tray) carries its engineering data: material, specification, discipline, tag number. When something changes, everything connected to it updates automatically.</div>
+        <div class="card-desc" style="color:#e8ecf0">
+          <strong style="color:#e87830;font-weight:500">Why it matters for you:</strong> Drastically fewer manual errors, faster document generation, and a single consistent dataset shared across all engineering disciplines — process, civil, mechanical, electrical and instrumentation all working from the same model.
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="card-title">Digital Twin &amp; Simulation</div>
+        <div class="card-desc mb-4">A Digital Twin is a living, connected model of your plant that mirrors real-world conditions. It allows engineers to simulate scenarios — a process change, a safety event, a new unit integration — before any physical intervention takes place.</div>
+        <div class="card-desc" style="color:#e8ecf0">
+          <strong style="color:#e87830;font-weight:500">Why it matters for you:</strong> Test a plant modification virtually before spending a single euro on materials or shutdown time. Validate safety scenarios without risk. Train operators on a digital replica. The digital twin pays for itself many times over.
+        </div>
+      </div>
+
+      <div class="service-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="card-title">BIM Integration &amp; As-Built Documentation</div>
+        <div class="card-desc mb-4">BIM (Building Information Modelling) extends 3D intelligence to the full asset lifecycle. PROECO delivers as-built documentation that is fully coordinated across all disciplines and formats — ready for operations, maintenance, and future engineering interventions.</div>
+        <div class="card-desc" style="color:#e8ecf0">
+          <strong style="color:#e87830;font-weight:500">Why it matters for you:</strong> Your plant documentation is not a cost — it is an asset. Accurate as-built records reduce shutdown duration, accelerate maintenance decisions and provide the foundation for any future expansion or revamping work.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="py-24 md:py-32 border-t" style="border-color:var(--border)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+      <div data-aos="fade-right">
+        <div class="section-label mb-5">Why Choose PROECO</div>
+        <h2 class="section-title mb-6">The value is in<br/>the<br/><span class="orange-grad">outcomes.</span></h2>
+        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">Digital tools are only as valuable as the engineering team that uses them. At PROECO, our 75+ internal specialists combine deep technical expertise with hands-on mastery of the most advanced digital platforms in the industry.</p>
+        <a href="index.html#contact" class="btn-orange">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Talk to our team
+        </a>
+      </div>
+      <div data-aos="fade-left">
+        <div class="benefit-row">
+          <div class="benefit-num">01</div>
+          <div>
+            <div class="benefit-title">Fewer Errors, Lower Rework Costs</div>
+            <div class="benefit-desc">Industry studies consistently show that clash detection in 3D models reduces on-site rework by up to 40%. For large industrial projects, this translates directly to significant schedule and cost savings before construction even begins.</div>
+          </div>
+        </div>
+        <div class="benefit-row">
+          <div class="benefit-num">02</div>
+          <div>
+            <div class="benefit-title">Faster Project Delivery</div>
+            <div class="benefit-desc">Automated document generation from the 3D model eliminates weeks of manual drafting. Parallel discipline workflows — all referencing the same model — eliminate waiting times between handoffs, compressing the overall project schedule.</div>
+          </div>
+        </div>
+        <div class="benefit-row">
+          <div class="benefit-num">03</div>
+          <div>
+            <div class="benefit-title">Improved Safety &amp; Risk Management</div>
+            <div class="benefit-desc">3D models allow safety engineers to identify hazardous area classifications, evacuation routes and maintenance access constraints before a facility is built. Risks are eliminated at the design stage — not discovered during operation.</div>
+          </div>
+        </div>
+        <div class="benefit-row">
+          <div class="benefit-num">04</div>
+          <div>
+            <div class="benefit-title">Long-Term Asset Value</div>
+            <div class="benefit-desc">A plant with accurate as-built digital documentation is simply worth more. Maintenance is faster, modifications are cheaper to engineer, and the facility operates with a level of information certainty that drives down operational costs over its entire lifecycle.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="power" class="sector-block">
-  <div class="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-32">
-    <div class="grid md:grid-cols-2 gap-16 items-start">
-      <div data-aos="fade-right">
-        <div class="flex flex-wrap items-center gap-3 mb-6">
-          <span class="tag-pill">10% of Revenue</span>
-          <span class="tag-pill">Generation &amp; Distribution</span>
-        </div>
-        <h2 class="section-title mb-6">Electrical<br/>Power<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Systems</span></h2>
-        <p class="text-sm font-light leading-relaxed mb-5" style="color:var(--silver-dim)">PROECO provides complete electrical and instrumentation engineering services for power generation and distribution infrastructure, combining technical depth with a practical, project-driven approach.</p>
-        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">Our electrical engineers work alongside process and mechanical disciplines to deliver fully integrated solutions for conventional power plants, cogeneration systems and industrial power networks.</p>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="stat-mini"><div class="stat-mini-num">10%</div><div class="stat-mini-label">Revenue share</div></div>
-          <div class="stat-mini"><div class="stat-mini-num">HV/MV</div><div class="stat-mini-label">Expertise</div></div>
-        </div>
+<!-- SOFTWARE STACK -->
+<section class="py-20 border-t" style="border-color:var(--border)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="section-label mb-10" data-aos="fade-up">Technology Stack</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="60">
+      <div style="padding:20px;border:1px solid var(--border);border-radius:10px;background:#1c1c1c;">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:#fff;margin-bottom:4px">Intergraph SmartPlant 3D</div>
+        <div style="font-size:11px;color:var(--silver-dim)">Intelligent 3D plant design</div>
       </div>
-      <div data-aos="fade-left" class="grid grid-cols-1 gap-4 relative">
-        <div class="sector-number">04</div>
-        <div class="service-item"><div class="service-title">Power Generation Plants</div><div class="service-desc">Engineering for gas turbine, steam turbine and diesel generator-based power plants. Electrical single-line diagrams, protection relay settings, load flow and short circuit analysis.</div></div>
-        <div class="service-item"><div class="service-title">Combined Cycle &amp; Cogeneration</div><div class="service-desc">Electrical and control systems engineering for combined heat and power plants, including turbine control interfaces, synchronisation logic and grid protection systems.</div></div>
-        <div class="service-item"><div class="service-title">HV/MV/LV Distribution</div><div class="service-desc">Design of high, medium and low voltage distribution networks for industrial plants. Substation layout, cable routing, earthing systems and lightning protection.</div></div>
-        <div class="service-item"><div class="service-title">Instrumentation &amp; Control</div><div class="service-desc">Instrument datasheets, hook-up drawings, cable schedules, DCS/PLC architecture and control narratives for power generation and industrial applications.</div></div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:10px;background:#1c1c1c;">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:#fff;margin-bottom:4px">AVEVA PDMS</div>
+        <div style="font-size:11px;color:var(--silver-dim)">Plant design management</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:10px;background:#1c1c1c;">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:#fff;margin-bottom:4px">Intergraph PDS</div>
+        <div style="font-size:11px;color:var(--silver-dim)">Plant design system</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:10px;background:#1c1c1c;">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:#fff;margin-bottom:4px">Cadworx Plant Pro</div>
+        <div style="font-size:11px;color:var(--silver-dim)">AutoCAD-based 3D modelling</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:10px;background:#1c1c1c;">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:#fff;margin-bottom:4px">ESApro Piping 3D</div>
+        <div style="font-size:11px;color:var(--silver-dim)">Piping design &amp; isometrics</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:10px;background:#1c1c1c;">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:#fff;margin-bottom:4px">Pro/Engineer 4.0</div>
+        <div style="font-size:11px;color:var(--silver-dim)">Mechanical 3D CAD</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:10px;background:#1c1c1c;">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:#fff;margin-bottom:4px">Microstation V8 XM</div>
+        <div style="font-size:11px;color:var(--silver-dim)">2D/3D CAD &amp; BIM</div>
+      </div>
+      <div style="padding:20px;border:1px solid var(--border);border-radius:10px;background:#1c1c1c;">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:#fff;margin-bottom:4px">Laser Scanning Systems</div>
+        <div style="font-size:11px;color:var(--silver-dim)">High-res point cloud capture</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CTA -->
+<section class="py-28 md:py-36 border-t" style="border-color:var(--border)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 text-center">
+    <div data-aos="fade-up">
+      <div class="section-label justify-center mb-8">Start a Project</div>
+      <h2 class="section-title mb-6" style="font-size:clamp(36px,5vw,64px)">
+        Ready to bring your<br/>plant into the<br/><span class="orange-grad">digital era?</span>
+      </h2>
+      <p class="text-sm font-light leading-relaxed mb-12" style="color:var(--silver-dim);max-width:420px;margin-left:auto;margin-right:auto">
+        Tell us about your facility or project. Our digital engineering team will assess your needs and propose the right approach — from a single laser scan to a full Digital Twin implementation.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="mailto:info@proecosrl.it" class="btn-orange" style="padding:14px 36px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          info@proecosrl.it
+        </a>
+        <a href="tel:+390543795830" class="btn-contact" style="padding:14px 36px;font-size:12px">
+          0543795830
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="py-12 md:py-16">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
@@ -280,23 +421,7 @@ document.querySelectorAll('a,button').forEach(function(el){
   el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(168,178,192,0.6)';});
 });
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-window.addEventListener('scroll',function(){
-  document.querySelector('nav').style.background=window.scrollY>50?'rgba(0,0,0,0.98)':'rgba(0,0,0,0.9)';
-});
-window.addEventListener('load',function(){
-  if(window.location.hash){
-    var el=document.querySelector(window.location.hash);
-    if(el){setTimeout(function(){var top=el.getBoundingClientRect().top+window.scrollY-90;window.scrollTo({top:top,behavior:'smooth'});},100);}
-  }
-});
-var sections=['oilgas','green','chemical','power'];
-var subLinks=document.querySelectorAll('.sub-nav-link');
-window.addEventListener('scroll',function(){
-  var current='';
-  sections.forEach(function(id){var el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=160)current=id;});
-  subLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+current);});
-});
+window.addEventListener('scroll',function(){document.querySelector('nav').style.background=window.scrollY>50?'rgba(0,0,0,0.98)':'rgba(0,0,0,0.9)';});
 </script>
-
 </body>
 </html>
