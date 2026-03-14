@@ -349,7 +349,7 @@
       <h2 class="section-title mb-6" style="font-size:clamp(40px,5vw,72px)">Let&apos;s Build<br/>Something<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Exceptional.</span></h2>
       <p class="text-sm font-light leading-relaxed mb-12" style="color:var(--silver-dim);max-width:380px;margin-left:auto;margin-right:auto">Tell us about your project. Our multidisciplinary team is ready to engineer solutions that exceed expectations.</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="/cdn-cgi/l/email-protection#b1d8dfd7def1c1c3ded4d2dec2c3dd9fd8c5" class="btn-contact" style="padding:14px 36px;font-size:12px"><span class="__cf_email__" data-cfemail="8ce5e2eae3ccfcfee3e9efe3fffee0a2e5f8">[email&#160;protected]</span></a>
+        <a href="mailto:info@proecosrl.it" class="btn-contact" style="padding:14px 36px;font-size:12px">info@proecosrl.it</a>
         <a href="tel:+390543795830" class="btn-contact" style="padding:14px 36px;font-size:12px;border-color:var(--border)">0543795830</a>
       </div>
     </div>
@@ -392,7 +392,7 @@
           <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Headquarters</div>
           <div class="text-xs font-light leading-relaxed" style="color:var(--silver-dim)">
             Forli, Emilia-Romagna<br/>Italy<br/><br/>
-            <span style="color:var(--silver)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="50393e363f1020223f35333f23223c7e3924">[email&#160;protected]</a></span>
+            <span style="color:var(--silver)">info@proecosrl.it</span>
           </div>
         </div>
       </div>
@@ -404,7 +404,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 AOS.init({duration:800,easing:'cubic-bezier(0.4,0,0.2,1)',once:true,offset:80});
 const dot=document.getElementById('cursorDot');
@@ -423,4 +423,8 @@ var statsObserver=new IntersectionObserver(function(entries){entries.forEach(fun
 var revenueEl=document.getElementById('count-revenue');
 if(revenueEl)statsObserver.observe(revenueEl.closest('section'));
 var barObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.querySelectorAll('.sector-bar').forEach(function(bar){var w=bar.getAttribute('data-w');bar.style.transition='width 1.2s cubic-bezier(0.4,0,0.2,1)';if(w)bar.style.width=w;});}});},{threshold:0.2});
-document.querySelectorAll(
+document.querySelectorAll('.sector-card').forEach(function(card){var bar=card.querySelector('.sector-bar');if(bar){bar.setAttribute('data-w',bar.style.width);bar.style.width='0%';}barObserver.observe(card);});
+window.addEventListener('scroll',function(){document.querySelector('nav').style.background=window.scrollY>50?'rgba(0,0,0,0.98)':'rgba(0,0,0,0.9)';});
+</script>
+</body>
+</html>
