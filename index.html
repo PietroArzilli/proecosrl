@@ -9,11 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
 <style>
   :root{
-    --silver:#a8b2c0;
-    --silver-dim:#9aa3ae;
-    --steel:#c8d0da;
-    --border:rgba(168,178,192,0.2);
-    --border-bright:rgba(168,178,192,0.45);
+    --silver:#d0d8e0;
+    --silver-dim:#c8d0d8;
+    --steel:#dde4ea;
+    --border:rgba(200,210,220,0.25);
+    --border-bright:rgba(200,210,220,0.55);
   }
   *{box-sizing:border-box;}
   html{background:#282828;}
@@ -69,14 +69,14 @@
   .service-item:hover .service-icon-wrap{color:var(--silver);}
   .service-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:#fff;margin-bottom:8px;}
   .service-desc{font-size:12px;color:var(--silver-dim);line-height:1.65;}
-  .blueprint-section{background:#2a2a2a;position:relative;overflow:hidden;}
+  .blueprint-section{background:#333333;position:relative;overflow:hidden;}
   .blueprint-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,100,30,0) 1px,transparent 1px),linear-gradient(90deg,rgba(255,100,30,0) 1px,transparent 1px);background-size:40px 40px;}
   .blueprint-grid::before{content:'';position:absolute;inset:0;background-image:none;}
-  .blueprint-corner{position:absolute;width:40px;height:40px;border-color:rgba(255,110,30,0.4);border-style:solid;}
+  .blueprint-corner{position:absolute;width:40px;height:40px;border-color:transparent;border-style:solid;}
   .bc-tl{top:24px;left:24px;border-width:1px 0 0 1px;}.bc-tr{top:24px;right:24px;border-width:1px 1px 0 0;}.bc-bl{bottom:24px;left:24px;border-width:0 0 1px 1px;}.bc-br{bottom:24px;right:24px;border-width:0 1px 1px 0;}
   .tech-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(255,100,30,0.07);border:1px solid rgba(255,100,30,0.2);border-radius:6px;font-size:11px;font-weight:400;letter-spacing:0.08em;color:rgba(255,170,100,0.9);}
   .tech-badge .icon{color:rgba(255,130,60,0.7);}
-  .blueprint-stat{padding:24px;border:1px solid rgba(255,120,40,0.2);border-radius:12px;background:rgba(40,15,0,0.3);display:flex;flex-direction:column;justify-content:flex-end;}
+  .blueprint-stat{padding:24px;border:1px solid rgba(200,210,220,0.15);border-radius:12px;background:rgba(0,0,0,0.1);display:flex;flex-direction:column;justify-content:flex-end;}
   .blueprint-stat-num{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:rgba(255,160,80,0.9);display:flex;align-items:center;gap:3px;white-space:nowrap;}
   .pm-symbol{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;font-size:11px;font-weight:800;color:rgba(255,160,80,0.9);gap:1px;flex-shrink:0;}
   .blueprint-stat-label{font-size:11px;color:rgba(220,140,80,0.8);letter-spacing:0.08em;margin-top:4px;}
@@ -248,10 +248,7 @@
   </div>
 </section>
 
-<section id="tech" class="blueprint-section py-28 md:py-36 relative overflow-hidden">
-  <div class="blueprint-grid"></div>
-  <div class="bc-tl blueprint-corner"></div><div class="bc-tr blueprint-corner"></div>
-  <div class="bc-bl blueprint-corner"></div><div class="bc-br blueprint-corner"></div>
+<section id="tech" class="py-28 md:py-36 border-t" style="border-color:var(--border)">
   <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
     <div class="grid md:grid-cols-2 gap-16 items-center">
       <div data-aos="fade-right">
@@ -271,9 +268,9 @@
         </a>
       </div>
       <div data-aos="fade-left" data-aos-delay="100">
-        <div style="background:rgba(20,8,0,0.7);border:1px solid rgba(255,120,40,0.2);border-radius:16px;padding:32px;overflow:hidden;position:relative">
-          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,140,50,0.6),transparent);animation:scanX 3s ease-in-out infinite"></div>
-          <div style="position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(255,120,40,0.4),transparent);animation:scanY 4s ease-in-out infinite"></div>
+        <div style="background:transparent;border:1px solid rgba(200,210,220,0.12);border-radius:16px;padding:32px;overflow:hidden;position:relative">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:transparent;animation:scanX 3s ease-in-out infinite"></div>
+          <div style="position:absolute;left:0;top:0;bottom:0;width:1px;background:transparent;animation:scanY 4s ease-in-out infinite"></div>
           <style>@keyframes scanX{0%,100%{transform:translateX(-100%)}50%{transform:translateX(200%)}}@keyframes scanY{0%,100%{transform:translateY(-100%)}50%{transform:translateY(300%)}}</style>
           <div style="font-family:monospace;font-size:12px;color:rgba(255,140,60,0.6);letter-spacing:.08em;margin-bottom:24px">// PROECO 3D_SCAN_SYSTEM v4.2.1</div>
           <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;opacity:0.85">
