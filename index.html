@@ -8,15 +8,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
 <style>
-  :root{--silver:#a8b2c0;--silver-dim:#5a6470;--steel:#c8d0da;--border:rgba(168,178,192,0.15);--border-bright:rgba(168,178,192,0.35);}
+  :root{
+    --silver:#a8b2c0;
+    --silver-dim:#9aa3ae;
+    --steel:#c8d0da;
+    --border:rgba(168,178,192,0.2);
+    --border-bright:rgba(168,178,192,0.45);
+  }
   *{box-sizing:border-box;}
-  html{background:#000;}
-  body{background:#000;color:#e8ecf0;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+  html{background:#141414;}
+  body{background:#141414;color:#e8ecf0;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
   .cursor-dot{width:6px;height:6px;background:#fff;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform 0.1s;}
   .cursor-ring{width:32px;height:32px;border:1px solid rgba(168,178,192,0.6);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:transform 0.18s ease,width 0.2s,height 0.2s,border-color 0.2s;}
   body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.4;}
-  ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#000;}::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px;}
-  nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(0,0,0,0.6);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);transition:background 0.3s;}
+  ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#141414;}::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(0,0,0,0.9);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);transition:background 0.3s;}
   .nav-link{font-family:'Inter',sans-serif;font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver-dim);transition:color 0.2s;position:relative;}
   .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--silver);transform:scaleX(0);transition:transform 0.2s;}
   .nav-link:hover{color:#fff;}.nav-link:hover::after{transform:scaleX(1);}
@@ -43,7 +49,7 @@
   .section-label{font-family:'Inter',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--silver-dim);display:flex;align-items:center;gap:12px;}
   .section-label::before{content:'';width:32px;height:1px;background:var(--silver-dim);}
   .section-title{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:#fff;}
-  .sector-card{position:relative;background:rgba(10,10,10,0.8);border:1px solid var(--border);border-radius:16px;padding:28px;overflow:hidden;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);cursor:pointer;}
+  .sector-card{position:relative;background:#1c1c1c;border:1px solid var(--border);border-radius:16px;padding:28px;overflow:hidden;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);cursor:pointer;}
   .sector-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(168,178,192,0.04) 0%,transparent 60%);opacity:0;transition:opacity 0.35s;}
   .sector-card:hover{border-color:var(--border-bright);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.5);}
   .sector-card:hover::before{opacity:1;}
@@ -55,32 +61,32 @@
   .click-hint{display:flex;align-items:center;gap:5px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--silver-dim);margin-top:14px;opacity:0;transition:opacity 0.3s;}
   .sector-card:hover .click-hint{opacity:1;}
   .sector-bar{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(90deg,var(--silver-dim),transparent);transition:width 0.6s ease;}
-  .service-item{padding:28px 24px;border:1px solid var(--border);border-radius:14px;background:rgba(8,8,8,0.9);transition:all 0.3s;cursor:none;position:relative;overflow:hidden;}
+  .service-item{padding:28px 24px;border:1px solid var(--border);border-radius:14px;background:#1c1c1c;transition:all 0.3s;cursor:none;position:relative;overflow:hidden;}
   .service-item::after{content:'';position:absolute;top:0;left:0;width:0;height:1px;background:linear-gradient(90deg,transparent,var(--silver-dim),transparent);transition:width 0.5s ease;}
-  .service-item:hover{border-color:rgba(168,178,192,0.2);background:rgba(15,15,15,0.9);}
+  .service-item:hover{border-color:var(--border-bright);background:#222;}
   .service-item:hover::after{width:100%;}
   .service-icon-wrap{width:40px;height:40px;margin-bottom:18px;color:var(--silver-dim);transition:color 0.3s;}
   .service-item:hover .service-icon-wrap{color:var(--silver);}
   .service-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:#fff;margin-bottom:8px;}
   .service-desc{font-size:12px;color:var(--silver-dim);line-height:1.65;}
-  .blueprint-section{background:#000;position:relative;overflow:hidden;}
+  .blueprint-section{background:#141414;position:relative;overflow:hidden;}
   .blueprint-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,100,30,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,100,30,0.06) 1px,transparent 1px);background-size:40px 40px;}
   .blueprint-grid::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,100,30,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,100,30,0.03) 1px,transparent 1px);background-size:8px 8px;}
   .blueprint-corner{position:absolute;width:40px;height:40px;border-color:rgba(255,110,30,0.4);border-style:solid;}
   .bc-tl{top:24px;left:24px;border-width:1px 0 0 1px;}.bc-tr{top:24px;right:24px;border-width:1px 1px 0 0;}.bc-bl{bottom:24px;left:24px;border-width:0 0 1px 1px;}.bc-br{bottom:24px;right:24px;border-width:0 1px 1px 0;}
-  .tech-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(255,100,30,0.07);border:1px solid rgba(255,100,30,0.2);border-radius:6px;font-family:'Inter',monospace;font-size:11px;font-weight:400;letter-spacing:0.08em;color:rgba(255,170,100,0.85);}
-  .tech-badge .icon{color:rgba(255,130,60,0.6);}
-  .blueprint-stat{padding:24px;border:1px solid rgba(255,120,40,0.15);border-radius:12px;background:rgba(40,15,0,0.2);backdrop-filter:blur(4px);display:flex;flex-direction:column;justify-content:flex-end;}
+  .tech-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(255,100,30,0.07);border:1px solid rgba(255,100,30,0.2);border-radius:6px;font-size:11px;font-weight:400;letter-spacing:0.08em;color:rgba(255,170,100,0.9);}
+  .tech-badge .icon{color:rgba(255,130,60,0.7);}
+  .blueprint-stat{padding:24px;border:1px solid rgba(255,120,40,0.2);border-radius:12px;background:rgba(40,15,0,0.3);display:flex;flex-direction:column;justify-content:flex-end;}
   .blueprint-stat-num{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:rgba(255,160,80,0.9);display:flex;align-items:center;gap:3px;white-space:nowrap;}
   .pm-symbol{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;font-size:11px;font-weight:800;color:rgba(255,160,80,0.9);gap:1px;flex-shrink:0;}
-  .blueprint-stat-label{font-size:11px;color:rgba(200,120,60,0.7);letter-spacing:0.08em;margin-top:4px;}
+  .blueprint-stat-label{font-size:11px;color:rgba(220,140,80,0.8);letter-spacing:0.08em;margin-top:4px;}
   .stat-number{font-family:'Syne',sans-serif;font-size:clamp(52px,6vw,80px);font-weight:800;background:linear-gradient(135deg,#fff 0%,var(--silver) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;letter-spacing:-0.03em;}
   .stat-unit{font-family:'Syne',sans-serif;font-size:clamp(28px,3vw,40px);font-weight:700;color:var(--silver-dim);}
   .stat-label{font-size:13px;font-weight:300;color:var(--silver-dim);letter-spacing:0.05em;margin-top:8px;}
   .stat-divider{width:1px;background:linear-gradient(to bottom,transparent,var(--border-bright),transparent);align-self:stretch;}
-  .mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;background:rgba(0,0,0,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:24px 32px;z-index:499;flex-direction:column;gap:20px;}
+  .mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;background:rgba(0,0,0,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:24px 32px;z-index:499;flex-direction:column;gap:20px;}
   .mobile-menu.open{display:flex;}
-  footer{border-top:1px solid var(--border);background:#000;}
+  footer{border-top:1px solid var(--border);background:#0d0d0d;}
   .footer-motto{font-family:'Syne',sans-serif;font-size:clamp(14px,2vw,18px);font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--silver-dim);}
   .footer-link{font-size:12px;font-weight:300;color:var(--silver-dim);transition:color 0.2s;cursor:none;}
   .footer-link:hover{color:#fff;}
@@ -91,7 +97,6 @@
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- NAVBAR -->
 <nav>
   <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
     <a href="#" style="display:flex;align-items:center;text-decoration:none;">
@@ -123,7 +128,6 @@
   <a href="#contact" class="btn-contact text-center" onclick="toggleMenu()">Get in Touch</a>
 </div>
 
-<!-- HERO -->
 <section class="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden" id="home">
   <div class="hero-bg">
     <div class="hero-grid"></div>
@@ -158,7 +162,6 @@
   </div>
 </section>
 
-<!-- MARKET SECTORS -->
 <section id="expertise" class="py-28 md:py-36 px-6 md:px-10 max-w-7xl mx-auto">
   <div data-aos="fade-up">
     <div class="section-label mb-5">Market Sectors</div>
@@ -166,55 +169,41 @@
     <p class="text-sm font-light leading-relaxed mb-16" style="color:var(--silver-dim);max-width:420px">Deep expertise across the most demanding industrial verticals. Click a sector to explore our full capabilities.</p>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-
     <a href="proeco-sectors.html#oilgas" style="text-decoration:none" class="sector-card" data-aos="fade-up" data-aos-delay="0">
       <div class="sector-bar" style="width:45%"></div>
-      <div class="sector-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2v6M8 8l4-6 4 6"/><path d="M4 12h16M4 12a8 8 0 0016 0"/><path d="M9 16v4M15 16v4M7 20h10"/></svg>
-      </div>
+      <div class="sector-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2v6M8 8l4-6 4 6"/><path d="M4 12h16M4 12a8 8 0 0016 0"/><path d="M9 16v4M15 16v4M7 20h10"/></svg></div>
       <div class="sector-pct mb-2">45%</div>
       <div class="sector-name">Oil &amp; Gas</div>
       <div class="sector-desc">Offshore platforms, onshore facilities, drilling engineering and pipeline systems.</div>
       <div class="click-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg> Explore sector</div>
     </a>
-
     <a href="proeco-sectors.html#green" style="text-decoration:none" class="sector-card" data-aos="fade-up" data-aos-delay="80">
       <div class="sector-bar" style="width:25%"></div>
-      <div class="sector-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 22V12"/><path d="M12 12C12 12 12 4 20 3C20 11 12 12 12 12Z"/><path d="M12 12C12 12 12 6 4 4C4 12 12 12 12 12Z"/></svg>
-      </div>
+      <div class="sector-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 22V12"/><path d="M12 12C12 12 12 4 20 3C20 11 12 12 12 12Z"/><path d="M12 12C12 12 12 6 4 4C4 12 12 12 12 12Z"/></svg></div>
       <div class="sector-pct mb-2">25%</div>
       <div class="sector-name">Green Energy</div>
       <div class="sector-desc">Industrial energy efficiency, sustainability projects and renewable systems integration.</div>
       <div class="click-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg> Explore sector</div>
     </a>
-
     <a href="proeco-sectors.html#chemical" style="text-decoration:none" class="sector-card" data-aos="fade-up" data-aos-delay="160">
       <div class="sector-bar" style="width:20%"></div>
-      <div class="sector-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11l-4 7h14l-4-7V3"/></svg>
-      </div>
+      <div class="sector-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11l-4 7h14l-4-7V3"/></svg></div>
       <div class="sector-pct mb-2">20%</div>
       <div class="sector-name">Chemical</div>
       <div class="sector-desc">Process design, safety engineering and full lifecycle support for chemical plants.</div>
       <div class="click-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg> Explore sector</div>
     </a>
-
     <a href="proeco-sectors.html#power" style="text-decoration:none" class="sector-card" data-aos="fade-up" data-aos-delay="240">
       <div class="sector-bar" style="width:10%"></div>
-      <div class="sector-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      </div>
+      <div class="sector-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
       <div class="sector-pct mb-2">10%</div>
       <div class="sector-name">Power</div>
       <div class="sector-desc">Electrical and instrumentation engineering for generation and distribution systems.</div>
       <div class="click-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg> Explore sector</div>
     </a>
-
   </div>
 </section>
 
-<!-- ENGINEERING SERVICES -->
 <section id="growth" class="py-28 md:py-36 border-t" style="border-color:var(--border)">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
@@ -259,7 +248,6 @@
   </div>
 </section>
 
-<!-- INNOVATION / 3D -->
 <section id="tech" class="blueprint-section py-28 md:py-36 relative overflow-hidden">
   <div class="blueprint-grid"></div>
   <div class="bc-tl blueprint-corner"></div><div class="bc-tr blueprint-corner"></div>
@@ -283,11 +271,11 @@
         </a>
       </div>
       <div data-aos="fade-left" data-aos-delay="100">
-        <div style="background:rgba(30,12,0,0.5);border:1px solid rgba(255,120,40,0.18);border-radius:16px;padding:32px;overflow:hidden;position:relative">
+        <div style="background:rgba(30,12,0,0.6);border:1px solid rgba(255,120,40,0.2);border-radius:16px;padding:32px;overflow:hidden;position:relative">
           <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,140,50,0.6),transparent);animation:scanX 3s ease-in-out infinite"></div>
           <div style="position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(255,120,40,0.4),transparent);animation:scanY 4s ease-in-out infinite"></div>
           <style>@keyframes scanX{0%,100%{transform:translateX(-100%)}50%{transform:translateX(200%)}}@keyframes scanY{0%,100%{transform:translateY(-100%)}50%{transform:translateY(300%)}}</style>
-          <div style="font-family:monospace;font-size:12px;color:rgba(255,140,60,0.5);letter-spacing:.08em;margin-bottom:24px">// PROECO 3D_SCAN_SYSTEM v4.2.1</div>
+          <div style="font-family:monospace;font-size:12px;color:rgba(255,140,60,0.6);letter-spacing:.08em;margin-bottom:24px">// PROECO 3D_SCAN_SYSTEM v4.2.1</div>
           <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;opacity:0.85">
             <defs><filter id="glow"><feGaussianBlur stdDeviation="1.5" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
             <g stroke="rgba(255,130,50,0.5)" fill="none" stroke-width="0.6">
@@ -312,18 +300,9 @@
             <text x="228" y="92" fill="rgba(255,130,50,0.4)" font-size="6" font-family="monospace">OUT</text>
           </svg>
           <div class="grid grid-cols-3 gap-3 mt-6">
-            <div class="blueprint-stat">
-              <div class="blueprint-stat-num"><span class="pm-symbol"><span>+</span><span>&#8722;</span></span>2mm</div>
-              <div class="blueprint-stat-label">Scan Accuracy</div>
-            </div>
-            <div class="blueprint-stat">
-              <div class="blueprint-stat-num">360&#176;</div>
-              <div class="blueprint-stat-label">Coverage</div>
-            </div>
-            <div class="blueprint-stat">
-              <div class="blueprint-stat-num" style="font-size:18px;white-space:normal;line-height:1.2">As-built</div>
-              <div class="blueprint-stat-label">3D Model</div>
-            </div>
+            <div class="blueprint-stat"><div class="blueprint-stat-num"><span class="pm-symbol"><span>+</span><span>&#8722;</span></span>2mm</div><div class="blueprint-stat-label">Scan Accuracy</div></div>
+            <div class="blueprint-stat"><div class="blueprint-stat-num">360&#176;</div><div class="blueprint-stat-label">Coverage</div></div>
+            <div class="blueprint-stat"><div class="blueprint-stat-num" style="font-size:18px;white-space:normal;line-height:1.2">As-built</div><div class="blueprint-stat-label">3D Model</div></div>
           </div>
         </div>
       </div>
@@ -331,7 +310,6 @@
   </div>
 </section>
 
-<!-- STATS -->
 <section class="py-28 md:py-36 border-t" style="border-color:var(--border)">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     <div class="section-label mb-16" data-aos="fade-up">Key Figures</div>
@@ -351,22 +329,19 @@
       <div class="stat-divider hidden md:block mx-4"></div>
       <div class="border-b md:hidden" style="border-color:var(--border)"></div>
       <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="200">
-        <div class="stat-number">25</div>
-        <div class="stat-unit">+</div>
+        <div class="stat-number">25</div><div class="stat-unit">+</div>
         <div class="stat-label">Years of Experience</div>
       </div>
       <div class="stat-divider hidden md:block mx-4"></div>
       <div class="border-b md:hidden" style="border-color:var(--border)"></div>
       <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="300">
-        <div class="stat-number">8</div>
-        <div class="stat-unit">+</div>
+        <div class="stat-number">8</div><div class="stat-unit">+</div>
         <div class="stat-label">Market Sectors</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="py-28 md:py-36 border-t" style="border-color:var(--border)">
   <div class="max-w-7xl mx-auto px-6 md:px-10 text-center">
     <div data-aos="fade-up">
@@ -381,7 +356,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="py-12 md:py-16">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
@@ -450,7 +424,7 @@ var revenueEl=document.getElementById('count-revenue');
 if(revenueEl)statsObserver.observe(revenueEl.closest('section'));
 var barObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.querySelectorAll('.sector-bar').forEach(function(bar){var w=bar.getAttribute('data-w');bar.style.transition='width 1.2s cubic-bezier(0.4,0,0.2,1)';if(w)bar.style.width=w;});}});},{threshold:0.2});
 document.querySelectorAll('.sector-card').forEach(function(card){var bar=card.querySelector('.sector-bar');if(bar){bar.setAttribute('data-w',bar.style.width);bar.style.width='0%';}barObserver.observe(card);});
-window.addEventListener('scroll',function(){document.querySelector('nav').style.background=window.scrollY>50?'rgba(0,0,0,0.9)':'rgba(0,0,0,0.6)';});
+window.addEventListener('scroll',function(){document.querySelector('nav').style.background=window.scrollY>50?'rgba(0,0,0,0.98)':'rgba(0,0,0,0.9)';});
 </script>
 </body>
 </html>
