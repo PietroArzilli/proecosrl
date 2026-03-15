@@ -470,4 +470,5 @@ window.PROECO_DICT = {
   "&ldquo;Precision is not a goal — it is the minimum standard we set for ourselves.&rdquo;": "&ldquo;La precisione non è un obiettivo — è lo standard minimo che ci imponiamo.&rdquo;",
   "&ldquo;When eight disciplines think as one, the impossible becomes the next project.&rdquo;": "&ldquo;Quando otto discipline pensano come una, l’impossibile diventa il prossimo progetto.&rdquo;",
   "&ldquo;We don't hire engineers who know the answers. We hire engineers who ask the right questions.&rdquo;": "&ldquo;Non assumiamo ingegneri che conoscono le risposte. Assumiamo ingegneri che fanno le domande giuste.&rdquo;"
+  "Multidisciplinary engineering solutions for the energy and industrial sectors. From process design to 3D digital twin technology — precision-engineered to the highest standard.":"Soluzioni di ingegneria multidisciplinare per i settori energetico e industriale. Dalla progettazione di processo alla tecnologia di digital twin 3D — progettate con precisione secondo i più elevati standard."
 };
