@@ -84,12 +84,13 @@
   .sub-nav-link{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim);padding:14px 20px;white-space:nowrap;transition:color .2s;border-bottom:2px solid transparent;display:block;text-decoration:none;}
   .sub-nav-link:hover,.sub-nav-link.active{color:#fff;border-bottom-color:#e87830;}
 </style>
+<script src="proeco-i18n.js"></script>
 <style id="proeco-lang-css">
-  .lang-switcher{display:flex;align-items:center;gap:2px;margin-left:8px}
-  .lang-btn{font-family:'Inter',sans-serif;font-size:10px;font-weight:500;letter-spacing:.1em;padding:5px 9px;border-radius:4px;border:1px solid transparent;color:var(--silver-dim);background:transparent;cursor:pointer!important;transition:all .2s;position:relative;z-index:600}
-  .lang-btn:hover{color:#fff}
-  .lang-btn.lang-active{border-color:rgba(232,120,48,0.5);color:#e87830;background:rgba(232,120,48,0.08)}
-  .lang-sep{font-size:9px;color:rgba(168,178,192,0.3);user-select:none;pointer-events:none}
+.lang-switcher{display:flex;align-items:center;gap:2px;margin-left:8px}
+.lang-btn{font-family:'Inter',sans-serif;font-size:10px;font-weight:500;letter-spacing:.1em;padding:5px 9px;border-radius:4px;border:1px solid transparent;color:var(--silver-dim);background:transparent;cursor:pointer!important;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.lang-btn:hover{color:#fff}
+.lang-btn.lang-active{border-color:rgba(232,120,48,0.5);color:#e87830;background:rgba(232,120,48,0.08)}
+.lang-sep{font-size:9px;color:rgba(168,178,192,0.3);user-select:none;pointer-events:none}
 </style>
 </head>
 <body>
@@ -112,10 +113,10 @@
       <a href="index.html#contact" class="nav-link">Contact</a>
     </div>
     <div class="hidden md:flex items-center gap-4">
-      <div class="lang-switcher hidden md:flex">
-      <button class="lang-btn lang-active" data-lang="en" onclick="setLang('en')">EN</button>
+      <div class="lang-switcher hidden md:flex" id="lang-switcher-nav">
+      <button class="lang-btn lang-active" data-lang="en">EN</button>
       <span class="lang-sep">|</span>
-      <button class="lang-btn" data-lang="it" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" data-lang="it">IT</button>
     </div>
             <span style="font-size:11px;letter-spacing:.08em;color:var(--silver-dim);font-weight:300">Part of <span style="color:var(--silver)">Parlym Group</span></span>
       <a href="index.html#contact" class="btn-contact">Contact</a>
@@ -516,7 +517,7 @@
     <!-- 2025 full description below -->
     <div style="margin-top:24px;padding:20px 24px;border:1px solid rgba(232,120,48,0.2);border-radius:10px;background:rgba(232,120,48,0.04);display:flex;align-items:flex-start;gap:16px;">
       <div style="font-family:Syne,sans-serif;font-size:11px;font-weight:600;color:#e87830;letter-spacing:.1em;text-transform:uppercase;flex-shrink:0;padding-top:2px">2025</div>
-      <div style="font-size:12px;color:var(--silver-dim);line-height:1.65"><strong style="color:#fff;font-weight:500">TEA Sistemi SpA acquisition</strong> PROECO acquires 100% of TEA Sistemi SpA (Pisa), specialists in Risk Management, Technical Safety, Flow Assurance and Process Engineering, further strengthening the group's multidisciplinary capability within Parlym.</div>
+      <div style="font-size:12px;color:var(--silver-dim);line-height:1.65"><strong style="color:#fff;font-weight:500">TEA Sistemi SpA acquisition</strong> — PROECO acquires 100% of TEA Sistemi SpA (Pisa), specialists in Risk Management, Technical Safety, Flow Assurance and Process Engineering, strengthening the group's multidisciplinary capability within Parlym.</div>
     </div>
     </div>
   </div>
@@ -633,12 +634,12 @@
   <div class="max-w-7xl mx-auto px-6 md:px-10 text-center">
     <div data-aos="fade-up">
       <div class="section-label justify-center mb-8">Start a Project</div>
-      <h2 class="section-title mb-6" style="font-size:clamp(36px,4.5vw,60px)">Ready when<br/>you are.<br/><span class="orange-grad">Let's talk.</span></h2>
+      <h2 class="section-title mb-6" style="font-size:clamp(36px,4.5vw,60px)">Ready to put<br/>our team<br/><span class="orange-grad">to work for you?</span></h2>
       <p class="text-sm font-light leading-relaxed mb-12" style="color:var(--silver-dim);max-width:380px;margin-left:auto;margin-right:auto">Tell us about your project scope and timeline. Our project management team will assemble the right multidisciplinary group for your specific needs.</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="/cdn-cgi/l/email-protection#97fef9f1f8d7e7e5f8f2f4f8e4e5fbb9fee3" class="btn-orange">
+        <a href="mailto:info@proecosrl.it" class="btn-orange">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span class="__cf_email__" data-cfemail="85ecebe3eac5f5f7eae0e6eaf6f7e9abecf1">[email&#160;protected]</span>
+          info@proecosrl.it
         </a>
         <a href="tel:+390543795830" class="btn-contact" style="padding:14px 36px;font-size:12px">0543795830</a>
       </div>
@@ -687,7 +688,7 @@
           <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Headquarters</div>
           <div class="text-xs font-light leading-relaxed" style="color:var(--silver-dim)">
             Via Cervese 162/D<br/>47122 Forlì (FC), Italy<br/><br/>
-            <span style="color:var(--silver)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0861666e6748787a676d6b677b7a6426617c">[email&#160;protected]</a></span>
+            <span style="color:var(--silver)">info@proecosrl.it</span>
           </div>
         </div>
       </div>
@@ -699,7 +700,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 AOS.init({duration:800,easing:'cubic-bezier(0.4,0,0.2,1)',once:true,offset:80});
 const dot=document.getElementById('cursorDot');
@@ -751,340 +752,42 @@ window.addEventListener('scroll',function(){
 
 <script id="proeco-lang-js">
 (function(){
-var DICT={
-  "Sectors": "Settori",
-  "Services": "Servizi",
-  "Technology": "Tecnologia",
-  "Contact": "Contatti",
-  "Get in Touch": "Contattaci",
-  "Part of": "Parte di",
-  "Parlym Group": "Gruppo Parlym",
-  "Back to Home": "Torna alla Home",
-  "Navigate": "Naviga",
-  "On this page": "In questa pagina",
-  "Headquarters": "Sede",
-  "Home": "Home",
-  "Digital Eng.": "Ing. Digitale",
-  "Our Team": "Il Nostro Team",
-  "Capability": "Competenze",
-  "History": "Storia",
-  "Clients": "Clienti",
-  "Voices": "Voci",
-  "Values": "Valori",
-  "Hero": "Hero",
-  "Team": "Team",
-  "47122 Forli (FC), Italy": "47122 Forlì (FC), Italia",
-  "Engineered with precision · Forli, Italy": "Progettato con precisione · Forlì, Italia",
-  "© 2025 PROECO S.r.l. All rights reserved.": "© 2025 PROECO S.r.l. Tutti i diritti riservati.",
-  "Proud to Develop Solutions": "Orgogliosi di Sviluppare Soluzioni",
-  "Part of Parlym Group · www.proecosrl.it": "Parte del Gruppo Parlym · www.proecosrl.it",
-  "Start a Project": "Inizia un Progetto",
-  "Engineering": "Ingegneria",
-  "the Future,": "il Futuro,",
-  "Bravely.": "Con Coraggio.",
-  "Explore Expertise": "Scopri le Competenze",
-  "Contact us": "Contattaci",
-  "Scroll": "Scorri",
-  "Key Figures": "Dati Chiave",
-  "Revenue Target 2026": "Obiettivo Ricavi 2026",
-  "Internal Experts": "Esperti Interni",
-  "Years of Experience": "Anni di Esperienza",
-  "Countries where we operate": "Paesi in cui operiamo",
-  "Market Sectors": "Settori di Mercato",
-  "Where We": "Dove",
-  "Operate": "Operiamo",
-  "Deep expertise across the most demanding industrial verticals. Click a sector to explore our full capabilities.": "Profonda competenza nei settori industriali più esigenti. Clicca su un settore per esplorare le nostre capacità.",
-  "Oil &amp; Gas": "Oil &amp; Gas",
-  "Green Energy": "Energia Verde",
-  "Chemical": "Chimico",
-  "Power": "Energia",
-  "Explore sector": "Esplora settore",
-  "Offshore platforms, onshore facilities, drilling engineering and pipeline systems.": "Piattaforme offshore, impianti onshore, ingegneria di perforazione e sistemi pipeline.",
-  "Industrial energy efficiency, sustainability projects and renewable systems integration.": "Efficienza energetica industriale, progetti di sostenibilità e integrazione sistemi rinnovabili.",
-  "Process design, safety engineering and full lifecycle support for chemical plants.": "Progettazione di processo, ingegneria della sicurezza e supporto ciclo di vita per impianti chimici.",
-  "Electrical and instrumentation engineering for generation and distribution systems.": "Ingegneria elettrica e strumentale per sistemi di generazione e distribuzione.",
-  "The People": "Le Persone",
-  "Engineering is": "L’ingegneria è",
-  "a team": "uno sport",
-  "sport.": "di squadra.",
-  "Permanent Engineers": "Ingegneri Permanenti",
-  "Disciplines": "Discipline",
-  "Years Experience": "Anni di Esperienza",
-  "Meet the people behind PROECO": "Conosci le persone dietro PROECO",
-  "PROECO Leadership": "Leadership PROECO",
-  "Engineering Team": "Team di Ingegneria",
-  "Project Culture": "Cultura di Progetto",
-  "ENERGIES &amp; SYNERGIES": "ENERGIE &amp; SINERGIE",
-  "Private Shares": "Azionisti Privati",
-  "Energy &amp; Environment Technologies": "Tecnologie Energia &amp; Ambiente",
-  "Innovation": "Innovazione",
-  "Digital": "Ingegneria",
-  "at Its Peak": "al Massimo",
-  "We operate at the frontier of engineering technology, combining 3D Laser Scanning with intelligent modelling platforms to deliver unmatched precision and speed.": "Operiamo alla frontiera della tecnologia ingegneristica, combinando il 3D Laser Scanning con piattaforme di modellazione intelligente per precisione e velocità senza pari.",
-  "Learn More": "Scopri di più",
-  "Scan Accuracy": "Precisione di Scansione",
-  "Coverage": "Copertura",
-  "As-built": "Come costruito",
-  "3D Model": "Modello 3D",
-  "Engineering Services": "Servizi di Ingegneria",
-  "Full-Spectrum": "Competenza",
-  "An integrated team of 75+ internal specialists covering every engineering discipline required for complex industrial projects.": "Un team integrato di oltre 75 specialisti interni che copre ogni disciplina ingegneristica per progetti industriali complessi.",
-  "Process Engineering": "Ingegneria di Processo",
-  "PFD, P&amp;ID, HAZOP, process simulation, hydraulic calculations and feasibility studies from concept to detail.": "PFD, P&ID, HAZOP, simulazione di processo, calcoli idraulici e studi di fattibilità dal concetto al dettaglio.",
-  "Civil &amp; Structural": "Civile e Strutturale",
-  "Foundations, steel structures, concrete design, piping supports and plot plans for industrial facilities.": "Fondazioni, strutture in acciaio, progettazione in calcestruzzo, supporti tubazioni e planimetrie per impianti industriali.",
-  "Mechanical &amp; Piping": "Meccanica e Piping",
-  "Equipment specification, stress analysis, 3D piping design, skids &amp; packages engineering.": "Specifica apparecchiature, analisi tensioni, progettazione 3D tubazioni, ingegneria skid e pacchetti.",
-  "Electrical &amp; Instrumentation": "Elettrica e Strumentale",
-  "Power systems, single-line diagrams, instrument datasheets, control philosophy and SIL studies.": "Sistemi di potenza, schemi unifilari, schede dati strumenti, filosofia di controllo e studi SIL.",
-  "Automation &amp; Control": "Automazione e Controllo",
-  "DCS/PLC architecture, cause &amp; effect diagrams, safety instrumented systems and SCADA engineering.": "Architettura DCS/PLC, diagrammi causa-effetto, sistemi strumentali di sicurezza e ingegneria SCADA.",
-  "Fire &amp; Safety": "Antincendio e Sicurezza",
-  "Fire protection systems, QRA, risk assessment, emergency response engineering and ATEX classification.": "Sistemi antincendio, QRA, valutazione rischi, ingegneria risposta emergenze e classificazione ATEX.",
-  "Let&apos;s Build": "Costruiamo",
-  "Something": "Qualcosa di",
-  "Exceptional.": "Eccezionale.",
-  "Tell us about your project. Our multidisciplinary team is ready to deliver solutions that exceed expectations.": "Parlateci del vostro progetto. Il nostro team multidisciplinare è pronto a sviluppare soluzioni che superano le aspettative.",
-  "Select a sector to explore our capabilities in detail.": "Seleziona un settore per esplorare le nostre competenze in dettaglio.",
-  "45% of Revenue": "45% dei Ricavi",
-  "Offshore &amp; Onshore": "Offshore &amp; Onshore",
-  "Expertise": "Competenza",
-  "Revenue share": "Quota ricavi",
-  "Years experience": "Anni di esperienza",
-  "Offshore Platforms &amp; FPSO": "Piattaforme Offshore e FPSO",
-  "Onshore — Oil &amp; Gas Upstream": "Onshore — Oil &amp; Gas Upstream",
-  "Pipelines &amp; Transport": "Pipeline e Trasporto",
-  "Drilling Engineering": "Ingegneria di Perforazione",
-  "25% of Revenue": "25% dei Ricavi",
-  "Renewables &amp; Efficiency": "Rinnovabili &amp; Efficienza",
-  "Solutions": "Soluzioni",
-  "Net 0": "Net 0",
-  "Commitment": "Impegno",
-  "Renewable Energy Plants": "Impianti di Energia Rinnovabile",
-  "Engineering for solar, wind and biomass power generation plants. Balance of plant design, grid connection studies, electrical infrastructure and control systems.": "Ingegneria per impianti di generazione da solare, eolico e biomasse. Progettazione balance of plant, studi di connessione alla rete, infrastrutture elettriche e sistemi di controllo.",
-  "Combined Cycle Power Stations": "Centrali a Ciclo Combinato",
-  "Full engineering for gas turbine combined cycle plants, heat recovery steam generators (HRSG), steam turbines and associated auxiliary systems.": "Ingegneria completa per impianti a ciclo combinato a gas, generatori di vapore a recupero di calore (HRSG), turbine a vapore e sistemi ausiliari.",
-  "Industrial Energy Efficiency": "Efficienza Energetica Industriale",
-  "Energy audits, heat integration studies, waste heat recovery systems and retrofit engineering to reduce consumption and carbon footprint of existing industrial facilities.": "Audit energetici, studi di integrazione termica, sistemi di recupero calore e ingegneria di retrofit per ridurre i consumi e l’impronta carbonica.",
-  "Sustainability &amp; Decarbonisation": "Sostenibilità e Decarbonizzazione",
-  "20% of Revenue": "20% dei Ricavi",
-  "Process &amp; Refining": "Processo e Raffinazione",
-  "Plant": "Ingegneria",
-  "ATEX": "ATEX",
-  "Certified": "Certificato",
-  "Chemical Plants": "Impianti Chimici",
-  "Refineries": "Raffinerie",
-  "Industrial Process Plants": "Impianti di Processo Industriale",
-  "Safety &amp; HAZOP Studies": "Sicurezza e Studi HAZOP",
-  "10% of Revenue": "10% dei Ricavi",
-  "Generation &amp; Distribution": "Generazione e Distribuzione",
-  "Systems": "Avanzati",
-  "HV/MV": "AT/MT",
-  "Power Generation Plants": "Centrali di Generazione",
-  "Combined Cycle &amp; Cogeneration": "Ciclo Combinato e Cogenerazione",
-  "HV/MV/LV Distribution": "Distribuzione AT/MT/BT",
-  "Instrumentation &amp; Control": "Strumentazione e Controllo",
-  "Engineering Capability": "Competenze di Ingegneria",
-  "Capability.": "Completa.",
-  "Engineering Disciplines": "Discipline di Ingegneria",
-  "Every discipline.": "Ogni disciplina.",
-  "One team.": "Un solo team.",
-  "Civil &amp; Structural Engineering": "Ingegneria Civile e Strutturale",
-  "Mechanical &amp; Piping Engineering": "Ingegneria Meccanica e Piping",
-  "Automation &amp; Control Engineering": "Ingegneria Automazione e Controllo",
-  "Fire &amp; Safety Engineering": "Ingegneria Antincendio e Sicurezza",
-  "Telecommunication Engineering": "Ingegneria delle Telecomunicazioni",
-  "LCI &amp; Digitalisation": "LCI e Digitalizzazione",
-  "Management &amp; Project Control": "Gestione e Controllo di Progetto",
-  "Beyond": "Oltre",
-  "engineering.": "l’ingegneria.",
-  "Full project cover.": "Copertura totale del progetto.",
-  "Project Management Services": "Servizi di Project Management",
-  "Field Activities": "Attività di Cantiere",
-  "Consulting &amp; Proposals": "Consulenza e Proposte",
-  "Procurement Services": "Servizi di Approvvigionamento",
-  "Commissioning &amp; Start-up": "Commissioning e Avviamento",
-  "Packages Supply": "Fornitura Pacchetti",
-  "Engineered packages.": "Pacchetti ingegnerizzati.",
-  "Ready to install.": "Pronti per l’installazione.",
-  "Process Skids &amp; Packages": "Skid e Pacchetti di Processo",
-  "Chemical injection systems": "Sistemi di iniezione chimica",
-  "Gas dehydration packages": "Pacchetti di disidratazione gas",
-  "Fuel gas packages": "Pacchetti gas combustibile",
-  "Oil &amp; gas filtration &amp; separation": "Filtrazione e separazione oil &amp; gas",
-  "Oil &amp; gas metering systems": "Sistemi di misura oil &amp; gas",
-  "Air production &amp; drying packages": "Pacchetti produzione e essiccazione aria",
-  "Gas sweetening packages": "Pacchetti addolcimento gas",
-  "Instrumentation packages": "Pacchetti di strumentazione",
-  "Analyzer Packages &amp; Shelters": "Pacchetti Analizzatori e Shelter",
-  "Gas chromatographs": "Cromatografi a gas",
-  "Gas analyzers": "Analizzatori di gas",
-  "Sampling &amp; conditioning systems": "Sistemi di campionamento e condizionamento",
-  "Water &amp; systems analyzer systems": "Sistemi analizzatori acqua",
-  "Hydraulic &amp; Pneumatic Systems": "Sistemi Idraulici e Pneumatici",
-  "Wellhead control panels": "Pannelli di controllo testa pozzo",
-  "Panels for actuated valves": "Pannelli per valvole attuate",
-  "Hydraulic power units": "Unità di potenza idraulica",
-  "Pneumatic control panels": "Pannelli di controllo pneumatico",
-  "Automation &amp; Control Systems": "Sistemi di Automazione e Controllo",
-  "DCS — Distributed Control Systems": "DCS — Sistemi di Controllo Distribuito",
-  "PLC — Programmable Logic Controllers": "PLC — Controllori Logici Programmabili",
-  "ESD — Emergency Shutdown Systems": "ESD — Sistemi di Arresto di Emergenza",
-  "Our History": "La Nostra Storia",
-  "25 years. Built from": "25 anni. Costruiti",
-  "the ground up.": "dal basso.",
-  "The Beginning": "Gli Inizi",
-  "Founded": "Fondazione",
-  "Re-organisation": "Riorganizzazione",
-  "Consolidated": "Consolidata",
-  "The Turning Point": "La Svolta",
-  "Saipem supplier": "Fornitore Saipem",
-  "Consolidation": "Consolidamento",
-  "ENI supplier": "Fornitore ENI",
-  "TEA Sistemi Acquisition": "Acquisizione TEA Sistemi",
-  "Quality, Health,": "Qualità, Salute,",
-  "Safety &amp;": "Sicurezza e",
-  "Environment.": "Ambiente.",
-  "Quality Management — since 2011": "Gestione Qualità — dal 2011",
-  "Health &amp; Safety — since 2014": "Salute e Sicurezza — dal 2014",
-  "Environmental Mgmt — since 2015": "Gestione Ambientale — dal 2015",
-  "Quality Management": "Gestione Qualità",
-  "Flexible, adaptable organisation aligned to project goals": "Organizzazione flessibile e adattabile agli obiettivi di progetto",
-  "Structured synergy with clients and suppliers": "Sinergia strutturata con clienti e fornitori",
-  "Certified by Bureau Veritas since 2011": "Certificato da Bureau Veritas dal 2011",
-  "Health &amp; Safety": "Salute e Sicurezza",
-  "Every H&amp;S aspect systematically identified and managed": "Ogni aspetto H&amp;S sistematicamente identificato e gestito",
-  "Individual awareness and personal motivation as prevention": "Consapevolezza individuale e motivazione personale come prevenzione",
-  "ISO 45001 certified — migrated Feb 2020": "Certificato ISO 45001 — migrato Feb 2020",
-  "Environment": "Ambiente",
-  "All environmental aspects evaluated and managed": "Tutti gli aspetti ambientali valutati e gestiti",
-  "Design solutions minimising environmental impact": "Soluzioni progettuali che minimizzano l’impatto ambientale",
-  "ISO 14001 certified since 2015": "Certificato ISO 14001 dal 2015",
-  "Our Clients &amp; Qualifications": "I Nostri Clienti e Qualifiche",
-  "Trusted by the": "La fiducia dei",
-  "industry leaders.": "leader del settore.",
-  "Oil &amp; Gas · Chemical": "Oil &amp; Gas · Chimico",
-  "Aerospace · Infrastructure": "Aerospazio · Infrastrutture",
-  "Ready to put": "Pronti a mettere",
-  "our team": "il nostro team",
-  "to work for you?": "al vostro servizio?",
-  "Tell us about your project scope and timeline. Our project management team will assemble the right multidisciplinary group for your specific needs.": "Parlateci dell’ambito e della tempistica del vostro progetto. Il nostro team assemblerà il gruppo multidisciplinare giusto per le vostre esigenze.",
-  "Digital Engineering": "Ingegneria Digitale",
-  "We Don&apos;t Just Design": "Non Progettiamo Solo",
-  "Plants. We Build": "Impianti. Costruiamo",
-  "Their Digital Twin.": "il Loro Gemello Digitale.",
-  "Scan accuracy": "Precisione di scansione",
-  "Fewer site clashes": "Meno interferenze in cantiere",
-  "Years of expertise": "Anni di esperienza",
-  "Our Approach": "Il Nostro Approccio",
-  "Engineering starts": "L’ingegneria inizia",
-  "with a": "con un",
-  "complete picture.": "quadro completo.",
-  "PROECO Engineering Team": "Team di Ingegneria PROECO",
-  "Integrated from Day One": "Integrato dal Primo Giorno",
-  "Clash-Free by Design": "Senza Interferenze per Progetto",
-  "Living Asset Documentation": "Documentazione Asset Vivente",
-  "Key Services": "Servizi Principali",
-  "Four capabilities.": "Quattro capacità.",
-  "One seamless workflow.": "Un flusso di lavoro integrato.",
-  "3D Laser Scanning &amp; Point Cloud": "3D Laser Scanning e Nuvola di Punti",
-  "Why it matters for you:": "Perché è importante per voi:",
-  "SmartPlant 3D &amp; Intelligent Modelling": "SmartPlant 3D e Modellazione Intelligente",
-  "Digital Twin &amp; Simulation": "Digital Twin e Simulazione",
-  "BIM Integration &amp; As-Built Documentation": "Integrazione BIM e Documentazione As-Built",
-  "Why Choose PROECO": "Perché Scegliere PROECO",
-  "The value is in": "Il valore è nei",
-  "outcomes.": "risultati.",
-  "Talk to our team": "Parla con il nostro team",
-  "Fewer Errors, Lower Rework Costs": "Meno Errori, Meno Costi di Rilavorazione",
-  "Faster Project Delivery": "Consegna Progetto Più Rapida",
-  "Improved Safety &amp; Risk Management": "Sicurezza e Gestione del Rischio Migliorata",
-  "Long-Term Asset Value": "Valore dell’Asset a Lungo Termine",
-  "Technology Stack": "Stack Tecnologico",
-  "Intelligent 3D plant design": "Progettazione 3D impianti intelligente",
-  "Plant design management": "Gestione progettazione impianti",
-  "Plant design system": "Sistema progettazione impianti",
-  "AutoCAD-based 3D modelling": "Modellazione 3D base AutoCAD",
-  "Piping design &amp; isometrics": "Progettazione tubazioni e isometrici",
-  "Mechanical 3D CAD": "CAD 3D meccanico",
-  "2D/3D CAD &amp; BIM": "CAD 2D/3D e BIM",
-  "High-res point cloud capture": "Acquisizione nuvola di punti ad alta risoluzione",
-  "Ready to bring your": "Pronti a portare il vostro",
-  "plant into the": "impianto nell’era",
-  "digital era?": "digitale?",
-  "Our People &amp; Group": "Le Nostre Persone e il Gruppo",
-  "The engineers": "Gli ingegneri",
-  "behind the": "dietro",
-  "excellence.": "l’eccellenza.",
-  "The Group": "Il Gruppo",
-  "Parlym Group.": "Gruppo Parlym.",
-  "🌎 Europe · 15+ locations": "🌎 Europa · 15+ sedi",
-  "🌍 Africa · 10+ locations": "🌍 Africa · 10+ sedi",
-  "🌏 Asia · 3 locations": "🌏 Asia · 3 sedi",
-  "Acquired 2025 · Pisa, Italy": "Acquisita 2025 · Pisa, Italia",
-  "105 engineers.": "105 ingegneri.",
-  "One direction.": "Una sola direzione.",
-  "With Consultants": "Con Consulenti",
-  "Peak project capacity including external specialist network": "Capacità massima di progetto inclusa rete specialisti esterni",
-  "Engineering Centres": "Centri di Ingegneria",
-  "Forli HQ · Rome · Milan · Brindisi · Taranto · Gela · Vibo Valentia · Pisa": "Forlì HQ · Roma · Milano · Brindisi · Taranto · Gela · Vibo Valentia · Pisa",
-  "Team Philosophy": "Filosofia del Team",
-  "What we believe": "In cosa crediamo",
-  "in.": ".",
-  "Technical Integrity": "Integrità Tecnica",
-  "Collective Intelligence": "Intelligenza Collettiva",
-  "Permanent Accountability": "Responsabilità Permanente",
-  "Digital by Default": "Digitale per Definizione",
-  "Sustainable Engineering": "Ingegneria Sostenibile",
-  "Continuous Growth": "Crescita Continua",
-  "Voices from the Team": "Voci dal Team",
-  "The people": "Le persone",
-  "speak.": "parlano.",
-  "Process Engineering Team": "Team Ingegneria di Processo",
-  "Senior Engineer": "Ingegnere Senior",
-  "Company History": "Storia Aziendale",
-  "International Projects Team": "Team Progetti Internazionali",
-  "Work with Us": "Lavora con Noi",
-  "Bring your project": "Porta il tuo progetto",
-  "to a team that": "a un team che",
-  "takes it personally.": "lo prende sul personale.",
-  "Tell us about your facility, your timeline and your challenge. We will tell you who on our team is best placed to solve it.": "Parlateci del vostro impianto, della vostra tempistica e della vostra sfida. Vi diremo chi nel nostro team è meglio posizionato per risolverla.",
-  "Full-time in-house specialists — no core work outsourced": "Specialisti interni a tempo pieno — nessun lavoro principale in outsourcing"
-};
-var _orig={};
-function setLang(lang){
-  try{localStorage.setItem('proeco_lang',lang)}catch(e){}
-  applyLang(lang);
-}
-window.setLang=setLang;
-function collectOriginals(){
-  if(Object.keys(_orig).length>0)return;
-  document.querySelectorAll('*').forEach(function(el){
-    if(el.children.length===0&&el.textContent.trim()){
-      _orig[el]=el.innerHTML;
+function applyLang(lang){
+  var btns=document.querySelectorAll('.lang-btn');
+  btns.forEach(function(b){b.classList.toggle('lang-active',b.getAttribute('data-lang')===lang);});
+  if(lang==='en'){
+    document.querySelectorAll('[data-en]').forEach(function(el){el.innerHTML=el.getAttribute('data-en');});
+    return;
+  }
+  var D=window.PROECO_DICT||{};
+  document.querySelectorAll('body *').forEach(function(el){
+    if(['SCRIPT','STYLE','SVG','svg','NOSCRIPT','BUTTON'].indexOf(el.tagName)>=0)return;
+    if(el.children.length>0)return;
+    var t=el.innerHTML.trim();
+    if(t&&D[t]){
+      if(!el.getAttribute('data-en'))el.setAttribute('data-en',el.innerHTML);
+      el.innerHTML=D[t];
     }
   });
 }
-function applyLang(lang){
+function setLang(lang){
+  try{localStorage.setItem('proeco_lang',lang);}catch(e){}
+  applyLang(lang);
+}
+window.setLang=setLang;
+// Wire buttons
+document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('.lang-btn').forEach(function(b){
-    b.classList.toggle('lang-active',b.getAttribute('data-lang')===lang);
+    b.addEventListener('click',function(){setLang(this.getAttribute('data-lang'));});
   });
-  if(lang==='en'){
-    // Restore
-    document.querySelectorAll('[data-proeco-en]').forEach(function(el){
-      el.innerHTML=el.getAttribute('data-proeco-en');
-    });
-    return;
-  }
-  // Translate leaf nodes
-  var all=document.querySelectorAll('body *');
-  for(var i=0;i<all.length;i++){
-    var el=all[i];
-    if(['SCRIPT','STYLE','SVG','svg','NOSCRIPT'].indexOf(el.tagName)>=0)continue;
-    if(el.children.length>0)continue;
-    var inner=el.innerHTML.trim();
-    if(!inner)continue;
-    var tr=DICT[inner];
-    if(tr){
-      if(!el.getAttribute('data-proeco-en'))el.setAttribute('data-proeco-en',el.innerHTML);
-      el.inne
+  var s='en';
+  try{s=localStorage.getItem('proeco_lang')||'en';}catch(e){}
+  if(s==='it')applyLang('it');
+  else document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('lang-active',b.getAttribute('data-lang')==='en');
+  });
+});
+})();
+</script>
+</body>
+</html>
