@@ -106,15 +106,16 @@
       </svg>
     </a>
     <div class="hidden md:flex items-center gap-8">
-      <a href="#expertise" class="nav-link">Sectors</a>
-      <a href="#team-preview" class="nav-link">Team</a>
-      <a href="#tech" class="nav-link">Technology</a>
-      <a href="#growth" class="nav-link">Services</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#expertise" class="nav-link" data-i18n="Sectors">Sectors</a>
+      <a href="#team-preview" class="nav-link" data-i18n="Team">Team</a>
+      <a href="#tech" class="nav-link" data-i18n="Technology">Technology</a>
+      <a href="#growth" class="nav-link" data-i18n="Services">Services</a>
+      <a href="#contact" class="nav-link" data-i18n="Contact">Contact</a>
     </div>
     <div class="hidden md:flex items-center gap-4">
-            <span style="font-size:11px;letter-spacing:.08em;color:var(--silver-dim);font-weight:300">Part of <span style="color:var(--silver)">Parlym Group</span></span>
-      <a href="#contact" class="btn-contact">Contact</a>
+            <div id="lang-switch-placeholder" style="display:inline-flex;align-items:center;gap:2px;margin-right:8px"></div>
+      <span style="font-size:11px;letter-spacing:.08em;color:var(--silver-dim);font-weight:300">Part of <span style="color:var(--silver)">Parlym Group</span></span>
+      <a href="#contact" class="btn-contact" data-i18n="Contact">Contact</a>
     </div>
     <button class="md:hidden text-gray-400 hover:text-white transition-colors cursor-none" onclick="toggleMenu()">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -122,11 +123,11 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#expertise" class="nav-link" onclick="toggleMenu()">Sectors</a>
-  <a href="#growth" class="nav-link" onclick="toggleMenu()">Services</a>
-  <a href="#tech" class="nav-link" onclick="toggleMenu()">Technology</a>
-  <a href="#contact" class="nav-link" onclick="toggleMenu()">Contact</a>
-  <a href="#contact" class="btn-contact text-center" onclick="toggleMenu()">Get in Touch</a>
+  <a href="#expertise" class="nav-link" onclick="toggleMenu()" data-i18n="Sectors">Sectors</a>
+  <a href="#growth" class="nav-link" onclick="toggleMenu()" data-i18n="Services">Services</a>
+  <a href="#tech" class="nav-link" onclick="toggleMenu()" data-i18n="Technology">Technology</a>
+  <a href="#contact" class="nav-link" onclick="toggleMenu()" data-i18n="Contact">Contact</a>
+  <a href="#contact" class="btn-contact text-center" onclick="toggleMenu()" data-i18n="Get in Touch">Get in Touch</a>
 </div>
 
 <section class="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden" id="home">
@@ -145,20 +146,20 @@
       <h1 class="hero-tagline mb-6" style="animation:fadeInUp 0.8s 0.4s both">
         Engineering<br/>the Future,<br/><span class="shimmer">Bravely.</span>
       </h1>
-      <p class="hero-sub mb-12" style="animation:fadeInUp 0.8s 0.6s both">
+      <p class="hero-sub mb-12" style="animation:fadeInUp 0.8s 0.6s both" data-i18n="landing.hero_sub">
         Multidisciplinary engineering solutions for Energy &amp; Industry. From process design to 3D digital twin technology &mdash; we build what others can&apos;t.
       </p>
       <div class="flex flex-wrap items-center gap-5" style="animation:fadeInUp 0.8s 0.8s both">
-        <a href="#expertise" class="btn-contact" style="padding:13px 32px;font-size:12px">Explore Expertise</a>
+        <a href="#expertise" class="btn-contact" style="padding:13px 32px;font-size:12px" data-i18n="Explore Expertise">Explore Expertise</a>
         <a href="#contact" style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim);transition:color .2s" class="hover:text-white flex items-center gap-3 cursor-none">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-          Contact us
+          <span data-i18n="Contact us">Contact us</span>
         </a>
       </div>
     </div>
     <div class="scroll-indicator absolute bottom-12 left-1/2 -translate-x-1/2">
       <div class="scroll-line"></div>
-      <span>Scroll</span>
+      <span data-i18n="Scroll">Scroll</span>
     </div>
   </div>
 </section>
@@ -166,31 +167,31 @@
 
 <section class="py-28 md:py-36 border-t" style="border-color:var(--border)">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
-    <div class="section-label mb-16" data-aos="fade-up">Key Figures</div>
+    <div class="section-label mb-16" data-aos="fade-up" data-i18n="Key Figures">Key Figures</div>
     <div class="flex flex-col md:flex-row items-stretch gap-0">
       <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="0">
         <div class="stat-number" id="count-revenue">0</div>
         <div class="stat-unit">M&#8364;</div>
-        <div class="stat-label">Revenue Target 2026</div>
+        <div class="stat-label" data-i18n="Revenue Target 2026">Revenue Target 2026</div>
       </div>
       <div class="stat-divider hidden md:block mx-4"></div>
       <div class="border-b md:hidden" style="border-color:var(--border)"></div>
       <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="100">
         <div class="stat-number" id="count-experts">0</div>
         <div class="stat-unit">+</div>
-        <div class="stat-label">Internal Experts</div>
+        <div class="stat-label" data-i18n="Internal Experts">Internal Experts</div>
       </div>
       <div class="stat-divider hidden md:block mx-4"></div>
       <div class="border-b md:hidden" style="border-color:var(--border)"></div>
       <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="200">
         <div class="stat-number">25</div><div class="stat-unit">+</div>
-        <div class="stat-label">Years of Experience</div>
+        <div class="stat-label" data-i18n="Years of Experience">Years of Experience</div>
       </div>
       <div class="stat-divider hidden md:block mx-4"></div>
       <div class="border-b md:hidden" style="border-color:var(--border)"></div>
       <div class="flex-1 py-8 md:py-12 text-center" data-aos="fade-up" data-aos-delay="300">
         <div class="stat-number">30</div><div class="stat-unit">+</div>
-        <div class="stat-label">Countries where we operate</div>
+        <div class="stat-label" data-i18n="Countries where we operate">Countries where we operate</div>
       </div>
     </div>
   </div>
@@ -210,49 +211,49 @@
 
   <div class="py-28 md:py-36 px-6 md:px-10 max-w-7xl mx-auto" style="position:relative;z-index:1;">
     <div data-aos="fade-up">
-      <div class="section-label mb-5" style="color:rgba(200,208,216,0.8)">Market Sectors</div>
+      <div class="section-label mb-5" style="color:rgba(200,208,216,0.8)" data-i18n="Market Sectors">Market Sectors</div>
       <h2 class="section-title mb-2" style="color:#fff">Where We<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Operate</span></h2>
-      <p class="text-sm font-light leading-relaxed mb-16" style="color:rgba(200,208,216,0.75);max-width:460px">Engineering operations across Oil &amp; Gas, Green Energy, Chemical and Electrical Power — from the Adriatic to West Africa, from the Gulf to Southeast Asia.</p>
+      <p class="text-sm font-light leading-relaxed mb-16" style="color:rgba(200,208,216,0.75);max-width:460px" data-i18n="landing.sectors_desc">Engineering operations across Oil &amp; Gas, Green Energy, Chemical and Electrical Power — from the Adriatic to West Africa, from the Gulf to Southeast Asia.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <a href="proeco-sectors.html#oilgas" style="text-decoration:none;background:rgba(15,12,8,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.2);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(15,12,8,0.55)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="0">
         <div style="width:100%;height:3px;background:linear-gradient(90deg,#e87830,transparent);border-radius:2px;margin-bottom:20px"></div>
         <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px">45%</div>
         <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#fff;margin-bottom:8px">Oil &amp; Gas</div>
-        <div style="font-size:12px;font-weight:300;color:rgba(200,208,216,0.7);line-height:1.6;flex:1">Offshore platforms, onshore facilities, drilling engineering and pipeline systems.</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(200,208,216,0.7);line-height:1.6;flex:1" data-i18n="landing.og_desc">Offshore platforms, onshore facilities, drilling engineering and pipeline systems.</div>
         <div style="font-size:11px;color:rgba(232,120,48,0.8);margin-top:16px;letter-spacing:.06em;display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
-          Explore sector
+          <span data-i18n="Explore sector">Explore sector</span>
         </div>
       </a>
       <a href="proeco-sectors.html#green" style="text-decoration:none;background:rgba(15,12,8,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.2);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(15,12,8,0.55)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="80">
         <div style="width:100%;height:3px;background:linear-gradient(90deg,#e87830,transparent);border-radius:2px;margin-bottom:20px"></div>
         <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px">25%</div>
         <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#fff;margin-bottom:8px">Green Energy</div>
-        <div style="font-size:12px;font-weight:300;color:rgba(200,208,216,0.7);line-height:1.6;flex:1">Industrial energy efficiency, sustainability projects and renewable systems integration.</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(200,208,216,0.7);line-height:1.6;flex:1" data-i18n="landing.green_desc">Industrial energy efficiency, sustainability projects and renewable systems integration.</div>
         <div style="font-size:11px;color:rgba(232,120,48,0.8);margin-top:16px;letter-spacing:.06em;display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
-          Explore sector
+          <span data-i18n="Explore sector">Explore sector</span>
         </div>
       </a>
       <a href="proeco-sectors.html#chemical" style="text-decoration:none;background:rgba(15,12,8,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.2);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(15,12,8,0.55)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="160">
         <div style="width:100%;height:3px;background:linear-gradient(90deg,#e87830,transparent);border-radius:2px;margin-bottom:20px"></div>
         <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px">20%</div>
         <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#fff;margin-bottom:8px">Chemical</div>
-        <div style="font-size:12px;font-weight:300;color:rgba(200,208,216,0.7);line-height:1.6;flex:1">Process design, safety engineering and full lifecycle support for chemical plants.</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(200,208,216,0.7);line-height:1.6;flex:1" data-i18n="landing.chem_desc">Process design, safety engineering and full lifecycle support for chemical plants.</div>
         <div style="font-size:11px;color:rgba(232,120,48,0.8);margin-top:16px;letter-spacing:.06em;display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
-          Explore sector
+          <span data-i18n="Explore sector">Explore sector</span>
         </div>
       </a>
       <a href="proeco-sectors.html#power" style="text-decoration:none;background:rgba(15,12,8,0.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.2);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(15,12,8,0.55)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="240">
         <div style="width:100%;height:3px;background:linear-gradient(90deg,#e87830,transparent);border-radius:2px;margin-bottom:20px"></div>
         <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px">10%</div>
         <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#fff;margin-bottom:8px">Power</div>
-        <div style="font-size:12px;font-weight:300;color:rgba(200,208,216,0.7);line-height:1.6;flex:1">Electrical and instrumentation engineering for generation and distribution systems.</div>
+        <div style="font-size:12px;font-weight:300;color:rgba(200,208,216,0.7);line-height:1.6;flex:1" data-i18n="landing.power_desc">Electrical and instrumentation engineering for generation and distribution systems.</div>
         <div style="font-size:11px;color:rgba(232,120,48,0.8);margin-top:16px;letter-spacing:.06em;display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
-          Explore sector
+          <span data-i18n="Explore sector">Explore sector</span>
         </div>
       </a>
     </div>
@@ -266,37 +267,37 @@
 
       <!-- LEFT: Text content -->
       <div data-aos="fade-right">
-        <div class="section-label mb-5">The People</div>
+        <div class="section-label mb-5" data-i18n="The People">The People</div>
         <h2 class="section-title mb-6">Engineering is<br/>a team<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">sport.</span></h2>
-        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim);max-width:420px">Behind every project delivery, every precision calculation and every on-time handover is a team of 105 engineers who chose to build their careers around excellence. Part of Parlym Group, PROECO brings together specialists across 8 disciplines — united by a shared commitment to solving the problems others can't.</p>
+        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim);max-width:420px" data-i18n="landing.team_desc">Behind every project delivery, every precision calculation and every on-time handover is a team of 105 engineers who chose to build their careers around excellence. Part of Parlym Group, PROECO brings together specialists across 8 disciplines — united by a shared commitment to solving the problems others can't.</p>
 
         <!-- Quotes -->
         <div style="border-left:2px solid rgba(232,120,48,0.4);padding-left:20px;margin-bottom:28px;">
-          <p style="font-family:'Syne',sans-serif;font-size:14px;font-weight:400;color:#e8ecf0;line-height:1.6;font-style:italic">&ldquo;We don't hire engineers who know the answers. We hire engineers who ask the right questions.&rdquo;</p>
-          <p style="font-size:11px;color:var(--silver-dim);margin-top:8px;letter-spacing:.08em;text-transform:uppercase">PROECO Leadership</p>
+          <p style="font-family:'Syne',sans-serif;font-size:14px;font-weight:400;color:#e8ecf0;line-height:1.6;font-style:italic">&ldquo;<span data-i18n="landing.quote1">We don't hire engineers who know the answers. We hire engineers who ask the right questions.</span>&rdquo;</p>
+          <p style="font-size:11px;color:var(--silver-dim);margin-top:8px;letter-spacing:.08em;text-transform:uppercase" data-i18n="PROECO Leadership">PROECO Leadership</p>
         </div>
 
         <!-- Mini stats -->
         <div class="flex gap-8 mb-10">
           <div>
             <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">105</div>
-            <div style="font-size:11px;color:var(--silver-dim);margin-top:4px;letter-spacing:.06em">Permanent Engineers</div>
+            <div style="font-size:11px;color:var(--silver-dim);margin-top:4px;letter-spacing:.06em" data-i18n="Permanent Engineers">Permanent Engineers</div>
           </div>
           <div style="width:1px;background:var(--border)"></div>
           <div>
             <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">8</div>
-            <div style="font-size:11px;color:var(--silver-dim);margin-top:4px;letter-spacing:.06em">Disciplines</div>
+            <div style="font-size:11px;color:var(--silver-dim);margin-top:4px;letter-spacing:.06em" data-i18n="Disciplines">Disciplines</div>
           </div>
           <div style="width:1px;background:var(--border)"></div>
           <div>
             <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">25+</div>
-            <div style="font-size:11px;color:var(--silver-dim);margin-top:4px;letter-spacing:.06em">Years Experience</div>
+            <div style="font-size:11px;color:var(--silver-dim);margin-top:4px;letter-spacing:.06em" data-i18n="Years Experience">Years Experience</div>
           </div>
         </div>
 
         <a href="proeco-team.html" class="btn-contact inline-flex items-center gap-2 cursor-none" style="border-color:rgba(255,120,40,0.35);color:rgba(255,150,60,0.9);padding:12px 28px;font-size:11px">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          Meet the people behind PROECO
+          <span data-i18n="Meet the people behind PROECO">Meet the people behind PROECO</span>
         </a>
       </div>
 
@@ -363,12 +364,12 @@
             <!-- Two quotes below -->
             <div style="border-top:1px solid var(--border);padding-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
               <div style="padding:14px;background:rgba(168,178,192,0.04);border-radius:8px;border:1px solid var(--border)">
-                <p style="font-size:11px;color:var(--silver-dim);line-height:1.6;font-style:italic">&ldquo;Precision is not a goal — it is the minimum standard we set for ourselves.&rdquo;</p>
-                <p style="font-size:10px;color:rgba(232,120,48,0.7);margin-top:8px;letter-spacing:.06em">Engineering Team</p>
+                <p style="font-size:11px;color:var(--silver-dim);line-height:1.6;font-style:italic">&ldquo;<span data-i18n="landing.quote2">Precision is not a goal — it is the minimum standard we set for ourselves.</span>&rdquo;</p>
+                <p style="font-size:10px;color:rgba(232,120,48,0.7);margin-top:8px;letter-spacing:.06em" data-i18n="Engineering Team">Engineering Team</p>
               </div>
               <div style="padding:14px;background:rgba(168,178,192,0.04);border-radius:8px;border:1px solid var(--border)">
-                <p style="font-size:11px;color:var(--silver-dim);line-height:1.6;font-style:italic">&ldquo;When eight disciplines think as one, the impossible becomes the next project.&rdquo;</p>
-                <p style="font-size:10px;color:rgba(232,120,48,0.7);margin-top:8px;letter-spacing:.06em">Project Culture</p>
+                <p style="font-size:11px;color:var(--silver-dim);line-height:1.6;font-style:italic">&ldquo;<span data-i18n="landing.quote3">When eight disciplines think as one, the impossible becomes the next project.</span>&rdquo;</p>
+                <p style="font-size:10px;color:rgba(232,120,48,0.7);margin-top:8px;letter-spacing:.06em" data-i18n="Project Culture">Project Culture</p>
               </div>
             </div>
           </div>
@@ -383,9 +384,9 @@
   <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
     <div class="grid md:grid-cols-2 gap-16 items-center">
       <div data-aos="fade-right">
-        <div class="section-label mb-5">Innovation</div>
+        <div class="section-label mb-5" data-i18n="Innovation">Innovation</div>
         <h2 class="section-title mb-6">Digital<br/>Engineering<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">at Its Peak</span></h2>
-        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">We operate at the frontier of engineering technology, combining 3D Laser Scanning with intelligent modelling platforms to deliver unmatched precision and speed.</p>
+        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)" data-i18n="landing.digital_desc">We operate at the frontier of engineering technology, combining 3D Laser Scanning with intelligent modelling platforms to deliver unmatched precision and speed.</p>
         <div class="flex flex-wrap gap-3 mb-10">
           <span class="tech-badge"><span class="icon">&#11041;</span> SmartPlant 3D</span>
           <span class="tech-badge"><span class="icon">&#11041;</span> 3D Laser Scanning</span>
@@ -395,7 +396,7 @@
         </div>
         <a href="proeco-digital.html" class="btn-contact inline-flex items-center gap-2 cursor-none" style="border-color:rgba(255,120,40,0.35);color:rgba(255,150,60,0.9)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Learn More
+          <span data-i18n="Learn More">Learn More</span>
         </a>
       </div>
       <div data-aos="fade-left" data-aos-delay="100">
@@ -428,9 +429,9 @@
             <text x="228" y="92" fill="rgba(255,130,50,0.4)" font-size="6" font-family="monospace">OUT</text>
           </svg>
           <div class="grid grid-cols-3 gap-3 mt-6">
-            <div class="blueprint-stat"><div class="blueprint-stat-num"><span class="pm-symbol"><span>+</span><span>&#8722;</span></span>2mm</div><div class="blueprint-stat-label">Scan Accuracy</div></div>
-            <div class="blueprint-stat"><div class="blueprint-stat-num">360&#176;</div><div class="blueprint-stat-label">Coverage</div></div>
-            <div class="blueprint-stat"><div class="blueprint-stat-num" style="font-size:18px;white-space:normal;line-height:1.2">As-built</div><div class="blueprint-stat-label">3D Model</div></div>
+            <div class="blueprint-stat"><div class="blueprint-stat-num"><span class="pm-symbol"><span>+</span><span>&#8722;</span></span>2mm</div><div class="blueprint-stat-label" data-i18n="Scan Accuracy">Scan Accuracy</div></div>
+            <div class="blueprint-stat"><div class="blueprint-stat-num">360&#176;</div><div class="blueprint-stat-label" data-i18n="Coverage">Coverage</div></div>
+            <div class="blueprint-stat"><div class="blueprint-stat-num" style="font-size:18px;white-space:normal;line-height:1.2">As-built</div><div class="blueprint-stat-label" data-i18n="3D Model">3D Model</div></div>
           </div>
         </div>
       </div>
@@ -444,45 +445,45 @@
   <div class="max-w-7xl mx-auto px-6 md:px-10">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
       <div data-aos="fade-right">
-        <div class="section-label mb-5">Engineering Services</div>
+        <div class="section-label mb-5" data-i18n="Engineering Services">Engineering Services</div>
         <h2 class="section-title mb-4">Full-Spectrum<br/>Capability</h2>
         <a href="proeco-capability.html" class="btn-contact inline-flex items-center gap-2 cursor-none" style="border-color:rgba(255,120,40,0.35);color:rgba(255,150,60,0.9);font-size:11px;padding:9px 20px">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Learn More
+          <span data-i18n="Learn More">Learn More</span>
         </a>
       </div>
-      <p class="text-sm font-light leading-relaxed md:max-w-xs" style="color:var(--silver-dim)" data-aos="fade-left">An integrated team of 75+ internal specialists covering every engineering discipline required for complex industrial projects.</p>
+      <p class="text-sm font-light leading-relaxed md:max-w-xs" style="color:var(--silver-dim)" data-aos="fade-left" data-i18n="landing.services_desc">An integrated team of 75+ internal specialists covering every engineering discipline required for complex industrial projects.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <div class="service-item" data-aos="fade-up" data-aos-delay="0">
         <div class="service-icon-wrap"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M19.07 19.07l-1.41-1.41M5.34 5.34L3.93 3.93"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
         <div class="service-title">Process Engineering</div>
-        <div class="service-desc">PFD, P&amp;ID, HAZOP, process simulation, hydraulic calculations and feasibility studies from concept to detail.</div>
+        <div class="service-desc" data-i18n="landing.svc_process_desc">PFD, P&amp;ID, HAZOP, process simulation, hydraulic calculations and feasibility studies from concept to detail.</div>
       </div>
       <div class="service-item" data-aos="fade-up" data-aos-delay="60">
         <div class="service-icon-wrap"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
         <div class="service-title">Civil &amp; Structural</div>
-        <div class="service-desc">Foundations, steel structures, concrete design, piping supports and plot plans for industrial facilities.</div>
+        <div class="service-desc" data-i18n="landing.svc_civil_desc">Foundations, steel structures, concrete design, piping supports and plot plans for industrial facilities.</div>
       </div>
       <div class="service-item" data-aos="fade-up" data-aos-delay="120">
         <div class="service-icon-wrap"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3"/></svg></div>
         <div class="service-title">Mechanical &amp; Piping</div>
-        <div class="service-desc">Equipment specification, stress analysis, 3D piping design, skids &amp; packages engineering.</div>
+        <div class="service-desc" data-i18n="landing.svc_mech_desc">Equipment specification, stress analysis, 3D piping design, skids &amp; packages engineering.</div>
       </div>
       <div class="service-item" data-aos="fade-up" data-aos-delay="0">
         <div class="service-icon-wrap"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
         <div class="service-title">Electrical &amp; Instrumentation</div>
-        <div class="service-desc">Power systems, single-line diagrams, instrument datasheets, control philosophy and SIL studies.</div>
+        <div class="service-desc" data-i18n="landing.svc_ei_desc">Power systems, single-line diagrams, instrument datasheets, control philosophy and SIL studies.</div>
       </div>
       <div class="service-item" data-aos="fade-up" data-aos-delay="60">
         <div class="service-icon-wrap"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="7" width="6" height="10" rx="1"/><rect x="16" y="7" width="6" height="10" rx="1"/><path d="M8 12h8M12 7V5a2 2 0 012-2h0a2 2 0 012 2v1M12 17v2a2 2 0 01-2 2h0a2 2 0 01-2-2v-1"/></svg></div>
         <div class="service-title">Automation &amp; Control</div>
-        <div class="service-desc">DCS/PLC architecture, cause &amp; effect diagrams, safety instrumented systems and SCADA engineering.</div>
+        <div class="service-desc" data-i18n="landing.svc_auto_desc">DCS/PLC architecture, cause &amp; effect diagrams, safety instrumented systems and SCADA engineering.</div>
       </div>
       <div class="service-item" data-aos="fade-up" data-aos-delay="120">
         <div class="service-icon-wrap"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div class="service-title">Fire &amp; Safety</div>
-        <div class="service-desc">Fire protection systems, QRA, risk assessment, emergency response engineering and ATEX classification.</div>
+        <div class="service-desc" data-i18n="landing.svc_fire_desc">Fire protection systems, QRA, risk assessment, emergency response engineering and ATEX classification.</div>
       </div>
     </div>
   </div>
@@ -495,9 +496,9 @@
     <div data-aos="fade-up">
       <div class="section-label justify-center mb-8">Get in Touch</div>
       <h2 class="section-title mb-6" style="font-size:clamp(40px,5vw,72px)">Let&apos;s Build<br/>Something<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Exceptional.</span></h2>
-      <p class="text-sm font-light leading-relaxed mb-12" style="color:var(--silver-dim);max-width:380px;margin-left:auto;margin-right:auto">Tell us about your project. Our multidisciplinary team is ready to engineer solutions that exceed expectations.</p>
+      <p class="text-sm font-light leading-relaxed mb-12" style="color:var(--silver-dim);max-width:380px;margin-left:auto;margin-right:auto" data-i18n="landing.contact_desc">Tell us about your project. Our multidisciplinary team is ready to engineer solutions that exceed expectations.</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="mailto:info@proecosrl.it" class="btn-contact" style="padding:14px 36px;font-size:12px">info@proecosrl.it</a>
+        <a href="/cdn-cgi/l/email-protection#bad3d4dcd5facac8d5dfd9d5c9c8d694d3ce" class="btn-contact" style="padding:14px 36px;font-size:12px"><span class="__cf_email__" data-cfemail="620b0c040d2212100d07010d11100e4c0b16">[email&#160;protected]</span></a>
         <a href="tel:+390543795830" class="btn-contact" style="padding:14px 36px;font-size:12px;border-color:var(--border)">0543795830</a>
       </div>
     </div>
@@ -514,12 +515,12 @@
             <text x="82" y="53" font-family="'Montserrat',sans-serif" font-weight="400" font-size="38" letter-spacing="2"><tspan fill="#ffffff">PRO</tspan><tspan fill="#e87830">ECO</tspan></text>
           </svg>
         </div>
-        <div class="footer-motto">Proud to Develop Solutions</div>
+        <div class="footer-motto" data-i18n="Proud to Develop Solutions">Proud to Develop Solutions</div>
         <div class="text-xs font-light mt-2" style="color:var(--silver-dim)">Part of Parlym Group &middot; www.proecosrl.it</div>
       </div>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-4 text-left">
         <div>
-          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Navigate</div>
+          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)" data-i18n="Navigate">Navigate</div>
           <div class="flex flex-col gap-2">
             <a href="#home" class="footer-link">Home</a>
             <a href="#expertise" class="footer-link">Sectors</a>
@@ -530,7 +531,7 @@
           </div>
         </div>
         <div>
-          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">On this page</div>
+          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)" data-i18n="On this page">On this page</div>
           <div class="flex flex-col gap-2">
             <a href="#home" class="footer-link">Hero</a>
             <a href="#expertise" class="footer-link">Sectors</a>
@@ -541,10 +542,10 @@
           </div>
         </div>
         <div class="col-span-2 md:col-span-1">
-          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Headquarters</div>
+          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)" data-i18n="Headquarters">Headquarters</div>
           <div class="text-xs font-light leading-relaxed" style="color:var(--silver-dim)">
             Via Cervese 162/D<br/>47122 Forli (FC), Italy<br/><br/>
-            <span style="color:var(--silver)">info@proecosrl.it</span>
+            <span style="color:var(--silver)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6e070008012e1e1c010b0d011d1c0240071a">[email&#160;protected]</a></span>
           </div>
         </div>
       </div>
@@ -556,7 +557,7 @@
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 AOS.init({duration:800,easing:'cubic-bezier(0.4,0,0.2,1)',once:true,offset:80});
 const dot=document.getElementById('cursorDot');
@@ -571,13 +572,12 @@ document.querySelectorAll('a,button').forEach(function(el){
 });
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 function animateCounter(el,target,duration){var start=0;var step=target/(duration/16);var timer=setInterval(function(){start+=step;if(start>=target){start=target;clearInterval(timer);}el.textContent=Math.floor(start);},16);}
-var statsObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){animateCounter(document.getElementById('count-revenue'),18,1800);animateCounter(document.getElementById('count-experts'),105,1600);statsObserver.disconnect();}});},{threshold:0.3});
-var revenueEl=document.getElementById('count-revenue');
-if(revenueEl)statsObserver.observe(revenueEl.closest('section'));
+var statsObserver=new Intererve(revenueEl.closest('section'));
 var barObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.querySelectorAll('.sector-bar').forEach(function(bar){var w=bar.getAttribute('data-w');bar.style.transition='width 1.2s cubic-bezier(0.4,0,0.2,1)';if(w)bar.style.width=w;});}});},{threshold:0.2});
 document.querySelectorAll('.sector-card').forEach(function(card){var bar=card.querySelector('.sector-bar');if(bar){bar.setAttribute('data-w',bar.style.width);bar.style.width='0%';}barObserver.observe(card);});
 window.addEventListener('scroll',function(){document.querySelector('nav').style.background=window.scrollY>50?'rgba(30,30,30,0.98)':'rgba(30,30,30,0.95)';});
 </script>
 
+<script src="proeco-i18n.js"></script>
 </body>
 </html>
