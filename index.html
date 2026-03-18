@@ -153,6 +153,7 @@
 </style>
 </head>
 <body>
+<canvas id="shaderCanvas" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.45;"></canvas>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -191,12 +192,11 @@
 
 <section class="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden" id="home">
   <div class="hero-bg">
-    <canvas id="shaderCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0.55;"></canvas>
-    <div class="hero-grid" style="z-index:1;"></div>
-    <div class="hero-glow" style="z-index:1;"></div>
-    <div class="hero-orb hero-orb-1" style="z-index:1;"></div>
-    <div class="hero-orb hero-orb-2" style="z-index:1;"></div>
-    <div class="hero-orb hero-orb-3" style="z-index:1;"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
   </div>
   <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10 py-24 md:py-36">
     <div class="max-w-4xl">
@@ -1223,10 +1223,9 @@ document.addEventListener('DOMContentLoaded', init);
   if (!gl) return;
 
   function resize() {
-    var rect = canvas.parentElement.getBoundingClientRect();
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
     gl.viewport(0, 0, canvas.width, canvas.height);
   }
   resize();
@@ -1246,6 +1245,7 @@ document.addEventListener('DOMContentLoaded', init);
     uniform float u_time;
     uniform float u_speed;
     uniform vec2 u_resolution;
+    uniform float u_scroll;
     varying vec2 vUv;
 
     // Simplex-style noise
@@ -1281,6 +1281,7 @@ document.addEventListener('DOMContentLoaded', init);
       float t = u_time * u_speed;
       float aspect = u_resolution.x / u_resolution.y;
       vec2 p = (uv - 0.5) * vec2(aspect, 1.0);
+      p.y += u_scroll * 0.3;
 
       // Layered noise for mesh gradient feel
       float n1 = snoise(p * 1.8 + vec2(t * 0.15, t * 0.12));
@@ -1359,14 +1360,22 @@ document.addEventListener('DOMContentLoaded', init);
   var uTime = gl.getUniformLocation(program, 'u_time');
   var uSpeed = gl.getUniformLocation(program, 'u_speed');
   var uRes = gl.getUniformLocation(program, 'u_resolution');
+  var uScroll = gl.getUniformLocation(program, 'u_scroll');
 
   var speed = 1.0;
+  var scrollY = 0;
   var startTime = performance.now();
+
+  window.addEventListener('scroll', function() {
+    var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    scrollY = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+  });
 
   function render() {
     var t = (performance.now() - startTime) * 0.001;
     gl.uniform1f(uTime, t);
     gl.uniform1f(uSpeed, speed);
+    gl.uniform1f(uScroll, scrollY);
     gl.uniform2f(uRes, canvas.width, canvas.height);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     requestAnimationFrame(render);
