@@ -191,6 +191,24 @@
 </div>
 
 <section class="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden" id="home">
+  <!-- ── ETHERAL SHADOW BACKGROUND ── -->
+  <div id="etheral-bg" style="position:absolute;inset:0;overflow:hidden;z-index:0;pointer-events:none;">
+    <svg style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true">
+      <defs>
+        <filter id="etheral-filter" color-interpolation-filters="linearRGB">
+          <feTurbulence result="undulation" numOctaves="2" baseFrequency="0.0006,0.0024" seed="0" type="turbulence"/>
+          <feColorMatrix id="etheral-hue" in="undulation" type="hueRotate" values="180"/>
+          <feColorMatrix in="dist" result="circulation" type="matrix" values="4 0 0 0 1  4 0 0 0 1  4 0 0 0 1  1 0 0 0 0"/>
+          <feDisplacementMap in="SourceGraphic" in2="circulation" scale="84" result="dist"/>
+          <feDisplacementMap in="dist" in2="undulation" scale="84" result="output"/>
+        </filter>
+      </defs>
+    </svg>
+    <div style="position:absolute;inset:-84px;filter:url(#etheral-filter) blur(4px);">
+      <div style="background-color:rgba(232,120,48,0.22);mask-image:url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');-webkit-mask-image:url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');mask-size:cover;-webkit-mask-size:cover;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-position:center;-webkit-mask-position:center;width:100%;height:100%;"></div>
+    </div>
+    <div style="position:absolute;inset:0;background-image:url('https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png');background-size:240px;background-repeat:repeat;opacity:0.4;"></div>
+  </div>
   <div class="hero-bg">
     <div class="hero-grid"></div>
     <div class="hero-glow"></div>
@@ -1259,6 +1277,22 @@ document.addEventListener('DOMContentLoaded', init);
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
   animate();
+})();
+</script>
+
+<script>
+/* ETHERAL SHADOW — hero background animation */
+(function(){
+  var hueEl = document.getElementById('etheral-hue');
+  if (!hueEl) return;
+  var hue = 180;
+  var increment = 360 / (7.76 * 60);
+  function tick() {
+    hue = (hue + increment) % 360;
+    hueEl.setAttribute('values', String(hue));
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 })();
 </script>
 </body>
