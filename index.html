@@ -153,10 +153,10 @@
 
 
   /* ── etheral-inner: static filter cached, drift via transform only ── */
-  .etheral-inner{will-change:transform;animation:etheral-drift 28s ease-in-out infinite alternate;}
-  @keyframes etheral-drift{
-    from{transform:scale(1) translate(0,0);}
-    to{transform:scale(1.06) translate(18px,-14px);}
+  .etheral-inner{will-change:filter;animation:etheral-hue 20s linear infinite;}
+  @keyframes etheral-hue{
+    from{filter:url(#etheral-filter) blur(4px) hue-rotate(0deg);}
+    to  {filter:url(#etheral-filter) blur(4px) hue-rotate(360deg);}
   }
 </style>
 </head>
