@@ -9,25 +9,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
 <style>
   :root{
-    --silver:#94a3b8;
-    --silver-dim:#64748b;
-    --steel:#e2e8f0;
-    --border:rgba(255,255,255,0.08);
-    --border-bright:rgba(255,255,255,0.15);
+    --silver:#4a5568;
+    --silver-dim:#718096;
+    --steel:#2d3748;
+    --border:rgba(0,0,0,0.09);
+    --border-bright:rgba(0,0,0,0.16);
   }
   *{box-sizing:border-box;}
-  html{background:#0a0a0a;}
-  body{background:#0a0a0a;color:#e2e8f0;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
-  .cursor-dot{width:6px;height:6px;background:#e2e8f0;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;will-change:transform;}
-  .cursor-ring{width:32px;height:32px;border:1px solid rgba(255,255,255,0.25);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s;will-change:transform;}
-  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.15;}
-  ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#0a0a0a;}::-webkit-scrollbar-thumb{background:#2d3748;border-radius:2px;}
-  nav{position:fixed;top:0;left:0;right:0;z-index:500;background:#0a0a0a!important;border-bottom:1px solid rgba(255,255,255,0.08)!important;transition:background 0.3s;}
+  html{background:#f8f8f8;}
+  body{background:#f8f8f8;color:#1a1a1a;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+  .cursor-dot{width:6px;height:6px;background:#f5f5f5;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;will-change:transform;}
+  .cursor-ring{width:32px;height:32px;border:1px solid rgba(0,0,0,0.25);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s;will-change:transform;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.06;}
+  ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#f8f8f8;}::-webkit-scrollbar-thumb{background:#b0bec5;border-radius:2px;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:500;background:#f8f8f8!important;border-bottom:1px solid rgba(0,0,0,0.09)!important;transition:background 0.3s;}
   .nav-link{font-family:'Inter',sans-serif;font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);transition:color 0.2s;position:relative;}
   .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--silver);transform:scaleX(0);transition:transform 0.2s;}
-  .nav-link:hover{color:#f0f0f0;}.nav-link:hover::after{transform:scaleX(1);}
+  .nav-link:hover{color:#1a1a1a;}.nav-link:hover::after{transform:scaleX(1);}
   .btn-contact{font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:9px 22px;border:1px solid var(--border-bright);border-radius:100px;color:var(--steel);background:transparent;transition:all 0.25s;cursor:none;}
-  .btn-contact:hover{background:rgba(255,255,255,0.08);border-color:var(--silver);color:#f0f0f0;}
+  .btn-contact:hover{background:rgba(0,0,0,0.06);border-color:var(--silver);color:#1a1a1a;}
   .hero-bg{position:absolute;inset:0;overflow:hidden;}
   .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,black 20%,transparent 100%);}
   .hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:700px;height:450px;background:radial-gradient(ellipse,rgba(232,120,48,0.08) 0%,rgba(232,120,48,0.02) 50%,transparent 70%);pointer-events:none;}
@@ -35,11 +35,11 @@
   .hero-orb-1{width:500px;height:500px;background:radial-gradient(circle,#e87830,transparent);top:-100px;right:-100px;animation:drift 18s ease-in-out infinite;}
   .hero-orb-2{width:300px;height:300px;background:radial-gradient(circle,#e87830,transparent);bottom:0;left:-50px;animation:drift 22s ease-in-out infinite reverse;}
   @keyframes drift{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-20px)}66%{transform:translate(-20px,15px)}}
-  .hero-tagline{font-family:'Syne',sans-serif;font-size:clamp(48px,7vw,96px);font-weight:800;line-height:1;letter-spacing:-0.03em;color:#f0f0f0;}
+  .hero-tagline{color:#1a1a1a;font-family:'Syne',sans-serif;font-size:clamp(48px,7vw,96px);font-weight:800;line-height:1;letter-spacing:-0.03em;color:#1a1a1a;}
   .hero-tagline .shimmer{background:linear-gradient(135deg,#ffb830 0%,#e87830 45%,#ff6b00 75%,#ffb870 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 6s ease-in-out infinite;}
   @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
   .hero-sub{font-size:15px;font-weight:300;color:var(--silver-dim);letter-spacing:0.02em;line-height:1.7;max-width:460px;}
-  .parlym-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border-bright);border-radius:100px;font-size:11px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);background:rgba(255,255,255,0.05);}
+  .parlym-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border-bright);border-radius:100px;font-size:11px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);background:rgba(0,0,0,0.04);}
   .parlym-badge .dot{width:5px;height:5px;background:var(--silver);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
   .scroll-indicator{display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--silver-dim);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;animation:fadeInUp 1s 1.5s both;}
@@ -48,26 +48,26 @@
   @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
   .section-label{font-family:'Inter',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--silver-dim);display:flex;align-items:center;gap:12px;}
   .section-label::before{content:'';width:32px;height:1px;background:var(--silver-dim);}
-  .section-title{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:#f0f0f0;}
-  .sector-card{position:relative;background:#141414;border:1px solid var(--border);border-radius:16px;padding:28px;overflow:hidden;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);cursor:pointer;}
+  .section-title{color:#1a1a1a;font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:#1a1a1a;}
+  .sector-card{position:relative;background:#ffffff;border:1px solid var(--border);border-radius:16px;padding:28px;overflow:hidden;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);cursor:pointer;}
   .sector-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,120,48,0.04) 0%,transparent 60%);opacity:0;transition:opacity 0.35s;}
-  .sector-card:hover{border-color:var(--border-bright);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+  .sector-card:hover{border-color:var(--border-bright);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.1);}
   .sector-card:hover::before{opacity:1;}
-  .sector-pct{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;background:linear-gradient(135deg,#f0f0f0,var(--silver));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+  .sector-pct{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;background:linear-gradient(135deg,#2d3748,var(--silver));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
   .sector-icon{width:44px;height:44px;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--silver);margin-bottom:16px;transition:border-color 0.3s,color 0.3s;}
-  .sector-card:hover .sector-icon{border-color:var(--border-bright);color:#f0f0f0;}
-  .sector-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;letter-spacing:0.02em;color:#f0f0f0;margin-bottom:6px;}
+  .sector-card:hover .sector-icon{border-color:var(--border-bright);color:#1a1a1a;}
+  .sector-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;letter-spacing:0.02em;color:#1a1a1a;margin-bottom:6px;}
   .sector-desc{font-size:12px;font-weight:300;color:var(--silver-dim);line-height:1.6;}
   .click-hint{display:flex;align-items:center;gap:5px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--silver-dim);margin-top:14px;opacity:0;transition:opacity 0.3s;}
   .sector-card:hover .click-hint{opacity:1;}
   .sector-bar{position:absolute;bottom:0;left:0;height:2px;background:linear-gradient(90deg,var(--silver-dim),transparent);transition:width 0.6s ease;}
-  .service-item{padding:28px 24px;border:1px solid var(--border);border-radius:14px;background:#141414;transition:all 0.3s;cursor:none;position:relative;overflow:hidden;}
+  .service-item{padding:28px 24px;border:1px solid var(--border);border-radius:14px;background:#ffffff;transition:all 0.3s;cursor:none;position:relative;overflow:hidden;}
   .service-item::after{content:'';position:absolute;top:0;left:0;width:0;height:1px;background:linear-gradient(90deg,transparent,var(--silver-dim),transparent);transition:width 0.5s ease;}
-  .service-item:hover{border-color:var(--border-bright);background:#1c1c1c;}
+  .service-item:hover{border-color:var(--border-bright);background:#f5f5f5;}
   .service-item:hover::after{width:100%;}
   .service-icon-wrap{width:40px;height:40px;margin-bottom:18px;color:var(--silver-dim);transition:color 0.3s;}
   .service-item:hover .service-icon-wrap{color:var(--silver);}
-  .service-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:#f0f0f0;margin-bottom:8px;}
+  .service-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:8px;}
   .service-desc{font-size:12px;color:var(--silver-dim);line-height:1.65;}
   .blueprint-section{background:#111111;position:relative;overflow:hidden;}
   .blueprint-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,100,30,0) 1px,transparent 1px),linear-gradient(90deg,rgba(255,100,30,0) 1px,transparent 1px);background-size:40px 40px;}
@@ -76,7 +76,7 @@
   .bc-tl{top:24px;left:24px;border-width:1px 0 0 1px;}.bc-tr{top:24px;right:24px;border-width:1px 1px 0 0;}.bc-bl{bottom:24px;left:24px;border-width:0 0 1px 1px;}.bc-br{bottom:24px;right:24px;border-width:0 1px 1px 0;}
   .tech-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(232,120,48,0.08);border:1px solid rgba(232,120,48,0.2);border-radius:6px;font-size:11px;font-weight:400;letter-spacing:0.08em;color:rgba(200,90,20,0.9);}
   .tech-badge .icon{color:rgba(232,120,48,0.8);}
-  .blueprint-stat{padding:24px;border:1px solid rgba(255,255,255,0.08);border-radius:12px;background:rgba(255,255,255,0.04);display:flex;flex-direction:column;justify-content:flex-end;}
+  .blueprint-stat{padding:24px;border:1px solid rgba(0,0,0,0.09);border-radius:12px;background:rgba(255,255,255,0.04);display:flex;flex-direction:column;justify-content:flex-end;}
   .blueprint-stat-num{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:rgba(255,160,80,0.9);display:flex;align-items:center;gap:3px;white-space:nowrap;}
   .pm-symbol{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;font-size:11px;font-weight:800;color:rgba(255,160,80,0.9);gap:1px;flex-shrink:0;}
   .blueprint-stat-label{font-size:11px;color:rgba(220,140,80,0.8);letter-spacing:0.08em;margin-top:4px;}
@@ -84,12 +84,12 @@
   .stat-unit{font-family:'Syne',sans-serif;font-size:clamp(28px,3vw,40px);font-weight:700;color:var(--silver-dim);}
   .stat-label{font-size:13px;font-weight:300;color:var(--silver-dim);letter-spacing:0.05em;margin-top:8px;}
   .stat-divider{width:1px;background:linear-gradient(to bottom,transparent,var(--border-bright),transparent);align-self:stretch;}
-  .mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;background:#0a0a0a!important;border-bottom:1px solid rgba(255,255,255,0.08)!important;padding:24px 32px;z-index:499;flex-direction:column;gap:20px;}
+  .mobile-menu{display:none;position:fixed;top:65px;left:0;right:0;background:#f8f8f8!important;border-bottom:1px solid rgba(0,0,0,0.09)!important;padding:24px 32px;z-index:499;flex-direction:column;gap:20px;}
   .mobile-menu.open{display:flex;}
   footer{border-top:1px solid var(--border);background:#0d0d0d;}
   .footer-motto{font-family:'Syne',sans-serif;font-size:clamp(14px,2vw,18px);font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--silver-dim);}
   .footer-link{font-size:12px;font-weight:300;color:var(--silver-dim);transition:color 0.2s;cursor:none;}
-  .footer-link:hover{color:#f0f0f0;}
+  .footer-link:hover{color:#1a1a1a;}
   [data-aos]{pointer-events:none;}[data-aos].aos-animate{pointer-events:auto;}
 
   /* ═══ ENHANCED VISUAL LAYER ═══ */
@@ -153,31 +153,22 @@
 </style>
 </head>
 <body>
-<div id="etheral-bg" style="position:fixed;inset:0;pointer-events:none;opacity:0.65;">
-    <svg style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true">
-      <defs>
-        <filter id="etheral-filter" color-interpolation-filters="linearRGB">
-          <feTurbulence result="undulation" numOctaves="2" baseFrequency="0.0005,0.002" seed="0" type="turbulence"/>
-          <feColorMatrix id="etheral-hue" in="undulation" type="hueRotate" values="180"/>
-          <feColorMatrix in="dist" result="circulation" type="matrix" values="4 0 0 0 1  4 0 0 0 1  4 0 0 0 1  1 0 0 0 0"/>
-          <feDisplacementMap in="SourceGraphic" in2="circulation" scale="100" result="dist"/>
-          <feDisplacementMap in="dist" in2="undulation" scale="100" result="output"/>
-        </filter>
-      </defs>
-    </svg>
-    <div style="position:absolute;inset:-100px;filter:url(#etheral-filter) blur(4px);">
-      <div style="background-color:rgba(128,128,128,1);mask-image:url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');-webkit-mask-image:url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png');mask-size:cover;-webkit-mask-size:cover;mask-repeat:no-repeat;-webkit-mask-repeat:no-repeat;mask-position:center;-webkit-mask-position:center;width:100%;height:100%;"></div>
-    </div>
-    <div style="position:absolute;inset:0;background-image:url('https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png');background-size:240px;background-repeat:repeat;opacity:0.5;"></div>
-  </div>
+<div id="infinite-grid-bg" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
+  <!-- Base grid: dim, always scrolling -->
+  <div id="igrid-base" style="position:absolute;inset:0;opacity:0.06;background-image:linear-gradient(to right,rgba(0,0,0,1) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,1) 1px,transparent 1px);background-size:40px 40px;"></div>
+  <!-- Reveal grid: visible only under mouse cursor -->
+  <div id="igrid-reveal" style="position:absolute;inset:0;opacity:0.35;background-image:linear-gradient(to right,rgba(0,0,0,1) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,1) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(300px circle at -9999px -9999px,black,transparent);-webkit-mask-image:radial-gradient(300px circle at -9999px -9999px,black,transparent);"></div>
+  <!-- Glow blobs -->
+  <div style="position:absolute;right:-8%;top:-8%;width:38%;height:38%;border-radius:50%;background:rgba(232,120,48,0.32);filter:blur(120px);"></div>
+  <div style="position:absolute;left:-8%;bottom:-8%;width:38%;height:38%;border-radius:50%;background:rgba(59,130,246,0.20);filter:blur(120px);"></div>
+</div>
 
-  <!-- ── ETHERAL SHADOW BACKGROUND ── -->
-  </div>
+    </div>
   
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<nav style="background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,0.08);">
+<nav style="background:#f8f8f8;border-bottom:1px solid rgba(0,0,0,0.09);">
   <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
     <a href="#" style="display:flex;align-items:center;text-decoration:none;">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 310 72" height="48" style="display:block">
@@ -370,45 +361,45 @@
 
   <div class="py-28 md:py-36 px-6 md:px-10 max-w-7xl mx-auto" style="position:relative;z-index:1;">
     <div data-aos="fade-up">
-      <div class="section-label mb-5" style="color:rgba(255,255,255,0.6)">Market Sectors</div>
-      <h2 class="section-title mb-2" style="color:#e2e8f0">Where We<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Operate</span></h2>
+      <div class="section-label mb-5" style="color:rgba(0,0,0,0.55)">Market Sectors</div>
+      <h2 class="section-title mb-2" style="color:#2d3748">Where We<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Operate</span></h2>
       <p class="text-sm font-light leading-relaxed mb-16" style="color:rgba(255,255,255,0.55);max-width:460px">Engineering operations across Oil &amp; Gas, Green Energy, Chemical and Electrical Power — from the Adriatic to West Africa, from the Gulf to Southeast Asia.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <a href="proeco-sectors.html#oilgas" style="text-decoration:none;background:rgba(20,20,20,0.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.25);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(20,20,20,0.9)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="0">
+      <a href="proeco-sectors.html#oilgas" style="text-decoration:none;background:rgba(20,20,20,0.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.25);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(255,255,255,0.95)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="0">
         <div style="width:100%;height:3px;background:linear-gradient(90deg,#e87830,transparent);border-radius:2px;margin-bottom:20px"></div>
         <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px">45%</div>
-        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#e2e8f0;margin-bottom:8px">Oil &amp; Gas</div>
+        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#2d3748;margin-bottom:8px">Oil &amp; Gas</div>
         <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.6;flex:1">Offshore platforms, onshore facilities, drilling engineering and pipeline systems.</div>
         <div style="font-size:11px;color:rgba(232,120,48,0.8);margin-top:16px;letter-spacing:.06em;display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
           Explore sector
         </div>
       </a>
-      <a href="proeco-sectors.html#green" style="text-decoration:none;background:rgba(20,20,20,0.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.25);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(20,20,20,0.9)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="80">
+      <a href="proeco-sectors.html#green" style="text-decoration:none;background:rgba(20,20,20,0.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.25);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(255,255,255,0.95)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="80">
         <div style="width:100%;height:3px;background:linear-gradient(90deg,#e87830,transparent);border-radius:2px;margin-bottom:20px"></div>
         <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px">25%</div>
-        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#e2e8f0;margin-bottom:8px">Green Energy</div>
+        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#2d3748;margin-bottom:8px">Green Energy</div>
         <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.6;flex:1">Industrial energy efficiency, sustainability projects and renewable systems integration.</div>
         <div style="font-size:11px;color:rgba(232,120,48,0.8);margin-top:16px;letter-spacing:.06em;display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
           Explore sector
         </div>
       </a>
-      <a href="proeco-sectors.html#chemical" style="text-decoration:none;background:rgba(20,20,20,0.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.25);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(20,20,20,0.9)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="160">
+      <a href="proeco-sectors.html#chemical" style="text-decoration:none;background:rgba(20,20,20,0.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.25);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(255,255,255,0.95)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="160">
         <div style="width:100%;height:3px;background:linear-gradient(90deg,#e87830,transparent);border-radius:2px;margin-bottom:20px"></div>
         <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px">20%</div>
-        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#e2e8f0;margin-bottom:8px">Chemical</div>
+        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#2d3748;margin-bottom:8px">Chemical</div>
         <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.6;flex:1">Process design, safety engineering and full lifecycle support for chemical plants.</div>
         <div style="font-size:11px;color:rgba(232,120,48,0.8);margin-top:16px;letter-spacing:.06em;display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
           Explore sector
         </div>
       </a>
-      <a href="proeco-sectors.html#power" style="text-decoration:none;background:rgba(20,20,20,0.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.25);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(20,20,20,0.9)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="240">
+      <a href="proeco-sectors.html#power" style="text-decoration:none;background:rgba(20,20,20,0.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,120,48,0.25);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:0;transition:all 0.3s;cursor:none" onmouseover="this.style.background='rgba(232,120,48,0.12)';this.style.borderColor='rgba(232,120,48,0.5)'" onmouseout="this.style.background='rgba(255,255,255,0.95)';this.style.borderColor='rgba(232,120,48,0.2)'" data-aos="fade-up" data-aos-delay="240">
         <div style="width:100%;height:3px;background:linear-gradient(90deg,#e87830,transparent);border-radius:2px;margin-bottom:20px"></div>
         <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px">10%</div>
-        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#e2e8f0;margin-bottom:8px">Power</div>
+        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:#2d3748;margin-bottom:8px">Power</div>
         <div style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.6;flex:1">Electrical and instrumentation engineering for generation and distribution systems.</div>
         <div style="font-size:11px;color:rgba(232,120,48,0.8);margin-top:16px;letter-spacing:.06em;display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -432,7 +423,7 @@
 
         <!-- Quotes -->
         <div class="quote-block" style="border-left:2px solid rgba(232,120,48,0.4);padding-left:20px;margin-bottom:28px;">
-          <p style="font-family:'Syne',sans-serif;font-size:14px;font-weight:400;color:#e2e8f0;line-height:1.6;font-style:italic">&ldquo;We don't hire engineers who know the answers. We hire engineers who ask the right questions.&rdquo;</p>
+          <p style="font-family:'Syne',sans-serif;font-size:14px;font-weight:400;color:#2d3748;line-height:1.6;font-style:italic">&ldquo;We don't hire engineers who know the answers. We hire engineers who ask the right questions.&rdquo;</p>
           <p style="font-size:11px;color:var(--silver-dim);margin-top:8px;letter-spacing:.08em;text-transform:uppercase">PROECO Leadership</p>
         </div>
 
@@ -464,7 +455,7 @@
       <div data-aos="fade-left" data-aos-delay="100">
         <div style="position:relative">
           <!-- Main visual block -->
-          <div style="background:#141414;border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden">
+          <div style="background:#ffffff;border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden">
             <!-- Decorative top bar -->
             <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff9a3c,#ff6b00,transparent)"></div>
 
@@ -522,11 +513,11 @@
 
             <!-- Two quotes below -->
             <div style="border-top:1px solid var(--border);padding-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
-              <div style="padding:14px;background:rgba(255,255,255,0.05);border-radius:8px;border:1px solid var(--border)">
+              <div style="padding:14px;background:rgba(0,0,0,0.04);border-radius:8px;border:1px solid var(--border)">
                 <p style="font-size:11px;color:var(--silver-dim);line-height:1.6;font-style:italic">&ldquo;Precision is not a goal — it is the minimum standard we set for ourselves.&rdquo;</p>
                 <p style="font-size:10px;color:rgba(232,120,48,0.7);margin-top:8px;letter-spacing:.06em">Engineering Team</p>
               </div>
-              <div style="padding:14px;background:rgba(255,255,255,0.05);border-radius:8px;border:1px solid var(--border)">
+              <div style="padding:14px;background:rgba(0,0,0,0.04);border-radius:8px;border:1px solid var(--border)">
                 <p style="font-size:11px;color:var(--silver-dim);line-height:1.6;font-style:italic">&ldquo;When eight disciplines think as one, the impossible becomes the next project.&rdquo;</p>
                 <p style="font-size:10px;color:rgba(232,120,48,0.7);margin-top:8px;letter-spacing:.06em">Project Culture</p>
               </div>
@@ -1204,18 +1195,26 @@ document.addEventListener('DOMContentLoaded', init);
 
 
 
+
 <script>
-/* ETHERAL SHADOW */
+/* INFINITE GRID */
 (function(){
-  var hueEl = document.getElementById('etheral-hue');
-  if (!hueEl) return;
-  var hue = 180, last = 0;
-  function tick(ts){
+  var base   = document.getElementById('igrid-base');
+  var reveal = document.getElementById('igrid-reveal');
+  if (!base || !reveal) return;
+  var ox = 0, oy = 0;
+  var mx = -9999, my = -9999;
+  document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; }, {passive:true});
+  function tick(){
+    ox = (ox + 0.5) % 40;
+    oy = (oy + 0.5) % 40;
+    var bp = ox + 'px ' + oy + 'px';
+    base.style.backgroundPosition   = bp;
+    reveal.style.backgroundPosition = bp;
+    var mask = 'radial-gradient(300px circle at ' + mx + 'px ' + my + 'px, black, transparent)';
+    reveal.style.maskImage = mask;
+    reveal.style.webkitMaskImage = mask;
     requestAnimationFrame(tick);
-    if(ts - last < 33) return;
-    last = ts;
-    hue = (hue + 2.06) % 360;
-    hueEl.setAttribute('values', String(hue));
   }
   requestAnimationFrame(tick);
 })();
