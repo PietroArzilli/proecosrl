@@ -18,8 +18,8 @@
   *{box-sizing:border-box;}
   html{background:#0a0a0a;}
   body{background:#0a0a0a;color:#e2e8f0;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
-  .cursor-dot{width:6px;height:6px;background:#e2e8f0;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform 0.1s;}
-  .cursor-ring{width:32px;height:32px;border:1px solid rgba(255,255,255,0.25);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:transform 0.18s ease,width 0.2s,height 0.2s,border-color 0.2s;}
+  .cursor-dot{width:6px;height:6px;background:#e2e8f0;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;will-change:transform;}
+  .cursor-ring{width:32px;height:32px;border:1px solid rgba(255,255,255,0.25);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s;will-change:transform;}
   body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.15;}
   ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#0a0a0a;}::-webkit-scrollbar-thumb{background:#2d3748;border-radius:2px;}
   nav{position:fixed;top:0;left:0;right:0;z-index:500;background:#0a0a0a!important;border-bottom:1px solid rgba(255,255,255,0.08)!important;transition:background 0.3s;}
@@ -861,9 +861,14 @@ AOS.init({duration:800,easing:'cubic-bezier(0.4,0,0.2,1)',once:true,offset:80});
 const dot=document.getElementById('cursorDot');
 const ring=document.getElementById('cursorRing');
 let mouseX=0,mouseY=0,ringX=0,ringY=0;
-document.addEventListener('mousemove',function(e){mouseX=e.clientX;mouseY=e.clientY;dot.style.transform='translate('+(mouseX-3)+'px,'+(mouseY-3)+'px)';});
-function animateRing(){ringX+=(mouseX-ringX)*0.12;ringY+=(mouseY-ringY)*0.12;ring.style.transform='translate('+(ringX-16)+'px,'+(ringY-16)+'px)';requestAnimationFrame(animateRing);}
-animateRing();
+document.addEventListener('mousemove',function(e){mouseX=e.clientX;mouseY=e.clientY;},{passive:true});
+function animateCursor(){
+  dot.style.transform='translate('+(mouseX-3)+'px,'+(mouseY-3)+'px)';
+  ringX+=(mouseX-ringX)*0.12;ringY+=(mouseY-ringY)*0.12;
+  ring.style.transform='translate('+(ringX-16)+'px,'+(ringY-16)+'px)';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
 document.querySelectorAll('a,button').forEach(function(el){
   el.addEventListener('mouseenter',function(){ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(168,178,192,0.8)';});
   el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(168,178,192,0.6)';});
@@ -1222,15 +1227,18 @@ document.addEventListener('DOMContentLoaded', init);
 
 
 <script>
-/* ETHERAL SHADOW animation */
+/* ETHERAL SHADOW animation — throttled to 30fps */
 (function(){
   var hueEl = document.getElementById('etheral-hue');
   if (!hueEl) return;
   var hue = 180;
-  function tick() {
-    hue = (hue + 1.03) % 360;
-    hueEl.setAttribute('values', String(hue));
+  var last = 0;
+  function tick(ts){
     requestAnimationFrame(tick);
+    if(ts - last < 33) return; /* ~30fps */
+    last = ts;
+    hue = (hue + 2.06) % 360; /* double step to keep same visual speed */
+    hueEl.setAttribute('values', String(hue));
   }
   requestAnimationFrame(tick);
 })();
