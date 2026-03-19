@@ -616,8 +616,17 @@
         </a>
       </div>
       <div data-aos="fade-left" data-aos-delay="100">
-        <div style="border-radius:16px;overflow:hidden;position:relative;border:1px solid rgba(200,210,220,0.12);">
-          <img src="offshore_platform.png" alt="3D model offshore platform" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+        <div style="background:transparent;border:1px solid rgba(200,210,220,0.12);border-radius:16px;padding:32px;overflow:hidden;position:relative">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:transparent;animation:scanX 3s ease-in-out infinite"></div>
+          <div style="position:absolute;left:0;top:0;bottom:0;width:1px;background:transparent;animation:scanY 4s ease-in-out infinite"></div>
+          <style>@keyframes scanX{0%,100%{transform:translateX(-100%)}50%{transform:translateX(200%)}}@keyframes scanY{0%,100%{transform:translateY(-100%)}50%{transform:translateY(300%)}}</style>
+          <div style="font-family:monospace;font-size:12px;color:rgba(255,140,60,0.6);letter-spacing:.08em;margin-bottom:16px">// PROECO 3D_SCAN_SYSTEM v4.2.1</div>
+          <img src="offshore_platform.png" alt="3D model offshore platform" style="width:100%;border-radius:8px;display:block;opacity:0.92;margin-bottom:0;">
+          <div class="grid grid-cols-3 gap-3 mt-6">
+            <div class="blueprint-stat"><div class="blueprint-stat-num"><span class="pm-symbol"><span>+</span><span>&#8722;</span></span>2mm</div><div class="blueprint-stat-label">Scan Accuracy</div></div>
+            <div class="blueprint-stat"><div class="blueprint-stat-num">360&#176;</div><div class="blueprint-stat-label">Coverage</div></div>
+            <div class="blueprint-stat"><div class="blueprint-stat-num" style="font-size:18px;white-space:normal;line-height:1.2">As-built</div><div class="blueprint-stat-label">3D Model</div></div>
+          </div>
         </div>
       </div>
     </div>
