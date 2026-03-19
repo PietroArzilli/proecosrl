@@ -153,7 +153,6 @@
 </style>
 </head>
 <body>
-<div id="dottedSurface" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.85;"></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -177,7 +176,7 @@
       <span style="font-size:11px;letter-spacing:.08em;color:var(--silver-dim);font-weight:300">Part of <span style="color:var(--silver)">Parlym Group</span></span>
       <a href="#contact" class="btn-contact btn-cta-orange">Contact</a>
     </div>
-    <button class="md:hidden text-gray-400 hover:text-white transition-colors cursor-none" onclick="toggleMenu()">
+    <button class="md:hidden text-gray-500 hover:text-gray-900 transition-colors cursor-none" onclick="toggleMenu()">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
@@ -223,7 +222,7 @@
       </p>
       <div class="flex flex-wrap items-center gap-5" style="animation:fadeInUp 0.8s 0.8s both">
         <a href="#expertise" class="btn-contact btn-cta-orange" style="padding:13px 32px;font-size:12px">Explore Expertise</a>
-        <a href="#contact" style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim);transition:color .2s" class="hover:text-white flex items-center gap-3 cursor-none">
+        <a href="#contact" style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim);transition:color .2s" class="hover:text-gray-900 flex items-center gap-3 cursor-none">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
           Contact us
         </a>
@@ -854,8 +853,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 AOS.init({duration:800,easing:'cubic-bezier(0.4,0,0.2,1)',once:true,offset:80});
 const dot=document.getElementById('cursorDot');
@@ -1217,61 +1215,7 @@ document.addEventListener('DOMContentLoaded', init);
 </script>
 
 <!-- âââ WEBGL MESH GRADIENT SHADER âââ -->
-<script>
-/* DOTTED SURFACE — Three.js particle wave */
-(function(){
-  var container = document.getElementById('dottedSurface');
-  if (!container) return;
-  if (typeof THREE === 'undefined') return;
-  var SEPARATION = 150, AMOUNTX = 40, AMOUNTY = 60;
-  var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
-  camera.position.set(0, 355, 1220);
-  var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0x000000, 0);
-  container.appendChild(renderer.domElement);
-  renderer.domElement.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%';
-  var numParticles = AMOUNTX * AMOUNTY;
-  var positions = new Float32Array(numParticles * 3);
-  var k = 0;
-  for (var ix = 0; ix < AMOUNTX; ix++) {
-    for (var iy = 0; iy < AMOUNTY; iy++) {
-      positions[k++] = ix * SEPARATION - (AMOUNTX * SEPARATION) / 2;
-      positions[k++] = 0;
-      positions[k++] = iy * SEPARATION - (AMOUNTY * SEPARATION) / 2;
-    }
-  }
-  var geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-  var material = new THREE.PointsMaterial({
-    size: 7, color: 0x4a5568, transparent: true, opacity: 0.45, sizeAttenuation: true
-  });
-  scene.add(new THREE.Points(geometry, material));
-  var count = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    var pos = geometry.attributes.position.array;
-    var i = 0;
-    for (var ix = 0; ix < AMOUNTX; ix++) {
-      for (var iy = 0; iy < AMOUNTY; iy++) {
-        pos[i * 3 + 1] = Math.sin((ix + count) * 0.3) * 50 + Math.sin((iy + count) * 0.5) * 50;
-        i++;
-      }
-    }
-    geometry.attributes.position.needsUpdate = true;
-    renderer.render(scene, camera);
-    count += 0.1;
-  }
-  window.addEventListener('resize', function() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-  animate();
-})();
-</script>
+
 
 
 
