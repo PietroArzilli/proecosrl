@@ -158,17 +158,53 @@
   .blueprint-section .text-sm{color:#c8d4e0!important;}
   .blueprint-section .section-title{color:#e8ecf0!important;}
   .blueprint-section .section-label{color:#9aabb8!important;}
+
+/* ── Minimal background: accent lines ── */
+#accent-lines-bg { position:absolute; inset:0; pointer-events:none; }
+.al-hline, .al-vline {
+  position:absolute;
+  background:rgba(0,0,0,0.065);
+  will-change:transform,opacity;
+}
+.al-hline {
+  height:1px; left:0; right:0;
+  transform:scaleX(0); transform-origin:50% 50%;
+  animation:alDrawX 900ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+.al-hline:nth-child(1){ top:20%; animation-delay:150ms; }
+.al-hline:nth-child(2){ top:50%; animation-delay:290ms; }
+.al-hline:nth-child(3){ top:80%; animation-delay:430ms; }
+.al-vline {
+  width:1px; top:0; bottom:0;
+  transform:scaleY(0); transform-origin:50% 0%;
+  animation:alDrawY 1000ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+.al-vline:nth-child(4){ left:20%; animation-delay:540ms; }
+.al-vline:nth-child(5){ left:50%; animation-delay:660ms; }
+.al-vline:nth-child(6){ left:80%; animation-delay:780ms; }
+@keyframes alDrawX {
+  0%  { transform:scaleX(0); opacity:0; }
+  60% { opacity:.85; }
+  100%{ transform:scaleX(1); opacity:1; }
+}
+@keyframes alDrawY {
+  0%  { transform:scaleY(0); opacity:0; }
+  60% { opacity:.85; }
+  100%{ transform:scaleY(1); opacity:1; }
+}
 </style>
 </head>
 <body>
-<div id="infinite-grid-bg" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
-  <!-- Base grid: dim, always scrolling -->
-  <div id="igrid-base" style="position:absolute;inset:0;opacity:0.06;background-image:linear-gradient(to right,rgba(0,0,0,1) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,1) 1px,transparent 1px);background-size:40px 40px;"></div>
-  <!-- Reveal grid: visible only under mouse cursor -->
-  <div id="igrid-reveal" style="position:absolute;inset:0;opacity:0.35;background-image:linear-gradient(to right,rgba(0,0,0,1) 1px,transparent 1px),linear-gradient(to bottom,rgba(0,0,0,1) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(300px circle at -9999px -9999px,black,transparent);-webkit-mask-image:radial-gradient(300px circle at -9999px -9999px,black,transparent);"></div>
-  <!-- Glow blobs -->
-  <div style="position:absolute;right:-8%;top:-8%;width:38%;height:38%;border-radius:50%;background:rgba(232,120,48,0.32);filter:blur(120px);"></div>
-  <div style="position:absolute;left:-8%;bottom:-8%;width:38%;height:38%;border-radius:50%;background:rgba(59,130,246,0.20);filter:blur(120px);"></div>
+<div id="minimal-bg" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
+  <canvas id="particle-canvas" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.45;"></canvas>
+  <div id="accent-lines-bg">
+    <div class="al-hline"></div>
+    <div class="al-hline"></div>
+    <div class="al-hline"></div>
+    <div class="al-vline"></div>
+    <div class="al-vline"></div>
+    <div class="al-vline"></div>
+  </div>
 </div>
 
     </div>
@@ -1212,27 +1248,43 @@ document.addEventListener('DOMContentLoaded', init);
 
 
 
+
 <script>
-/* INFINITE GRID */
+/* MINIMAL PARTICLES */
 (function(){
-  var base   = document.getElementById('igrid-base');
-  var reveal = document.getElementById('igrid-reveal');
-  if (!base || !reveal) return;
-  var ox = 0, oy = 0;
-  var mx = -9999, my = -9999;
-  document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; }, {passive:true});
-  function tick(){
-    ox = (ox + 0.5) % 40;
-    oy = (oy + 0.5) % 40;
-    var bp = ox + 'px ' + oy + 'px';
-    base.style.backgroundPosition   = bp;
-    reveal.style.backgroundPosition = bp;
-    var mask = 'radial-gradient(300px circle at ' + mx + 'px ' + my + 'px, black, transparent)';
-    reveal.style.maskImage = mask;
-    reveal.style.webkitMaskImage = mask;
-    requestAnimationFrame(tick);
+  var canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  function setSize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  setSize();
+  function count(){ return Math.floor(canvas.width * canvas.height / 8000); }
+  function make(){
+    var fd = Math.random()*600+100;
+    return { x:Math.random()*canvas.width, y:Math.random()*canvas.height,
+             speed:Math.random()/5+0.1, opacity:0.6,
+             fadeDelay:fd, fadeStart:Date.now()+fd, fadingOut:false };
   }
-  requestAnimationFrame(tick);
+  function reset(p){
+    p.x=Math.random()*canvas.width; p.y=Math.random()*canvas.height;
+    p.speed=Math.random()/5+0.1; p.opacity=0.6;
+    p.fadeDelay=Math.random()*600+100; p.fadeStart=Date.now()+p.fadeDelay; p.fadingOut=false;
+  }
+  var particles=[], raf=0;
+  function init(){ particles=[]; for(var i=0;i<count();i++) particles.push(make()); }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(function(p){
+      p.y-=p.speed;
+      if(p.y<0) reset(p);
+      if(!p.fadingOut && Date.now()>p.fadeStart) p.fadingOut=true;
+      if(p.fadingOut){ p.opacity-=0.008; if(p.opacity<=0) reset(p); }
+      ctx.fillStyle='rgba(55,60,70,'+p.opacity+')';
+      ctx.fillRect(p.x, p.y, 0.7, Math.random()*2+1);
+    });
+    raf=requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',function(){ setSize(); init(); },{passive:true});
+  init(); raf=requestAnimationFrame(draw);
 })();
 </script>
 </body>
