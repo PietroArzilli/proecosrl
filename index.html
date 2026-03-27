@@ -20,7 +20,7 @@
   body{background:#f8f8f8;color:#1a1a1a;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
   .cursor-dot{width:6px;height:6px;background:#f5f5f5;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;will-change:transform;}
   .cursor-ring{width:32px;height:32px;border:1px solid rgba(0,0,0,0.25);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s;will-change:transform;}
-  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.06;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.06;}
   #home{z-index:1;}
   #home ~ *{position:relative;z-index:1;}
   ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#f8f8f8;}::-webkit-scrollbar-thumb{background:#b0bec5;border-radius:2px;}
@@ -253,7 +253,7 @@
     <video autoplay muted loop playsinline style="position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;transform:translate(-50%,-50%);object-fit:cover;">
       <source src="hero-video.mp4" type="video/mp4">
     </video>
-    <div style="position:absolute;inset:0;background:rgba(248,248,248,0.45);"></div>
+    <div style="position:absolute;inset:0;background:transparent;"></div>
   </div>
   <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10 py-24 md:py-36" style="z-index:2;position:relative;">
     <div class="max-w-4xl">
