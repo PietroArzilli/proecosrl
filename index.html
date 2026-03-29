@@ -792,44 +792,7 @@
       animation: fscPulse 2s ease-in-out infinite;
     }
     
-    /* Play button - center of video */
-    .fsc-play-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 4;
-      width: 80px;
-      height: 80px;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-    
-    .fsc-video-hero:hover .fsc-play-btn {
-      opacity: 1;
-    }
-    
-    .fsc-play-btn:hover {
-      background: rgba(232,120,48,0.6);
-      border-color: rgba(232,120,48,0.8);
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-    
-    .fsc-play-btn svg {
-      margin-left: 4px;
-    }
-    
-    /* Corner tech brackets */
+    <!-- Corner tech brackets -->
     .fsc-corner {
       position: absolute;
       width: 40px;
@@ -876,12 +839,6 @@
     <svg class="fsc-corner fsc-corner-tr" viewBox="0 0 40 40" fill="none"><path d="M0 12 L0 0 L12 0" stroke="rgba(232,120,48,0.8)" stroke-width="1.5"/></svg>
     <svg class="fsc-corner fsc-corner-bl" viewBox="0 0 40 40" fill="none"><path d="M0 12 L0 0 L12 0" stroke="rgba(232,120,48,0.8)" stroke-width="1.5"/></svg>
     <svg class="fsc-corner fsc-corner-br" viewBox="0 0 40 40" fill="none"><path d="M0 12 L0 0 L12 0" stroke="rgba(232,120,48,0.8)" stroke-width="1.5"/></svg>
-    
-    <!-- Play/Pause button -->
-    <button class="fsc-play-btn" id="fscPlayBtn" aria-label="Play/Pause video">
-      <svg id="fscPlayIcon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-      <svg id="fscPauseIcon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
-    </button>
     
     <!-- Content overlay -->
     <div class="fsc-video-content">
@@ -967,27 +924,9 @@
   (function() {
     document.addEventListener('DOMContentLoaded', function() {
       var video = document.getElementById('fscVideo');
-      var playBtn = document.getElementById('fscPlayBtn');
-      var playIcon = document.getElementById('fscPlayIcon');
-      var pauseIcon = document.getElementById('fscPauseIcon');
+      if (!video) return;
       
-      if (!video || !playBtn) return;
-      
-      // Play/Pause toggle
-      playBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (video.paused) {
-          video.play();
-          playIcon.style.display = 'none';
-          pauseIcon.style.display = 'block';
-        } else {
-          video.pause();
-          playIcon.style.display = 'block';
-          pauseIcon.style.display = 'none';
-        }
-      });
-      
-      // Auto-start when in view
+      // Auto-start quando entra in viewport
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
