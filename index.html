@@ -107,7 +107,8 @@
   .service-item::before{content:'';position:absolute;top:0;left:-120%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent);transform:skewX(-14deg);transition:left 0.7s ease;pointer-events:none;z-index:0;}
   .service-item:hover::before{left:160%;}
   .service-item:hover::after{background:linear-gradient(90deg,transparent,rgba(232,120,48,0.45),transparent);}
-  .service-item:hover .service-title{color:rgba(200,80,20,0.92);}
+  .service-item:hover .service-title{color:#1a1a1a;}
+  .service-item:hover .service-desc{color:#3a4a5c;}
   .service-item>*{position:relative;z-index:1;}
 
   /* Sector cards — percentage turns orange on hover */
@@ -814,10 +815,8 @@
   <!-- ═══ FULL-WIDTH VIDEO HERO ═══ -->
   <div class="fsc-video-hero" id="fscVideoContainer">
     
-    <!-- Video element -->
-    <video class="fsc-video-element" id="fscVideo" autoplay muted loop playsinline preload="auto">
-      <source src="iStock-1428637801.mp4" type="video/mp4">
-    </video>
+    <!-- Video embed from Streamable -->
+    <iframe class="fsc-video-element" src="https://streamable.com/e/q8xzzr?autoplay=1&muted=1&loop=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;"></iframe>
     
     <!-- Overlays -->
     <div class="fsc-video-vignette"></div>
