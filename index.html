@@ -40,7 +40,7 @@
   .hero-tagline{color:#1a1a1a;font-family:'Syne',sans-serif;font-size:clamp(48px,7vw,96px);font-weight:800;line-height:1;letter-spacing:-0.03em;color:#1a1a1a;}
   .hero-tagline .shimmer{background:linear-gradient(135deg,#ffb830 0%,#e87830 45%,#ff6b00 75%,#ffb870 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 6s ease-in-out infinite;}
   @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-  .hero-sub{font-size:15px;font-weight:300;color:#536070;letter-spacing:0.02em;line-height:1.7;max-width:460px;}
+  .hero-sub{font-size:clamp(14px,3.5vw,15px);font-weight:300;color:#536070;letter-spacing:0.02em;line-height:1.7;max-width:460px;}
   .parlym-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border-bright);border-radius:100px;font-size:11px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);background:rgba(0,0,0,0.04);}
   .parlym-badge .dot{width:5px;height:5px;background:var(--silver);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
@@ -174,6 +174,106 @@
   nav > div.max-w-7xl { max-width: 100% !important; padding-left: 3vw !important; padding-right: 3vw !important; }
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE OPTIMIZATIONS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Base mobile fixes ── */
+@media (max-width: 768px) {
+  /* Disable custom cursor on touch devices */
+  body { cursor: auto !important; }
+  .cursor-dot, .cursor-ring { display: none !important; }
+  
+  /* Hero section */
+  .hero-tagline { font-size: clamp(36px, 10vw, 56px) !important; }
+  .hero-sub { font-size: 14px !important; line-height: 1.6 !important; max-width: 100% !important; }
+  
+  /* Section titles */
+  .section-title { font-size: clamp(28px, 7vw, 40px) !important; }
+  .section-label { font-size: 9px !important; letter-spacing: 0.2em !important; }
+  
+  /* Stats section */
+  .stat-number { font-size: clamp(40px, 12vw, 52px) !important; }
+  .stat-unit { font-size: clamp(20px, 6vw, 28px) !important; }
+  .stat-label { font-size: 11px !important; }
+  
+  /* Sector cards - better touch targets */
+  .sector-dark-card { padding: 20px !important; min-height: auto !important; }
+  .sector-dark-card .sector-dark-title { font-size: 14px !important; }
+  .sector-dark-card .sector-dark-desc { font-size: 11px !important; }
+  
+  /* Team section */
+  #team-preview .grid { gap: 32px !important; }
+  #team-preview .quote-block { padding-left: 16px !important; }
+  #team-preview .quote-block p { font-size: 13px !important; }
+  #team-preview .flex.gap-8 { gap: 16px !important; flex-wrap: wrap !important; }
+  #team-preview .flex.gap-8 > div:not([style*="width:1px"]) { flex: 1 1 80px !important; min-width: 80px !important; }
+  #team-preview .flex.gap-8 > div[style*="width:1px"] { display: none !important; }
+  
+  /* Team visual card quotes */
+  #team-preview [style*="grid-template-columns:1fr 1fr"] { 
+    grid-template-columns: 1fr !important; 
+    gap: 12px !important;
+  }
+  
+  /* Tech section badges */
+  .tech-badge { padding: 6px 12px !important; font-size: 10px !important; }
+  
+  /* Blueprint stats */
+  .blueprint-stat { padding: 16px !important; }
+  .blueprint-stat-num { font-size: 20px !important; }
+  .blueprint-stat-label { font-size: 10px !important; }
+  
+  /* Service items */
+  .service-item { padding: 20px 18px !important; }
+  .service-title { font-size: 13px !important; }
+  .service-desc { font-size: 11px !important; }
+  
+  /* Contact section */
+  #contact .section-title { font-size: clamp(32px, 9vw, 48px) !important; }
+  #contact p { font-size: 13px !important; }
+  #contact .btn-contact { padding: 12px 24px !important; font-size: 11px !important; width: 100% !important; text-align: center !important; justify-content: center !important; }
+  #contact .flex-wrap { flex-direction: column !important; width: 100% !important; }
+  
+  /* Footer */
+  footer { padding: 32px 0 !important; }
+  footer .flex-col.md\\:flex-row { gap: 24px !important; }
+  
+  /* Buttons - better touch targets */
+  .btn-contact { padding: 12px 24px !important; min-height: 44px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
+  
+  /* Navigation mobile menu improvements */
+  .mobile-menu { padding: 20px 24px !important; gap: 16px !important; }
+  .mobile-menu .nav-link { font-size: 14px !important; padding: 8px 0 !important; }
+  
+  /* Scroll indicator - smaller on mobile */
+  .scroll-indicator { display: none !important; }
+  
+  /* Reduce animation complexity for performance */
+  .hero-orb, .hero-orb-1, .hero-orb-2, .hero-orb-3 { animation: none !important; }
+  #particle-canvas { opacity: 0.25 !important; }
+}
+
+/* ── Small mobile (< 480px) ── */
+@media (max-width: 480px) {
+  .hero-tagline { font-size: clamp(32px, 11vw, 44px) !important; }
+  .section-title { font-size: clamp(24px, 8vw, 32px) !important; }
+  
+  /* Stack sector cards full width */
+  #expertise .grid { gap: 12px !important; }
+  .sector-dark-card { padding: 18px !important; }
+  
+  /* Smaller padding on sections */
+  .py-28 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+  .py-36 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+  
+  /* Team org chart - scale down */
+  #team-preview svg[viewBox="0 0 340 340"] { max-width: 280px !important; }
+  
+  /* Contact buttons stack */
+  #contact .flex-wrap { gap: 12px !important; }
+}
+
 /* ── Minimal background: accent lines ── */
 #accent-lines-bg { position:absolute; inset:0; pointer-events:none; }
 .al-hline, .al-vline {
@@ -259,6 +359,10 @@
   <a href="#tech" class="nav-link" onclick="toggleMenu()">Technology</a>
   <a href="#contact" class="nav-link" onclick="toggleMenu()">Contact</a>
   <a href="#contact" class="btn-contact text-center" onclick="toggleMenu()">Get in Touch</a>
+  <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(0,0,0,0.09);">
+    <span style="font-size:11px;letter-spacing:.08em;color:var(--silver-dim);font-weight:300">Part of <span style="color:var(--silver)">Parlym Group</span></span>
+    <img src="parlym-logo.png" alt="Parlym Group" style="height:24px;width:auto;">
+  </div>
 </div>
 
 <section class="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden" id="home">
@@ -275,7 +379,7 @@
         Engineering<br/>the Future,<br/><span class="shimmer">Bravely.</span>
       </h1>
       <p class="hero-sub mb-12" style="animation:fadeInUp 0.8s 0.6s both;color:rgba(255,255,255,0.85);">
-        Multidisciplinary engineering solutions for Energy &amp; Industry. From process design to 3D digital twin technology &mdash;<br/>we develop what others can&apos;t.
+        Multidisciplinary engineering solutions for Energy &amp; Industry. From process design to 3D digital twin technology &mdash;<span class="hidden md:inline"><br/></span> we develop what others can&apos;t.
       </p>
       <div class="flex flex-wrap items-center gap-5" style="animation:fadeInUp 0.8s 0.8s both">
         <a href="#expertise" class="btn-contact" style="padding:13px 32px;font-size:12px;border-color:rgba(232,120,48,0.7);color:#fff;background:rgba(232,120,48,0.25);">Explore Expertise</a>
