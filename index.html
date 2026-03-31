@@ -180,125 +180,172 @@
    MOBILE RESPONSIVE OPTIMIZATIONS
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Base mobile fixes ── */
+/* ── Tablet & mobile (≤ 768px) ── */
 @media (max-width: 768px) {
-  /* Disable custom cursor on touch devices */
-  body { cursor: auto !important; }
+
+  /* === GLOBAL === */
+  body { cursor: auto !important; overflow-x: hidden !important; }
   .cursor-dot, .cursor-ring { display: none !important; }
-  
-  /* Hero section - scale down to fit without breaking words */
-  #home .max-w-7xl { padding-left: 12px !important; padding-right: 12px !important; }
-  #home .max-w-4xl { max-width: 100% !important; }
-  .hero-tagline { 
-    font-size: clamp(28px, 8.5vw, 44px) !important; 
-    white-space: nowrap !important;
-  }
-  .hero-sub { font-size: 13px !important; line-height: 1.6 !important; max-width: 100% !important; }
-  
-  /* Section titles */
-  .section-title { font-size: clamp(28px, 7vw, 40px) !important; }
+  .scroll-indicator { display: none !important; }
+  .hero-orb, .hero-orb-1, .hero-orb-2, .hero-orb-3 { animation: none !important; }
+  #particle-canvas { opacity: 0.2 !important; }
+
+  /* Global section padding reduction */
+  .py-28 { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+  .py-36 { padding-top: 4.5rem !important; padding-bottom: 4.5rem !important; }
+
+  /* Reduce gap on stacked 2-col grids */
+  .gap-16 { gap: 2rem !important; }
+
+  /* Section typography */
+  .section-title { font-size: clamp(26px, 7vw, 38px) !important; line-height: 1.15 !important; }
   .section-label { font-size: 9px !important; letter-spacing: 0.2em !important; }
-  
-  /* Stats section */
-  .stat-number { font-size: clamp(40px, 12vw, 52px) !important; }
-  .stat-unit { font-size: clamp(20px, 6vw, 28px) !important; }
+
+  /* Buttons — touch-friendly */
+  .btn-contact {
+    padding: 12px 22px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 11px !important;
+  }
+
+  /* === NAVIGATION === */
+  .mobile-menu { padding: 20px 20px !important; gap: 14px !important; }
+  .mobile-menu .nav-link { font-size: 15px !important; padding: 10px 0 !important; }
+  .mobile-menu .btn-contact { width: 100% !important; text-align: center !important; }
+
+  /* === HERO === */
+  #home .max-w-7xl { padding-left: 20px !important; padding-right: 20px !important; }
+  #home .max-w-4xl { max-width: 100% !important; }
+  #home { min-height: 100svh !important; }
+  .hero-tagline {
+    font-size: clamp(38px, 9.5vw, 56px) !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.025em !important;
+  }
+  .hero-sub {
+    font-size: 13.5px !important;
+    line-height: 1.7 !important;
+    max-width: 100% !important;
+    margin-bottom: 2rem !important;
+  }
+  #home .flex.flex-wrap { gap: 14px !important; flex-direction: column !important; align-items: flex-start !important; }
+  #home .flex.flex-wrap .btn-contact { width: auto !important; }
+
+  /* === KEY FIGURES === */
+  .stat-block { text-align: center !important; padding: 24px 12px !important; }
+  .stat-number { font-size: clamp(44px, 13vw, 56px) !important; }
+  .stat-unit { font-size: clamp(22px, 6.5vw, 30px) !important; }
   .stat-label { font-size: 11px !important; }
-  
-  /* Sector cards - better touch targets */
-  .sector-dark-card { padding: 20px !important; min-height: auto !important; }
-  .sector-dark-card .sector-dark-title { font-size: 14px !important; }
-  .sector-dark-card .sector-dark-desc { font-size: 11px !important; }
-  
-  /* Team section */
-  #team-preview .grid { gap: 32px !important; }
-  #team-preview .quote-block { padding-left: 16px !important; }
-  #team-preview .quote-block p { font-size: 13px !important; }
-  #team-preview .flex.gap-8 { gap: 16px !important; flex-wrap: wrap !important; }
-  #team-preview .flex.gap-8 > div:not([style*="width:1px"]) { flex: 1 1 80px !important; min-width: 80px !important; }
-  #team-preview .flex.gap-8 > div[style*="width:1px"] { display: none !important; }
-  
-  /* Team visual card quotes */
-  #team-preview [style*="grid-template-columns:1fr 1fr"] { 
-    grid-template-columns: 1fr !important; 
-    gap: 12px !important;
-  }
-  
-  /* Tech section badges */
-  .tech-badge { padding: 6px 12px !important; font-size: 10px !important; }
-  
-  /* Blueprint stats */
-  .blueprint-stat { padding: 16px !important; }
-  .blueprint-stat-num { font-size: 20px !important; }
-  .blueprint-stat-label { font-size: 10px !important; }
-  
-  /* Service items - CRITICAL FIX for text overflow */
-  #growth .grid {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-  .service-item { 
-    padding: 14px !important; 
+  .stat-divider { display: none !important; }
+
+  /* === MARKET SECTORS === */
+  #expertise { padding-left: 0 !important; padding-right: 0 !important; }
+  #expertise > .max-w-7xl { padding-left: 20px !important; padding-right: 20px !important; }
+  .sector-dark-card {
+    padding: 20px 18px !important;
     min-height: auto !important;
-    overflow: hidden !important;
+    cursor: auto !important;
   }
-  .service-title { 
-    font-size: 14px !important; 
-    line-height: 1.3 !important;
-  }
-  .service-desc { 
-    font-size: 12px !important; 
+  .sector-dark-card .sector-dark-title { font-size: 14px !important; }
+  .sector-dark-card li {
+    font-size: 12.5px !important;
     line-height: 1.5 !important;
   }
-  .service-icon-wrap { 
-    width: 28px !important; 
-    height: 28px !important; 
-    margin-bottom: 10px !important; 
+
+  /* === TEAM === */
+  #team-preview .grid { gap: 2rem !important; }
+  #team-preview p[style*="max-width:420px"] { max-width: 100% !important; }
+  #team-preview .quote-block { padding-left: 14px !important; margin-bottom: 20px !important; }
+  #team-preview .quote-block p { font-size: 13px !important; line-height: 1.55 !important; }
+  /* Mini stats */
+  #team-preview .flex.gap-8 {
+    gap: 0 !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    width: 100% !important;
   }
+  #team-preview .flex.gap-8 > div[style*="width:1px"] { display: none !important; }
+  #team-preview .flex.gap-8 > div:not([style*="width:1px"]) {
+    flex: 1 !important;
+    text-align: center !important;
+  }
+  #team-preview .flex.gap-8 > div:not([style*="width:1px"]) > div:first-child {
+    font-size: 22px !important;
+  }
+  /* Org chart card */
+  #team-preview [style*="padding:32px"] { padding: 20px 16px !important; }
+  #team-preview svg[viewBox="0 0 340 340"] { max-width: 100% !important; }
+
+  /* === DIGITAL / TECH === */
+  #tech .grid { gap: 2rem !important; }
+  #tech .max-w-7xl { padding-left: 20px !important; padding-right: 20px !important; }
+  #tech .section-title br { display: none !important; }
+  /* Blueprint stats 3-col: shrink */
+  .blueprint-stat { padding: 12px 10px !important; }
+  .blueprint-stat-num { font-size: 18px !important; white-space: normal !important; }
+  .blueprint-stat-label { font-size: 9.5px !important; }
+  /* Timeline */
+  #tech [style*="padding-left:36px"] { padding-left: 30px !important; }
+
+  /* === SERVICES / GROWTH === */
+  #growth .grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+  .service-item { padding: 16px !important; min-height: auto !important; overflow: hidden !important; }
+  .service-title { font-size: 14px !important; line-height: 1.3 !important; }
+  .service-desc { font-size: 12px !important; line-height: 1.55 !important; }
+  .service-icon-wrap { width: 30px !important; height: 30px !important; margin-bottom: 10px !important; }
   .service-icon-wrap svg { width: 22px !important; height: 22px !important; }
-  
-  /* Contact section */
-  #contact .section-title { font-size: clamp(32px, 9vw, 48px) !important; }
-  #contact p { font-size: 13px !important; }
-  #contact .btn-contact { padding: 12px 24px !important; font-size: 11px !important; width: 100% !important; text-align: center !important; justify-content: center !important; }
-  #contact .flex-wrap { flex-direction: column !important; width: 100% !important; }
-  
-  /* Footer */
-  footer { padding: 32px 0 !important; }
-  footer .flex-col.md\\:flex-row { gap: 24px !important; }
-  
-  /* Buttons - better touch targets */
-  .btn-contact { padding: 12px 24px !important; min-height: 44px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
-  
-  /* Navigation mobile menu improvements */
-  .mobile-menu { padding: 20px 24px !important; gap: 16px !important; }
-  .mobile-menu .nav-link { font-size: 14px !important; padding: 8px 0 !important; }
-  
-  /* Scroll indicator - smaller on mobile */
-  .scroll-indicator { display: none !important; }
-  
-  /* Reduce animation complexity for performance */
-  .hero-orb, .hero-orb-1, .hero-orb-2, .hero-orb-3 { animation: none !important; }
-  #particle-canvas { opacity: 0.25 !important; }
+  /* Video section */
+  .fsc-video-content { padding: 28px 20px 48px !important; }
+  .fsc-video-content .section-title { font-size: clamp(24px, 7vw, 36px) !important; }
+
+  /* === CONTACT === */
+  #contact .section-title { font-size: clamp(30px, 9vw, 48px) !important; }
+  #contact p { font-size: 13px !important; max-width: 100% !important; }
+  #contact .btn-contact { width: 100% !important; justify-content: center !important; }
+  #contact .flex-wrap { flex-direction: column !important; width: 100% !important; gap: 12px !important; }
+
+  /* === FOOTER === */
+  footer { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  footer .gap-10 { gap: 2rem !important; }
 }
 
-/* ── Small mobile (< 480px) ── */
+/* ── Small mobile (≤ 480px) ── */
 @media (max-width: 480px) {
-  .hero-tagline { font-size: clamp(32px, 11vw, 44px) !important; }
-  .section-title { font-size: clamp(24px, 8vw, 32px) !important; }
-  
-  /* Stack sector cards full width */
-  #expertise .grid { gap: 12px !important; }
-  .sector-dark-card { padding: 18px !important; }
-  
-  /* Smaller padding on sections */
-  .py-28 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
-  .py-36 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
-  
-  /* Team org chart - scale down */
-  #team-preview svg[viewBox="0 0 340 340"] { max-width: 280px !important; }
-  
-  /* Contact buttons stack */
-  #contact .flex-wrap { gap: 12px !important; }
+
+  /* Typography */
+  .hero-tagline { font-size: clamp(34px, 10.5vw, 46px) !important; }
+  .section-title { font-size: clamp(23px, 8vw, 32px) !important; }
+
+  /* Tighter section padding */
+  .py-28 { padding-top: 2.75rem !important; padding-bottom: 2.75rem !important; }
+  .py-36 { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+
+  /* Sector cards */
+  #expertise .grid { gap: 10px !important; }
+  .sector-dark-card { padding: 16px 14px !important; }
+  .sector-dark-card li { font-size: 12px !important; }
+
+  /* Stats */
+  .stat-number { font-size: clamp(38px, 14vw, 50px) !important; }
+
+  /* Key figures: switch to 2x2 grid */
+  .stat-block { padding: 20px 8px !important; }
+
+  /* Team chart */
+  #team-preview svg[viewBox="0 0 340 340"] { max-width: 300px !important; margin: 0 auto !important; display: block !important; }
+
+  /* Hero buttons: stack vertically */
+  #home .flex.flex-wrap { gap: 12px !important; }
+  #home .flex.flex-wrap a { font-size: 11px !important; }
+
+  /* Blueprint stats: reduce to 3 small cols */
+  .blueprint-stat-num { font-size: 16px !important; }
+  .grid-cols-3 .blueprint-stat { padding: 10px 6px !important; }
 }
 
 /* ── Minimal background: accent lines ── */
