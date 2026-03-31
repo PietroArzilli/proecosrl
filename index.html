@@ -508,7 +508,7 @@
       <div class="stat-divider hidden md:block mx-4"></div>
       <div class="border-b md:hidden" style="border-color:var(--border)"></div>
       <div class="flex-1 py-8 md:py-12 text-center stat-block" data-aos="fade-up" data-aos-delay="300">
-        <div class="stat-number">30</div><div class="stat-unit">+</div>
+        <div class="stat-number">20</div><div class="stat-unit">+</div>
         <div class="stat-label">Countries where we operate</div>
       </div>
     </div>
@@ -584,7 +584,7 @@
         <div class="section-label mb-5" style="color:rgba(255,255,255,0.6);">
           <span style="display:inline-block;width:32px;height:1px;background:rgba(255,255,255,0.4);margin-right:12px;vertical-align:middle;"></span>The People</div>
         <h2 class="section-title mb-6" style="color:#ffffff;">Engineering is<br/>a team<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">sport.</span></h2>
-        <p class="text-sm font-light leading-relaxed mb-8" style="color:rgba(255,255,255,0.8);max-width:420px">Behind every project delivery, every precision calculation and every on-time handover is a team of 105 engineers who chose to build their careers around excellence. Part of Parlym Group, PROECO brings together specialists across 8 disciplines — united by a shared commitment to solving the problems others can't.</p>
+        <p class="text-sm font-light leading-relaxed mb-8" style="color:rgba(255,255,255,0.8);max-width:420px">Behind every project delivery, every precision calculation and every on-time handover is a team of 115 engineers who chose to build their careers around excellence. Part of Parlym Group, PROECO brings together specialists across 8 disciplines — united by a shared commitment to solving the problems others can't.</p>
 
         <!-- Quotes -->
         <div class="quote-block" style="border-left:2px solid rgba(232,120,48,0.6);padding-left:20px;margin-bottom:28px;">
@@ -595,7 +595,7 @@
         <!-- Mini stats -->
         <div class="flex gap-8 mb-10">
           <div>
-            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">105</div>
+            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">115</div>
             <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px;letter-spacing:.06em">Permanent Engineers</div>
           </div>
           <div style="width:1px;background:rgba(255,255,255,0.2)"></div>
@@ -1158,7 +1158,7 @@ document.querySelectorAll('a,button').forEach(function(el){
 });
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 function animateCounter(el,target,duration){var start=0;var step=target/(duration/16);var timer=setInterval(function(){start+=step;if(start>=target){start=target;clearInterval(timer);}el.textContent=Math.floor(start);},16);}
-var statsObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){animateCounter(document.getElementById('count-revenue'),18,1800);animateCounter(document.getElementById('count-experts'),105,1600);statsObserver.disconnect();}});},{threshold:0.3});
+var statsObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){animateCounter(document.getElementById('count-revenue'),18,1800);animateCounter(document.getElementById('count-experts'),115,1600);statsObserver.disconnect();}});},{threshold:0.3});
 var revenueEl=document.getElementById('count-revenue');
 if(revenueEl)statsObserver.observe(revenueEl.closest('section'));
 var barObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.querySelectorAll('.sector-bar').forEach(function(bar){var w=bar.getAttribute('data-w');bar.style.transition='width 1.2s cubic-bezier(0.4,0,0.2,1)';if(w)bar.style.width=w;});}});},{threshold:0.2});
@@ -1225,8 +1225,8 @@ var T = {
   "Progettazione di processo, ingegneria della sicurezza e supporto al ciclo di vita per impianti chimici.",
 "Electrical and instrumentation engineering for generation and distribution systems.":
   "Ingegneria elettrica e strumentale per sistemi di generazione e distribuzione.",
-"Behind every project delivery, every precision calculation and every on-time handover is a team of 105 engineers who chose to build their careers around excellence. Part of Parlym Group, PROECO brings together specialists across 8 disciplines \u2014 united by a shared commitment to solving the problems others can't.":
-  "Dietro ogni consegna di progetto, ogni calcolo di precisione e ogni consegna puntuale c\u2019\u00e8 un team di 105 ingegneri che hanno scelto di costruire le loro carriere intorno all\u2019eccellenza. Parte del Gruppo Parlym, PROECO riunisce specialisti in 8 discipline \u2014 uniti da un impegno condiviso nel risolvere i problemi che altri non possono.",
+"Behind every project delivery, every precision calculation and every on-time handover is a team of 115 engineers who chose to build their careers around excellence. Part of Parlym Group, PROECO brings together specialists across 8 disciplines \u2014 united by a shared commitment to solving the problems others can't.":
+  "Dietro ogni consegna di progetto, ogni calcolo di precisione e ogni consegna puntuale c\u2019\u00e8 un team di 115 ingegneri che hanno scelto di costruire le loro carriere intorno all\u2019eccellenza. Parte del Gruppo Parlym, PROECO riunisce specialisti in 8 discipline \u2014 uniti da un impegno condiviso nel risolvere i problemi che altri non possono.",
 "Meet the people behind PROECO":"Scopri le persone dietro PROECO",
 "We operate at the frontier of engineering technology, combining 3D Laser Scanning with intelligent modelling platforms to deliver unmatched precision and speed.":
   "Operiamo alla frontiera della tecnologia ingegneristica, combinando il 3D Laser Scanning con piattaforme di modellazione intelligente per garantire precisione e velocit\u00e0 senza pari.",
@@ -1394,8 +1394,8 @@ var T = {
 "The Group":"Il Gruppo","Our Team":"Il Nostro Team","Team Philosophy":"Filosofia del Team",
 "Voices from the Team":"Voci dal Team","Work with Us":"Lavora con Noi",
 "Process Engineering Team":"Team di Ingegneria di Processo",
-"Our permanent team of 105 engineers covers every discipline required for complex industrial projects. No outsourcing of core engineering \u2014 just in-house expertise, accountable and available from day one.":
-  "Il nostro team permanente di 105 ingegneri copre ogni disciplina necessaria per progetti industriali complessi. Nessun outsourcing dell\u2019ingegneria core \u2014 solo competenza interna, responsabile e disponibile dal primo giorno.",
+"Our permanent team of 115 engineers covers every discipline required for complex industrial projects. No outsourcing of core engineering \u2014 just in-house expertise, accountable and available from day one.":
+  "Il nostro team permanente di 115 ingegneri copre ogni disciplina necessaria per progetti industriali complessi. Nessun outsourcing dell\u2019ingegneria core \u2014 solo competenza interna, responsabile e disponibile dal primo giorno.",
 "Permanent Engineers":"Ingegneri Permanenti",
 "Full-time in-house specialists \u2014 no core work outsourced":"Specialisti interni a tempo pieno \u2014 nessun lavoro core esternalizzato",
 "With Consultants":"Con Consulenti",
@@ -1420,8 +1420,8 @@ var T = {
   "Non scendiamo a compromessi sulla qualit\u00e0 ingegneristica per pressioni di tempistica o commerciali. La nostra reputazione si basa sulla capacit\u00e0 dei clienti di fare affidamento sui nostri numeri \u2014 incondizionatamente.",
 "The best engineering decisions come from eight disciplines thinking together, not sequentially. We build project teams that argue, align and deliver as one integrated unit.":
   "Le migliori decisioni ingegneristiche nascono da otto discipline che pensano insieme, non in sequenza. Costruiamo team di progetto che discutono, si allineano e consegnano come un\u2019unica unit\u00e0 integrata.",
-"105 engineers. All permanent. All accountable. We do not rotate teams between clients \u2014 we build long-term relationships where continuity is a feature, not a luxury.":
-  "105 ingegneri. Tutti permanenti. Tutti responsabili. Non ruotiamo i team tra i clienti \u2014 costruiamo relazioni a lungo termine dove la continuit\u00e0 \u00e8 una caratteristica, non un lusso.",
+"115 engineers. All permanent. All accountable. We do not rotate teams between clients \u2014 we build long-term relationships where continuity is a feature, not a luxury.":
+  "115 ingegneri. Tutti permanenti. Tutti responsabili. Non ruotiamo i team tra i clienti \u2014 costruiamo relazioni a lungo termine dove la continuit\u00e0 \u00e8 una caratteristica, non un lusso.",
 "3D modelling, laser scanning and digital twin are not premium add-ons at PROECO \u2014 they are how we engineer. The result is fewer errors, faster reviews and zero dimensional surprises on site.":
   "Modellazione 3D, laser scanning e digital twin non sono optional premium in PROECO \u2014 sono il nostro modo di fare ingegneria. Il risultato: meno errori, revisioni pi\u00f9 rapide e zero sorprese dimensionali in cantiere.",
 "We design for the long term \u2014 environmentally, operationally and commercially. Our energy transition expertise helps clients decarbonise without compromising performance.":
