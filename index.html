@@ -221,9 +221,10 @@
   #home .max-w-4xl { max-width: 100% !important; }
   #home { min-height: 100svh !important; }
   .hero-tagline {
-    font-size: clamp(38px, 9.5vw, 56px) !important;
+    font-size: clamp(32px, 9vw, 52px) !important;
     white-space: normal !important;
-    word-break: break-word !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
     line-height: 1.05 !important;
     letter-spacing: -0.025em !important;
   }
@@ -318,7 +319,7 @@
 @media (max-width: 480px) {
 
   /* Typography */
-  .hero-tagline { font-size: clamp(34px, 10.5vw, 46px) !important; }
+  .hero-tagline { font-size: clamp(28px, 10vw, 42px) !important; }
   .section-title { font-size: clamp(23px, 8vw, 32px) !important; }
 
   /* Tighter section padding */
