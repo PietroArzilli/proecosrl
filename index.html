@@ -1847,16 +1847,13 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
         }
         state.phi   = phi + phiOffset;
         state.theta = 0.18 + thetaOffset;
+        curPhi   = state.phi;
+        curTheta = state.theta;
+        updateLabels();
       },
     });
 
-    // Place labels once at initial position, then they stay fixed
-    requestAnimationFrame(() => {
-      canvas.style.opacity = '1';
-      curPhi   = 0.6;
-      curTheta = 0.18;
-      updateLabels();
-    });
+    requestAnimationFrame(() => { canvas.style.opacity = '1'; });
   }
 
   function tryInit() {
