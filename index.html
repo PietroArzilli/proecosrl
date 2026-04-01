@@ -1769,18 +1769,26 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
   svg.insertBefore(defs, svg.firstChild);
 
   // ── Projection: lat/lng → 2D canvas coords ───────────────────
+  // Derived from cobe's combined rotation matrix L(theta,phi) = Ry(phi)*Rx(theta).
+  // Screen position = M^T * world_point  (M^T = M^-1 since M is orthogonal).
+  //   M = mat3(cos(phi), sin(phi)*sin(theta), -sin(phi)*cos(theta),
+  //            0,        cos(theta),           sin(theta),
+  //            sin(phi), -cos(phi)*sin(theta),  cos(phi)*cos(theta))
+  //   M^T rows = M columns, so:
+  //   screen.x = cos(phi)*wx + sin(phi)*sin(theta)*wy - sin(phi)*cos(theta)*wz
+  //   screen.y = cos(theta)*wy + sin(theta)*wz
+  //   screen.z = sin(phi)*wx  - cos(phi)*sin(theta)*wy + cos(phi)*cos(theta)*wz
   function project(lat, lng, phi, theta, cx, cy, R) {
     const latR = lat * Math.PI / 180, lngR = lng * Math.PI / 180;
-    let x = Math.cos(latR) * Math.sin(lngR);
-    let y = Math.sin(latR);
-    let z = Math.cos(latR) * Math.cos(lngR);
-    // rotate Y by phi
+    const wx = Math.cos(latR) * Math.sin(lngR);
+    const wy = Math.sin(latR);
+    const wz = Math.cos(latR) * Math.cos(lngR);
     const cp = Math.cos(phi), sp = Math.sin(phi);
-    let x1 = x * cp - z * sp, z1 = x * sp + z * cp;
-    // rotate X by theta
     const ct = Math.cos(theta), st = Math.sin(theta);
-    let y2 = y * ct - z1 * st, z2 = y * st + z1 * ct;
-    return { sx: cx + R * x1, sy: cy - R * y2, visible: z2 > 0.08 };
+    const sx_ndc = cp * wx + sp * st * wy - sp * ct * wz;
+    const sy_ndc = ct * wy + st * wz;
+    const sz     = sp * wx - cp * st * wy + cp * ct * wz;
+    return { sx: cx + R * sx_ndc, sy: cy - R * sy_ndc, visible: sz > 0.08 };
   }
 
   function updateLabels() {
@@ -1790,7 +1798,7 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
 
     CITIES.forEach((city, i) => {
       const el = cityEls[i];
-      const { sx, sy, visible } = project(city.lat, city.lng, -curPhi, -curTheta, cx, cy, R);
+      const { sx, sy, visible } = project(city.lat, city.lng, curPhi, curTheta, cx, cy, R);
 
       if (!visible) { el.g.setAttribute('opacity', '0'); return; }
 
