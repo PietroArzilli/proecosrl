@@ -589,6 +589,7 @@
           <!-- Subtle glow behind globe -->
           <div style="position:absolute;inset:-20%;border-radius:50%;background:radial-gradient(circle,rgba(232,120,48,0.12) 0%,transparent 70%);pointer-events:none;"></div>
           <canvas id="sectors-globe" style="width:100%;aspect-ratio:1/1;cursor:grab;opacity:0;transition:opacity 1.4s ease;border-radius:50%;touch-action:none;display:block;"></canvas>
+          <svg id="sectors-globe-svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;"></svg>
         </div>
       </div>
     </div>
@@ -1675,52 +1676,149 @@ document.addEventListener('DOMContentLoaded', init);
 import createGlobe from 'https://esm.sh/cobe@0.6.3';
 (function() {
   const canvas = document.getElementById('sectors-globe');
-  if (!canvas) return;
+  const svg    = document.getElementById('sectors-globe-svg');
+  if (!canvas || !svg) return;
 
-  // PROECO geographic footprint markers
-  const MARKERS = [
-    { location: [44.4, 8.9],    size: 0.06 },  // Genova (HQ area)
-    { location: [51.5, -0.1],   size: 0.04 },  // London / North Sea
-    { location: [25.2, 55.3],   size: 0.05 },  // Dubai / Gulf
-    { location: [6.5,  3.4],    size: 0.04 },  // Lagos / West Africa
-    { location: [-8.8, 13.2],   size: 0.04 },  // Angola
-    { location: [1.3,  103.8],  size: 0.04 },  // Singapore / SE Asia
-    { location: [30.0, 31.2],   size: 0.04 },  // Cairo / MENA
+  // Cities with exact coordinates and callout line length (px)
+  const CITIES = [
+    { name: "Forlì",         lat: 44.22,  lng:  12.04, len: 36 },
+    { name: "Milano",        lat: 45.46,  lng:   9.19,  len: 54 },
+    { name: "Pisa",          lat: 43.72,  lng:  10.40,  len: 28 },
+    { name: "Vibo Valentia", lat: 38.67,  lng:  16.10,  len: 44 },
+    { name: "Gela",          lat: 37.06,  lng:  14.25,  len: 30 },
+    { name: "Rijeka",        lat: 45.34,  lng:  14.41,  len: 48 },
+    { name: "Amsterdam",     lat: 52.37,  lng:   4.90,  len: 42 },
+    { name: "Düsseldorf",    lat: 51.23,  lng:   6.77,  len: 52 },
+    { name: "Houston",       lat: 29.76,  lng: -95.37,  len: 46 },
+    { name: "Abu Dhabi",     lat: 24.45,  lng:  54.38,  len: 46 },
+    { name: "Baku",          lat: 40.41,  lng:  49.87,  len: 38 },
   ];
 
-  let phi = 0;
-  let globe = null;
-  let animId = null;
+  // Globe rotation state
+  let phi = 0.6, globe = null;
+  let dragging = false, lastX = 0, lastY = 0, lastTime = 0;
+  let phiOffset = 0, thetaOffset = 0, velPhi = 0, velTheta = 0;
+  let curPhi = 0.6, curTheta = 0.18;
 
-  // Drag state
-  let dragging = false;
-  let lastX = 0, lastY = 0;
-  let phiOffset = 0, thetaOffset = 0;
-  let velPhi = 0, velTheta = 0;
-  let lastTime = 0;
-
+  // ── Drag interaction ──────────────────────────────────────────
   canvas.addEventListener('pointerdown', e => {
-    dragging = true; lastX = e.clientX; lastY = e.clientY;
+    dragging = true; lastX = e.clientX; lastY = e.clientY; lastTime = Date.now();
     canvas.style.cursor = 'grabbing';
     canvas.setPointerCapture(e.pointerId);
   });
   canvas.addEventListener('pointermove', e => {
     if (!dragging) return;
-    const now = Date.now();
-    const dt = Math.max(now - lastTime, 1);
+    const now = Date.now(), dt = Math.max(now - lastTime, 1);
     const dx = e.clientX - lastX, dy = e.clientY - lastY;
     velPhi   = Math.max(-0.12, Math.min(0.12, (dx / dt) * 0.35));
     velTheta = Math.max(-0.06, Math.min(0.06, (dy / dt) * 0.12));
     phiOffset   += dx / 280;
-    thetaOffset += dy / 900;
-    thetaOffset  = Math.max(-0.45, Math.min(0.45, thetaOffset));
+    thetaOffset  = Math.max(-0.45, Math.min(0.45, thetaOffset + dy / 900));
     lastX = e.clientX; lastY = e.clientY; lastTime = now;
   });
-  canvas.addEventListener('pointerup', () => {
-    dragging = false;
-    canvas.style.cursor = 'grab';
+  canvas.addEventListener('pointerup', () => { dragging = false; canvas.style.cursor = 'grab'; });
+
+  // ── Build SVG callout elements ────────────────────────────────
+  const NS = 'http://www.w3.org/2000/svg';
+  const cityEls = CITIES.map(city => {
+    const g = document.createElementNS(NS, 'g');
+    g.style.cssText = 'transition:opacity 0.35s;';
+    g.setAttribute('opacity', '0');
+
+    // anchor dot
+    const dot = document.createElementNS(NS, 'circle');
+    dot.setAttribute('r', '2.5');
+    dot.setAttribute('fill', '#e87830');
+    dot.setAttribute('filter', 'url(#glow-dot)');
+
+    // diagonal line
+    const line1 = document.createElementNS(NS, 'line');
+    line1.setAttribute('stroke', 'rgba(232,120,48,0.65)');
+    line1.setAttribute('stroke-width', '0.8');
+
+    // horizontal tick
+    const line2 = document.createElementNS(NS, 'line');
+    line2.setAttribute('stroke', 'rgba(232,120,48,0.65)');
+    line2.setAttribute('stroke-width', '0.8');
+
+    // label
+    const text = document.createElementNS(NS, 'text');
+    text.setAttribute('font-family', "'Inter',sans-serif");
+    text.setAttribute('font-size', '8');
+    text.setAttribute('font-weight', '500');
+    text.setAttribute('letter-spacing', '0.09em');
+    text.setAttribute('fill', '#1a2535');
+    // white halo for readability against both light bg and globe edge
+    text.setAttribute('paint-order', 'stroke');
+    text.setAttribute('stroke', 'rgba(248,248,248,0.9)');
+    text.setAttribute('stroke-width', '2.5');
+    text.setAttribute('stroke-linejoin', 'round');
+    text.textContent = city.name.toUpperCase();
+
+    g.append(dot, line1, line2, text);
+    svg.appendChild(g);
+    return { g, dot, line1, line2, text };
   });
 
+  // glow filter for dots
+  const defs = document.createElementNS(NS, 'defs');
+  defs.innerHTML = `<filter id="glow-dot" x="-200%" y="-200%" width="500%" height="500%">
+    <feGaussianBlur stdDeviation="2" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>`;
+  svg.insertBefore(defs, svg.firstChild);
+
+  // ── Projection: lat/lng → 2D canvas coords ───────────────────
+  function project(lat, lng, phi, theta, cx, cy, R) {
+    const latR = lat * Math.PI / 180, lngR = lng * Math.PI / 180;
+    let x = Math.cos(latR) * Math.sin(lngR);
+    let y = Math.sin(latR);
+    let z = Math.cos(latR) * Math.cos(lngR);
+    // rotate Y by phi
+    const cp = Math.cos(phi), sp = Math.sin(phi);
+    let x1 = x * cp - z * sp, z1 = x * sp + z * cp;
+    // rotate X by theta
+    const ct = Math.cos(theta), st = Math.sin(theta);
+    let y2 = y * ct - z1 * st, z2 = y * st + z1 * ct;
+    return { sx: cx + R * x1, sy: cy - R * y2, visible: z2 > 0.08 };
+  }
+
+  function updateLabels() {
+    const W = canvas.offsetWidth;
+    if (W === 0) return;
+    const cx = W / 2, cy = W / 2, R = W * 0.462;
+
+    CITIES.forEach((city, i) => {
+      const el = cityEls[i];
+      const { sx, sy, visible } = project(city.lat, city.lng, curPhi, curTheta, cx, cy, R);
+
+      if (!visible) { el.g.setAttribute('opacity', '0'); return; }
+
+      // callout direction: radially outward from globe center
+      const dx = sx - cx, dy = sy - cy;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const nx = dx / dist, ny = dy / dist;
+
+      const ex = sx + nx * city.len;       // end of diagonal
+      const ey = sy + ny * city.len;
+      const hlen = 16;
+      const goRight = nx >= 0;
+      const tx = ex + (goRight ? hlen : -hlen);  // end of horizontal tick
+
+      el.dot.setAttribute('cx', sx.toFixed(1));
+      el.dot.setAttribute('cy', sy.toFixed(1));
+      el.line1.setAttribute('x1', sx.toFixed(1)); el.line1.setAttribute('y1', sy.toFixed(1));
+      el.line1.setAttribute('x2', ex.toFixed(1)); el.line1.setAttribute('y2', ey.toFixed(1));
+      el.line2.setAttribute('x1', ex.toFixed(1)); el.line2.setAttribute('y1', ey.toFixed(1));
+      el.line2.setAttribute('x2', tx.toFixed(1)); el.line2.setAttribute('y2', ey.toFixed(1));
+      el.text.setAttribute('x', (tx + (goRight ? 3 : -3)).toFixed(1));
+      el.text.setAttribute('y', (ey - 3).toFixed(1));
+      el.text.setAttribute('text-anchor', goRight ? 'start' : 'end');
+      el.g.setAttribute('opacity', '1');
+    });
+  }
+
+  // ── Init cobe ────────────────────────────────────────────────
   function init() {
     const w = canvas.offsetWidth;
     if (w === 0) return;
@@ -1739,17 +1837,19 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
       baseColor:   [0.12, 0.12, 0.12],
       markerColor: [0.91, 0.47, 0.19],
       glowColor:   [0.55, 0.28, 0.10],
-      markers: MARKERS,
+      markers: CITIES.map(c => ({ location: [c.lat, c.lng], size: 0.03 })),
       opacity: 0.92,
       onRender(state) {
         if (!dragging) {
-          phi += 0.0028;
-          // inertia decay
-          if (Math.abs(velPhi) > 0.0001) { phiOffset += velPhi; velPhi *= 0.93; }
+          phi += 0.0025;
+          if (Math.abs(velPhi)   > 0.0001) { phiOffset   += velPhi;   velPhi   *= 0.93; }
           if (Math.abs(velTheta) > 0.0001) { thetaOffset += velTheta; velTheta *= 0.93; }
         }
         state.phi   = phi + phiOffset;
         state.theta = 0.18 + thetaOffset;
+        curPhi   = state.phi;
+        curTheta = state.theta;
+        updateLabels();
       },
     });
 
@@ -1757,24 +1857,15 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
   }
 
   function tryInit() {
-    if (canvas.offsetWidth > 0) {
-      init();
-    } else {
-      const ro = new ResizeObserver(entries => {
-        if (entries[0]?.contentRect.width > 0) { ro.disconnect(); init(); }
-      });
-      ro.observe(canvas);
-      // hard fallback after 300ms
-      setTimeout(function() { if (!globe && canvas.offsetWidth > 0) init(); }, 300);
-    }
+    if (canvas.offsetWidth > 0) { init(); return; }
+    const ro = new ResizeObserver(entries => {
+      if (entries[0]?.contentRect.width > 0) { ro.disconnect(); init(); }
+    });
+    ro.observe(canvas);
+    setTimeout(() => { if (!globe && canvas.offsetWidth > 0) init(); }, 400);
   }
 
-  if (document.readyState === 'complete') {
-    tryInit();
-  } else {
-    window.addEventListener('load', tryInit);
-  }
-
+  document.readyState === 'complete' ? tryInit() : window.addEventListener('load', tryInit);
   window.addEventListener('beforeunload', () => { if (globe) globe.destroy(); });
 })();
 </script>
