@@ -1783,9 +1783,11 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
   // Sphere NDC radius = sqrt(0.64) = 0.8 → CSS pixel radius = 0.4 * W
   function project(lat, lng, phi, theta, cx, cy, R) {
     const latR = lat * Math.PI / 180, lngR = lng * Math.PI / 180;
-    const gx = Math.cos(latR) * Math.sin(lngR);
-    const gy = Math.sin(latR);
-    const gz = Math.cos(latR) * Math.cos(lngR);
+    // Cobe sphere coords from shader texture lookup:
+    //   h.y = sin(lat),  h.x = -cos(lat)*cos(lng),  h.z = cos(lat)*sin(lng)
+    const gx = -Math.cos(latR) * Math.cos(lngR);
+    const gy =  Math.sin(latR);
+    const gz =  Math.cos(latR) * Math.sin(lngR);
     const cp = Math.cos(phi), sp = Math.sin(phi);
     const ct = Math.cos(theta), st = Math.sin(theta);
     const fx =  cp * gx              + sp * gz;
