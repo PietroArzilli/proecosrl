@@ -1769,32 +1769,35 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
   svg.insertBefore(defs, svg.firstChild);
 
   // ── Projection: lat/lng → 2D canvas coords ───────────────────
-  // Derived from cobe's combined rotation matrix L(theta,phi) = Ry(phi)*Rx(theta).
-  // Screen position = M^T * world_point  (M^T = M^-1 since M is orthogonal).
-  //   M = mat3(cos(phi), sin(phi)*sin(theta), -sin(phi)*cos(theta),
-  //            0,        cos(theta),           sin(theta),
-  //            sin(phi), -cos(phi)*sin(theta),  cos(phi)*cos(theta))
-  //   M^T rows = M columns, so:
-  //   screen.x = cos(phi)*wx + sin(phi)*sin(theta)*wy - sin(phi)*cos(theta)*wz
-  //   screen.y = cos(theta)*wy + sin(theta)*wz
-  //   screen.z = sin(phi)*wx  - cos(phi)*sin(theta)*wy + cos(phi)*cos(theta)*wz
+  // Cobe GLSL: g = f * L(theta,phi)  →  in std math: g = L^T * f
+  // Inverse: f = L * g  (L is orthogonal so L^-1 = L^T, and (L^T)^-1 = L)
+  //
+  // L = mat3(cos(phi),          0,        sin(phi),
+  //          sin(phi)*sin(theta), cos(theta), -cos(phi)*sin(theta),
+  //         -sin(phi)*cos(theta), sin(theta),  cos(phi)*cos(theta))
+  //
+  // f.x = cos(phi)*gx + sin(phi)*gz          ← NO theta in x!
+  // f.y = sin(phi)*sin(theta)*gx + cos(theta)*gy - cos(phi)*sin(theta)*gz
+  // f.z = -sin(phi)*cos(theta)*gx + sin(theta)*gy + cos(phi)*cos(theta)*gz
+  //
+  // Sphere NDC radius = sqrt(0.64) = 0.8 → CSS pixel radius = 0.4 * W
   function project(lat, lng, phi, theta, cx, cy, R) {
     const latR = lat * Math.PI / 180, lngR = lng * Math.PI / 180;
-    const wx = Math.cos(latR) * Math.sin(lngR);
-    const wy = Math.sin(latR);
-    const wz = Math.cos(latR) * Math.cos(lngR);
+    const gx = Math.cos(latR) * Math.sin(lngR);
+    const gy = Math.sin(latR);
+    const gz = Math.cos(latR) * Math.cos(lngR);
     const cp = Math.cos(phi), sp = Math.sin(phi);
     const ct = Math.cos(theta), st = Math.sin(theta);
-    const sx_ndc = cp * wx + sp * st * wy - sp * ct * wz;
-    const sy_ndc = ct * wy + st * wz;
-    const sz     = sp * wx - cp * st * wy + cp * ct * wz;
-    return { sx: cx + R * sx_ndc, sy: cy - R * sy_ndc, visible: sz > 0.08 };
+    const fx =  cp * gx              + sp * gz;
+    const fy =  sp * st * gx + ct * gy - cp * st * gz;
+    const fz = -sp * ct * gx + st * gy + cp * ct * gz;
+    return { sx: cx + R * fx, sy: cy - R * fy, visible: fz > 0.05 };
   }
 
   function updateLabels() {
     const W = canvas.offsetWidth;
     if (W === 0) return;
-    const cx = W / 2, cy = W / 2, R = W * 0.462;
+    const cx = W / 2, cy = W / 2, R = W * 0.4;
 
     CITIES.forEach((city, i) => {
       const el = cityEls[i];
