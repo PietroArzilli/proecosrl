@@ -1671,8 +1671,8 @@ document.addEventListener('DOMContentLoaded', init);
 })();
 </script>
 
-<script src="https://unpkg.com/cobe@0.6.3/dist/cobe.js"></script>
-<script>
+<script type="module">
+import createGlobe from 'https://esm.sh/cobe@0.6.3';
 (function() {
   const canvas = document.getElementById('sectors-globe');
   if (!canvas) return;
