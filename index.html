@@ -1671,9 +1671,8 @@ document.addEventListener('DOMContentLoaded', init);
 })();
 </script>
 
-<script type="module">
-import createGlobe from 'https://cdn.jsdelivr.net/npm/cobe@0.6.3/dist/cobe.module.js';
-
+<script src="https://unpkg.com/cobe@0.6.3/dist/cobe.js"></script>
+<script>
 (function() {
   const canvas = document.getElementById('sectors-globe');
   if (!canvas) return;
@@ -1757,13 +1756,23 @@ import createGlobe from 'https://cdn.jsdelivr.net/npm/cobe@0.6.3/dist/cobe.modul
     requestAnimationFrame(() => { canvas.style.opacity = '1'; });
   }
 
-  if (canvas.offsetWidth > 0) {
-    init();
+  function tryInit() {
+    if (canvas.offsetWidth > 0) {
+      init();
+    } else {
+      const ro = new ResizeObserver(entries => {
+        if (entries[0]?.contentRect.width > 0) { ro.disconnect(); init(); }
+      });
+      ro.observe(canvas);
+      // hard fallback after 300ms
+      setTimeout(function() { if (!globe && canvas.offsetWidth > 0) init(); }, 300);
+    }
+  }
+
+  if (document.readyState === 'complete') {
+    tryInit();
   } else {
-    const ro = new ResizeObserver(entries => {
-      if (entries[0]?.contentRect.width > 0) { ro.disconnect(); init(); }
-    });
-    ro.observe(canvas);
+    window.addEventListener('load', tryInit);
   }
 
   window.addEventListener('beforeunload', () => { if (globe) globe.destroy(); });
