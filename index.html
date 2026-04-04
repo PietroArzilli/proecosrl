@@ -1060,7 +1060,15 @@
       .fsc-corner { width: 24px; height: 24px; }
       .fsc-corner-bl, .fsc-corner-br { bottom: 70px; }
     }
-  </style>
+  
+  /* News cards hover */
+  .news-card{background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.3s cubic-bezier(0.4,0,0.2,1),box-shadow 0.3s,border-color 0.3s;}
+  .news-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(232,120,48,0.13),0 4px 16px rgba(0,0,0,0.07);border-color:rgba(232,120,48,0.3);}
+  .news-card .news-bar{height:4px;background:linear-gradient(90deg,#e87830,transparent);transition:background 0.3s;}
+  .news-card:hover .news-bar{background:linear-gradient(90deg,#ff6b00,#e87830,transparent);}
+  .news-card .news-read-more{font-size:11px;color:rgba(232,120,48,0.7);letter-spacing:.06em;display:flex;align-items:center;gap:5px;margin-top:20px;transition:gap 0.2s,color 0.2s;}
+  .news-card:hover .news-read-more{color:#e87830;gap:9px;}
+</style>
 
   <!-- ═══ FULL-WIDTH VIDEO HERO ═══ -->
   <div class="fsc-video-hero" id="fscVideoContainer">
@@ -1199,8 +1207,8 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
       <!-- Card 1 -->
-      <article data-aos="fade-up" data-aos-delay="0" style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(232,120,48,0.10)'" onmouseout="this.style.boxShadow='none'">
-        <div style="height:4px;background:linear-gradient(90deg,#e87830,transparent);"></div>
+      <article data-aos="fade-up" data-aos-delay="0" class="news-card">
+        <div class="news-bar"></div>
         <div style="padding:28px;flex:1;display:flex;flex-direction:column;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
             <span style="font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#e87830;background:rgba(232,120,48,0.08);padding:4px 10px;border-radius:100px;">Project Award</span>
@@ -1208,7 +1216,7 @@
           </div>
           <h3 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:600;color:#1a1a1a;line-height:1.4;margin-bottom:10px;">PROECO Awarded Engineering Contract for LNG Terminal Expansion in West Africa</h3>
           <p style="font-size:12px;font-weight:300;color:rgba(0,0,0,0.55);line-height:1.7;flex:1;">Our multidisciplinary team has been selected to lead the FEED and detailed engineering for a major LNG terminal capacity upgrade, covering process, civil, mechanical and instrumentation disciplines.</p>
-          <div style="margin-top:20px;font-size:11px;color:rgba(232,120,48,0.8);letter-spacing:.06em;display:flex;align-items:center;gap:5px;opacity:0.5;">
+          <div class="news-read-more">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
             Read more
           </div>
@@ -1216,8 +1224,8 @@
       </article>
 
       <!-- Card 2 -->
-      <article data-aos="fade-up" data-aos-delay="80" style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(232,120,48,0.10)'" onmouseout="this.style.boxShadow='none'">
-        <div style="height:4px;background:linear-gradient(90deg,#e87830,transparent);"></div>
+      <article data-aos="fade-up" data-aos-delay="80" class="news-card">
+        <div class="news-bar"></div>
         <div style="padding:28px;flex:1;display:flex;flex-direction:column;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
             <span style="font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#e87830;background:rgba(232,120,48,0.08);padding:4px 10px;border-radius:100px;">Technology</span>
@@ -1225,7 +1233,7 @@
           </div>
           <h3 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:600;color:#1a1a1a;line-height:1.4;margin-bottom:10px;">Digital Twin Delivery: First Full 3D As-Built Model for Offshore Refinery Platform</h3>
           <p style="font-size:12px;font-weight:300;color:rgba(0,0,0,0.55);line-height:1.7;flex:1;">Using Aveva E3D and laser scanning technology, PROECO completed the first fully integrated digital twin for an offshore refinery platform, achieving sub-2mm scan accuracy across 14 decks.</p>
-          <div style="margin-top:20px;font-size:11px;color:rgba(232,120,48,0.8);letter-spacing:.06em;display:flex;align-items:center;gap:5px;opacity:0.5;">
+          <div class="news-read-more">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
             Read more
           </div>
@@ -1233,8 +1241,8 @@
       </article>
 
       <!-- Card 3 -->
-      <article data-aos="fade-up" data-aos-delay="160" style="background:#ffffff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.3s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(232,120,48,0.10)'" onmouseout="this.style.boxShadow='none'">
-        <div style="height:4px;background:linear-gradient(90deg,#e87830,transparent);"></div>
+      <article data-aos="fade-up" data-aos-delay="160" class="news-card">
+        <div class="news-bar"></div>
         <div style="padding:28px;flex:1;display:flex;flex-direction:column;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
             <span style="font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#e87830;background:rgba(232,120,48,0.08);padding:4px 10px;border-radius:100px;">Company</span>
@@ -1242,7 +1250,7 @@
           </div>
           <h3 style="font-family:'Syne',sans-serif;font-size:16px;font-weight:600;color:#1a1a1a;line-height:1.4;margin-bottom:10px;">PROECO Expands Engineering Team to 115 Permanent Specialists</h3>
           <p style="font-size:12px;font-weight:300;color:rgba(0,0,0,0.55);line-height:1.7;flex:1;">Following a record year in project deliveries, PROECO has grown its permanent in-house team to 115 specialists, reinforcing its commitment to zero-outsourcing of core engineering across all disciplines.</p>
-          <div style="margin-top:20px;font-size:11px;color:rgba(232,120,48,0.8);letter-spacing:.06em;display:flex;align-items:center;gap:5px;opacity:0.5;">
+          <div class="news-read-more">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
             Read more
           </div>
