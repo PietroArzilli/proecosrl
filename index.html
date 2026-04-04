@@ -18,8 +18,8 @@
   *{box-sizing:border-box;}
   html{background:#f8f8f8;}
   body{background:#f8f8f8;color:#1a1a1a;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
-  .cursor-dot{width:6px;height:6px;background:#f5f5f5;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;will-change:transform;}
-  .cursor-ring{width:32px;height:32px;border:1px solid rgba(0,0,0,0.25);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s;will-change:transform;}
+  .cursor-dot{width:6px;height:6px;background:#1a1a1a;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;will-change:transform;}
+  .cursor-ring{width:32px;height:32px;border:1px solid rgba(0,0,0,0.6);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s;will-change:transform;}
   body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.06;}
   #home{z-index:1;}
   #home ~ *{position:relative;z-index:1;}
