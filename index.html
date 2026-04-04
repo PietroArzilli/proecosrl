@@ -1774,17 +1774,40 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
 
   // Cities with exact coordinates and callout line length (px)
   const CITIES = [
-    { name: "Forlì",         lat: 44.22,  lng:  12.04, len: 36 },
-    { name: "Milano",        lat: 45.46,  lng:   9.19,  len: 54 },
-    { name: "Pisa",          lat: 43.72,  lng:  10.40,  len: 28 },
-    { name: "Vibo Valentia", lat: 38.67,  lng:  16.10,  len: 44 },
-    { name: "Gela",          lat: 37.06,  lng:  14.25,  len: 30 },
-    { name: "Rijeka",        lat: 45.34,  lng:  14.41,  len: 48 },
-    { name: "Amsterdam",     lat: 52.37,  lng:   4.90,  len: 42 },
-    { name: "Düsseldorf",    lat: 51.23,  lng:   6.77,  len: 52 },
-    { name: "Houston",       lat: 29.76,  lng: -95.37,  len: 46 },
-    { name: "Abu Dhabi",     lat: 24.45,  lng:  54.38,  len: 46 },
-    { name: "Baku",          lat: 40.41,  lng:  49.87,  len: 38 },
+    // Europe
+    { name: "Bristol",      lat: 51.45,  lng:  -2.59,  len: 44 },
+    { name: "Cherbourg",    lat: 49.64,  lng:  -1.62,  len: 36 },
+    { name: "Rouen",        lat: 49.44,  lng:   1.10,  len: 38 },
+    { name: "Bruxelles",    lat: 50.85,  lng:   4.35,  len: 42 },
+    { name: "Paris",        lat: 48.85,  lng:   2.35,  len: 36 },
+    { name: "Reims",        lat: 49.26,  lng:   4.03,  len: 30 },
+    { name: "St-Avold",     lat: 49.10,  lng:   6.70,  len: 32 },
+    { name: "Pau",          lat: 43.30,  lng:  -0.37,  len: 34 },
+    { name: "Lyon",         lat: 45.75,  lng:   4.83,  len: 32 },
+    { name: "Marseille",    lat: 43.30,  lng:   5.37,  len: 36 },
+    { name: "Toulon",       lat: 43.12,  lng:   5.93,  len: 30 },
+    { name: "Monaco",       lat: 43.74,  lng:   7.42,  len: 28 },
+    { name: "Milano",       lat: 45.46,  lng:   9.19,  len: 38 },
+    { name: "Bologna",      lat: 44.49,  lng:  11.34,  len: 34 },
+    { name: "Roma",         lat: 41.90,  lng:  12.50,  len: 36 },
+    { name: "Brindisi",     lat: 40.63,  lng:  17.94,  len: 32 },
+    { name: "Tarento",      lat: 40.46,  lng:  17.25,  len: 30 },
+    { name: "Gela",         lat: 37.06,  lng:  14.25,  len: 34 },
+    // Africa
+    { name: "Casablanca",   lat: 33.59,  lng:  -7.62,  len: 40 },
+    { name: "Dakar",        lat: 14.69,  lng: -17.44,  len: 38 },
+    { name: "Conakry",      lat:  9.64,  lng: -13.58,  len: 36 },
+    { name: "Ouagadougou",  lat: 12.36,  lng:  -1.53,  len: 44 },
+    { name: "Abidjan",      lat:  5.35,  lng:  -4.00,  len: 38 },
+    { name: "Douala",       lat:  4.05,  lng:   9.70,  len: 36 },
+    { name: "Malabo",       lat:  3.75,  lng:   8.78,  len: 32 },
+    { name: "Port-Gentil",  lat: -0.72,  lng:   8.78,  len: 38 },
+    { name: "Pointe-Noire", lat: -4.78,  lng:  11.86,  len: 42 },
+    { name: "Djibouti",     lat: 11.59,  lng:  43.15,  len: 38 },
+    // Asia
+    { name: "Pune",         lat: 18.52,  lng:  73.86,  len: 36 },
+    { name: "Chennai",      lat: 13.08,  lng:  80.27,  len: 38 },
+    { name: "Nantong",      lat: 32.03,  lng: 120.87,  len: 36 },
   ];
 
   // Globe rotation state
