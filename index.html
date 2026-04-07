@@ -1914,29 +1914,19 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
     return { sx: cx + R * fx, sy: cy - R * fy, visible: fz > 0.05 };
   }
 
-  // Cities to show on mobile (reduced set to avoid overlap)
-  const MOBILE_CITIES = new Set(["Marseille","Milano","Gela","Casablanca","Dakar","Abidjan","Douala","Port-Gentil","Pointe-Noire","Djibouti","Pune","Chennai","Nantong"]);
-
   function updateLabels() {
     const W = canvas.offsetWidth;
     if (W === 0) return;
     const cx = W / 2, cy = W / 2, R = W * 0.4;
-    const isMobile = W < 500;
-    const scale = isMobile ? Math.max(0.55, W / 420) : 1;
-    const fontSize = isMobile ? 6 : 8;
-    const dotR = isMobile ? 2 : 2.5;
-    const hlenBase = isMobile ? 10 : 16;
+    const scale = Math.min(1, W / 380);
+    const fontSize = Math.max(6, Math.round(8 * scale));
+    const dotR = Math.max(1.8, 2.5 * scale);
+    const hlen = Math.max(10, Math.round(16 * scale));
 
     CITIES.forEach((city, i) => {
       const el = cityEls[i];
-
-      // On mobile, hide cities not in the reduced set
-      if (isMobile && !MOBILE_CITIES.has(city.name)) {
-        el.g.setAttribute('opacity', '0');
-        return;
-      }
-
       const { sx, sy, visible } = project(city.lat, city.lng, curPhi, curTheta, cx, cy, R);
+
       if (!visible) { el.g.setAttribute('opacity', '0'); return; }
 
       el.dot.setAttribute('r', dotR.toFixed(1));
@@ -1949,7 +1939,6 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
       const nx = dx / dist, ny = dy / dist;
 
       const len = city.len * scale;
-      const hlen = hlenBase;
       const ex = sx + nx * len;
       const ey = sy + ny * len;
       const goRight = nx >= 0;
@@ -1967,6 +1956,7 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
       el.g.setAttribute('opacity', '1');
     });
   }
+
 
   // ── Init cobe ────────────────────────────────────────────────
   function init() {
@@ -2016,6 +2006,11 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
   }
 
   document.readyState === 'complete' ? tryInit() : window.addEventListener('load', tryInit);
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { if (globe) { globe.destroy(); globe = null; } init(); }, 150);
+  }, { passive: true });
   window.addEventListener('beforeunload', () => { if (globe) globe.destroy(); });
 })();
 </script>
