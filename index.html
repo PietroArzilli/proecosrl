@@ -1805,10 +1805,10 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
   ];
 
   // Globe rotation state
-  let phi = 0.6, globe = null;
+  let phi = 1.4, globe = null;
   let dragging = false, lastX = 0, lastY = 0, lastTime = 0;
   let phiOffset = 0, thetaOffset = 0, velPhi = 0, velTheta = 0;
-  let curPhi = 0.6, curTheta = 0.18;
+  let curPhi = 1.4, curTheta = 0.25;
 
   // ── Drag interaction ──────────────────────────────────────────
   canvas.addEventListener('pointerdown', e => {
@@ -1966,8 +1966,8 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
       devicePixelRatio: dpr,
       width:  w * dpr,
       height: w * dpr,
-      phi: 0.6,
-      theta: 0.18,
+      phi: 1.4,
+      theta: 0.25,
       dark: 0,
       diffuse: 1.8,
       mapSamples: 18000,
@@ -1984,7 +1984,7 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
           if (Math.abs(velTheta) > 0.0001) { thetaOffset += velTheta; velTheta *= 0.93; }
         }
         state.phi   = phi + phiOffset;
-        state.theta = 0.18 + thetaOffset;
+        state.theta = 0.25 + thetaOffset;
         curPhi   = state.phi;
         curTheta = state.theta;
         updateLabels();
