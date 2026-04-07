@@ -1915,8 +1915,12 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
   }
 
   function updateLabels() {
-    const W = canvas.offsetWidth;
+    // Use SVG's own bounding rect so coordinates are always in the SVG's CSS pixel space
+    const rect = svg.getBoundingClientRect();
+    const W = rect.width;
     if (W === 0) return;
+    // Sync SVG viewBox to its actual CSS size so 1 SVG unit = 1 CSS pixel
+    svg.setAttribute('viewBox', `0 0 ${W} ${W}`);
     const cx = W / 2, cy = W / 2, R = W * 0.4;
     const scale = Math.min(1, W / 380);
     const fontSize = Math.max(6, Math.round(8 * scale));
