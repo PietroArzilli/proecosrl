@@ -1918,6 +1918,27 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
     const W = canvas.offsetWidth;
     if (W === 0) return;
     const cx = W / 2, cy = W / 2, R = W * 0.4;
+    const scale = Math.max(0.4, Math.min(1, W / 380));
+    const isMobile = W < 320;
+
+    // On very small screens hide labels entirely — dots only
+    if (isMobile) {
+      cityEls.forEach(el => {
+        el.line1.setAttribute('stroke', 'none');
+        el.line2.setAttribute('stroke', 'none');
+        el.text.setAttribute('display', 'none');
+      });
+    } else {
+      cityEls.forEach(el => {
+        el.line1.setAttribute('stroke', 'rgba(232,120,48,0.65)');
+        el.line2.setAttribute('stroke', 'rgba(232,120,48,0.65)');
+        el.text.setAttribute('display', '');
+      });
+    }
+
+    // Scale font size and dot size with canvas
+    const fontSize = Math.max(5, Math.round(8 * scale));
+    const dotR = Math.max(1.5, 2.5 * scale);
 
     CITIES.forEach((city, i) => {
       const el = cityEls[i];
@@ -1925,16 +1946,22 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
 
       if (!visible) { el.g.setAttribute('opacity', '0'); return; }
 
+      el.dot.setAttribute('r', dotR.toFixed(1));
+      el.text.setAttribute('font-size', fontSize);
+
+      if (isMobile) { el.g.setAttribute('opacity', '1'); return; }
+
       // callout direction: radially outward from globe center
       const dx = sx - cx, dy = sy - cy;
       const dist = Math.sqrt(dx * dx + dy * dy) || 1;
       const nx = dx / dist, ny = dy / dist;
 
-      const ex = sx + nx * city.len;       // end of diagonal
-      const ey = sy + ny * city.len;
-      const hlen = 16;
+      const len = city.len * scale;
+      const hlen = 14 * scale;
+      const ex = sx + nx * len;
+      const ey = sy + ny * len;
       const goRight = nx >= 0;
-      const tx = ex + (goRight ? hlen : -hlen);  // end of horizontal tick
+      const tx = ex + (goRight ? hlen : -hlen);
 
       el.dot.setAttribute('cx', sx.toFixed(1));
       el.dot.setAttribute('cy', sy.toFixed(1));
