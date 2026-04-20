@@ -1128,9 +1128,9 @@ function apply(l) {
   var en = document.getElementById('lang-en');
   var it = document.getElementById('lang-it');
   if (en && it) {
-    en.style.color = l==='en' ? '#fff' : 'rgba(200,210,220,0.4)';
+    en.style.color = l==='en' ? '#1a1a1a' : 'rgba(58,74,92,0.5)';
     en.style.fontWeight = l==='en' ? '600' : '400';
-    it.style.color = l==='it' ? '#fff' : 'rgba(200,210,220,0.4)';
+    it.style.color = l==='it' ? '#1a1a1a' : 'rgba(58,74,92,0.5)';
     it.style.fontWeight = l==='it' ? '600' : '400';
   }
   
@@ -1168,9 +1168,9 @@ function init() {
   var ph = document.getElementById('lang-switch-placeholder');
   if (!ph) return;
   ph.innerHTML =
-    '<span id="lang-en" style="cursor:pointer;font-size:11px;letter-spacing:.08em;transition:all .2s" onclick="window.__i18n(\'en\')">EN</span>' +
-    '<span style="font-size:10px;color:rgba(200,210,220,0.3);margin:0 3px">|</span>' +
-    '<span id="lang-it" style="cursor:pointer;font-size:11px;letter-spacing:.08em;transition:all .2s" onclick="window.__i18n(\'it\')">IT</span>';
+    '<span id="lang-en" style="cursor:pointer;font-size:11px;letter-spacing:.08em;transition:all .2s;color:#1a1a1a;font-weight:600" onclick="window.__i18n(\'en\')">EN</span>' +
+    '<span style="font-size:10px;color:rgba(26,26,26,0.25);margin:0 4px">/</span>' +
+    '<span id="lang-it" style="cursor:pointer;font-size:11px;letter-spacing:.08em;transition:all .2s;color:rgba(58,74,92,0.5)" onclick="window.__i18n(\'it\')">IT</span>';
   apply(lang);
 }
 
