@@ -4,6 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>PROECO — Engineering the Future, Bravely.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link rel="preconnect" href="https://esm.sh"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
@@ -664,7 +668,7 @@
 <section id="team-preview" class="py-28 md:py-36 border-t" style="position:relative;overflow:hidden;border-color:var(--border);z-index:1;">
   <!-- Team background image -->
   <div style="position:absolute;inset:0;z-index:0;">
-    <img src="team-bg.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;">
+    <img src="team-bg.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;">
     <div style="position:absolute;inset:0;background:rgba(0,0,0,0.6);"></div>
   </div>
   <div class="max-w-7xl mx-auto px-6 md:px-10" style="position:relative;z-index:1;">
@@ -1349,7 +1353,7 @@ var revenueEl=document.getElementById('count-revenue');
 if(revenueEl)statsObserver.observe(revenueEl.closest('section'));
 var barObserver=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.querySelectorAll('.sector-bar').forEach(function(bar){var w=bar.getAttribute('data-w');bar.style.transition='width 1.2s cubic-bezier(0.4,0,0.2,1)';if(w)bar.style.width=w;});}});},{threshold:0.2});
 document.querySelectorAll('.sector-card').forEach(function(card){var bar=card.querySelector('.sector-bar');if(bar){bar.setAttribute('data-w',bar.style.width);bar.style.width='0%';}barObserver.observe(card);});
-window.addEventListener('scroll',function(){var nav=document.querySelector('nav');nav.style.background=window.scrollY>50?'rgba(247,247,248,0.98)':'rgba(247,247,248,0.92)';nav.classList.toggle('nav-scrolled',window.scrollY>50);});
+window.addEventListener('scroll',function(){var nav=document.querySelector('nav');nav.style.background=window.scrollY>50?'rgba(247,247,248,0.98)':'rgba(247,247,248,0.92)';nav.classList.toggle('nav-scrolled',window.scrollY>50);},{passive:true});
 </script>
 <script>
 /* PROECO i18n — EN | IT — DOM-walking translator
@@ -1729,29 +1733,32 @@ document.addEventListener('DOMContentLoaded', init);
   function setSize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   setSize();
   function count(){ return Math.floor(canvas.width * canvas.height / 8000); }
+  var _now = performance.now();
   function make(){
     var fd = Math.random()*600+100;
     return { x:Math.random()*canvas.width, y:Math.random()*canvas.height,
-             speed:Math.random()/5+0.1, opacity:0.6,
-             fadeDelay:fd, fadeStart:Date.now()+fd, fadingOut:false };
+             speed:Math.random()/5+0.1, opacity:0.6, h:Math.random()*2+1,
+             fadeDelay:fd, fadeStart:_now+fd, fadingOut:false };
   }
-  function reset(p){
+  function reset(p,ts){
     p.x=Math.random()*canvas.width; p.y=Math.random()*canvas.height;
-    p.speed=Math.random()/5+0.1; p.opacity=0.6;
-    p.fadeDelay=Math.random()*600+100; p.fadeStart=Date.now()+p.fadeDelay; p.fadingOut=false;
+    p.speed=Math.random()/5+0.1; p.opacity=0.6; p.h=Math.random()*2+1;
+    p.fadeDelay=Math.random()*600+100; p.fadeStart=ts+p.fadeDelay; p.fadingOut=false;
   }
   var particles=[], raf=0;
-  function init(){ particles=[]; for(var i=0;i<count();i++) particles.push(make()); }
-  function draw(){
+  function init(){ particles=[]; _now=performance.now(); for(var i=0;i<count();i++) particles.push(make()); }
+  function draw(ts){
     ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='rgb(55,60,70)';
     particles.forEach(function(p){
       p.y-=p.speed;
-      if(p.y<0) reset(p);
-      if(!p.fadingOut && Date.now()>p.fadeStart) p.fadingOut=true;
-      if(p.fadingOut){ p.opacity-=0.008; if(p.opacity<=0) reset(p); }
-      ctx.fillStyle='rgba(55,60,70,'+p.opacity+')';
-      ctx.fillRect(p.x, p.y, 0.7, Math.random()*2+1);
+      if(p.y<0) reset(p,ts);
+      if(!p.fadingOut && ts>p.fadeStart) p.fadingOut=true;
+      if(p.fadingOut){ p.opacity-=0.008; if(p.opacity<=0){ reset(p,ts); return; } }
+      ctx.globalAlpha=p.opacity;
+      ctx.fillRect(p.x, p.y, 0.7, p.h);
     });
+    ctx.globalAlpha=1;
     raf=requestAnimationFrame(draw);
   }
   window.addEventListener('resize',function(){ setSize(); init(); },{passive:true});
@@ -1970,7 +1977,7 @@ import createGlobe from 'https://esm.sh/cobe@0.6.3';
       theta: 0.25,
       dark: 0,
       diffuse: 1.8,
-      mapSamples: 18000,
+      mapSamples: 14000,
       mapBrightness: 6,
       baseColor:   [0.9, 0.9, 0.9],
       markerColor: [0.91, 0.47, 0.19],
