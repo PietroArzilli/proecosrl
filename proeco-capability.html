@@ -93,6 +93,12 @@
   .sub-nav-link:hover,.sub-nav-link.active{color:#1a1a1a;border-bottom-color:var(--silver);}
   nav.nav-scrolled{box-shadow:0 1px 40px rgba(0,0,0,0.08);}
   @media(max-width:768px){body{cursor:auto!important;}.cursor-dot,.cursor-ring{display:none!important;}}
+  /* Logo cloud slider */
+  .logo-text-tag{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--silver);opacity:0.45;white-space:nowrap;flex-shrink:0;transition:opacity .3s;cursor:default;user-select:none;}
+  .logo-text-tag:hover{opacity:0.85;}
+  .logo-img{height:20px;width:auto;opacity:0.45;filter:grayscale(1);transition:opacity .3s;flex-shrink:0;}
+  .logo-img:hover{opacity:0.85;}
+  #logoSliderTrack{display:flex;align-items:center;width:max-content;}
 </style>
 </head>
 <body>
@@ -468,7 +474,7 @@
 
       <!-- 2025 — label ABOVE, slightly larger icon -->
       <line x1="670" y1="112" x2="670" y2="68" stroke="rgba(232,120,48,0.5)" stroke-width="1" stroke-dasharray="4,3"/>
-      <text x="670" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(200,208,216,0.75)" letter-spacing="0.3">TEA Sistemi Acquisition</text>
+      <text x="670" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="rgba(58,74,92,0.7)" letter-spacing="0.3">TEA Sistemi Acquisition</text>
       <circle cx="670" cy="150" r="38" fill="#282828" stroke="#e87830" stroke-width="2.5" filter="url(#glow2)"/>
       <circle cx="670" cy="150" r="25" fill="white"/>
       <rect x="659" y="139" width="22" height="22" fill="#e87830" rx="2"/>
@@ -541,56 +547,81 @@
 <!-- CLIENTS -->
 <section id="clients" class="py-20 md:py-28 border-t" style="border-color:var(--border);scroll-margin-top:90px">
   <div class="max-w-7xl mx-auto px-6 md:px-10">
-    <div class="mb-12" data-aos="fade-up">
+    <div class="mb-14" data-aos="fade-up">
       <div class="section-label mb-4">Our Clients &amp; Qualifications</div>
       <h2 class="section-title mb-3">Trusted by the<br/><span class="orange-grad">industry leaders.</span></h2>
       <p class="text-sm font-light leading-relaxed" style="color:var(--silver-dim);max-width:480px">Qualified and operating with the world's major operators and contractors across Oil &amp; Gas, Chemical, Power, Environment and Infrastructure sectors.</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="60">
-      <div>
-        <div class="text-xs font-medium mb-4 uppercase tracking-widest" style="color:#e87830;letter-spacing:.15em">Oil &amp; Gas · Chemical</div>
-        <div class="flex flex-col gap-2">
-          <span class="client-tag">ENI</span>
-          <span class="client-tag">SAIPEM</span>
-          <span class="client-tag">TECHNIP ENERGIES</span>
-          <span class="client-tag">TOTALENERGIES</span>
-          <span class="client-tag">SNAM</span>
-          <span class="client-tag">WOOD GROUP</span>
-        </div>
+    <div class="flex flex-col md:flex-row items-center" data-aos="fade-up" data-aos-delay="60">
+      <div class="flex-shrink-0 text-center md:text-right pb-10 md:pb-0 md:w-44 md:border-r md:pr-10" style="border-color:var(--border)">
+        <p class="text-xs font-light uppercase tracking-widest leading-loose" style="color:var(--silver-dim)">Major operators<br/>and contractors<br/>worldwide</p>
       </div>
-      <div>
-        <div class="text-xs font-medium mb-4 uppercase tracking-widest" style="color:#e87830;letter-spacing:.15em">Power</div>
-        <div class="flex flex-col gap-2">
-          <span class="client-tag">SIEMENS ENERGY</span>
-          <span class="client-tag">EDISON</span>
-          <span class="client-tag">ENEL</span>
-          <span class="client-tag">ENI POWER</span>
-          <span class="client-tag">TECHINT</span>
-        </div>
-      </div>
-      <div>
-        <div class="text-xs font-medium mb-4 uppercase tracking-widest" style="color:#e87830;letter-spacing:.15em">Environment</div>
-        <div class="flex flex-col gap-2">
-          <span class="client-tag">NEXTCHEM</span>
-          <span class="client-tag">MYRECHEMICAL</span>
-          <span class="client-tag">VERSALIS</span>
-          <span class="client-tag">SOGIN</span>
-          <span class="client-tag">ENI REWIND</span>
-          <span class="client-tag">BESTER</span>
-        </div>
-      </div>
-      <div>
-        <div class="text-xs font-medium mb-4 uppercase tracking-widest" style="color:#e87830;letter-spacing:.15em">Aerospace · Infrastructure</div>
-        <div class="flex flex-col gap-2">
-          <span class="client-tag">AVIO</span>
-          <span class="client-tag">ITINERA</span>
-          <span class="client-tag">CDP</span>
-          <span class="client-tag">AGENZIA DEL DEMANIO</span>
+      <div class="w-full md:flex-1 overflow-hidden" id="logoSliderWrap" style="mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent);">
+        <div class="py-6" id="logoSliderTrack" style="gap:52px">
+          <img src="parlym-logo.png" alt="Parlym Group" class="logo-img"/>
+          <img src="tea-sistemi.png" alt="TEA Sistemi" class="logo-img"/>
+          <span class="logo-text-tag">ENI</span>
+          <span class="logo-text-tag">SAIPEM</span>
+          <span class="logo-text-tag">TECHNIP ENERGIES</span>
+          <span class="logo-text-tag">TOTALENERGIES</span>
+          <span class="logo-text-tag">SNAM</span>
+          <span class="logo-text-tag">WOOD GROUP</span>
+          <span class="logo-text-tag">SIEMENS ENERGY</span>
+          <span class="logo-text-tag">EDISON</span>
+          <span class="logo-text-tag">ENEL</span>
+          <span class="logo-text-tag">TECHINT</span>
+          <span class="logo-text-tag">NEXTCHEM</span>
+          <span class="logo-text-tag">VERSALIS</span>
+          <span class="logo-text-tag">SOGIN</span>
+          <span class="logo-text-tag">AVIO</span>
+          <span class="logo-text-tag">ITINERA</span>
+          <img src="parlym-logo.png" alt="Parlym Group" class="logo-img"/>
+          <img src="tea-sistemi.png" alt="TEA Sistemi" class="logo-img"/>
+          <span class="logo-text-tag">ENI</span>
+          <span class="logo-text-tag">SAIPEM</span>
+          <span class="logo-text-tag">TECHNIP ENERGIES</span>
+          <span class="logo-text-tag">TOTALENERGIES</span>
+          <span class="logo-text-tag">SNAM</span>
+          <span class="logo-text-tag">WOOD GROUP</span>
+          <span class="logo-text-tag">SIEMENS ENERGY</span>
+          <span class="logo-text-tag">EDISON</span>
+          <span class="logo-text-tag">ENEL</span>
+          <span class="logo-text-tag">TECHINT</span>
+          <span class="logo-text-tag">NEXTCHEM</span>
+          <span class="logo-text-tag">VERSALIS</span>
+          <span class="logo-text-tag">SOGIN</span>
+          <span class="logo-text-tag">AVIO</span>
+          <span class="logo-text-tag">ITINERA</span>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  var wrap  = document.getElementById('logoSliderWrap');
+  var track = document.getElementById('logoSliderTrack');
+  if (!track || !wrap) return;
+  var normalSpeed = 48, slowSpeed = 10;
+  var speed = normalSpeed, target = normalSpeed;
+  var pos = 0, last = null;
+  function tick(ts){
+    if (last !== null){
+      speed += (target - speed) * 0.06;
+      var half = track.scrollWidth / 2;
+      pos -= (ts - last) * speed / 1000;
+      if (half > 0 && pos < -half) pos += half;
+      track.style.transform = 'translateX(' + pos.toFixed(2) + 'px)';
+    }
+    last = ts;
+    requestAnimationFrame(tick);
+  }
+  wrap.addEventListener('mouseenter', function(){ target = slowSpeed; });
+  wrap.addEventListener('mouseleave', function(){ target = normalSpeed; });
+  requestAnimationFrame(tick);
+})();
+</script>
 
 <!-- CTA -->
 <section class="py-24 md:py-32 border-t" style="border-color:var(--border)">
