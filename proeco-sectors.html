@@ -4,6 +4,33 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>PROECO — Market Sectors</title>
+<meta name="description" content="PROECO operates across Oil &amp; Gas, Energy Transition, Chemical and Power Plants sectors. Full-scope multidisciplinary engineering from concept to commissioning — 115 permanent engineers."/>
+<meta name="keywords" content="Oil Gas engineering Italy, energy transition engineering, chemical plant engineering, power plant engineering, offshore engineering, FPSO, ATEX, HAZOP, multidisciplinary engineering"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="PROECO S.r.l."/>
+<link rel="canonical" href="https://proecosrl.it/proeco-sectors.html"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://proecosrl.it/proeco-sectors.html"/>
+<meta property="og:site_name" content="PROECO S.r.l."/>
+<meta property="og:title" content="PROECO — Market Sectors: Oil &amp; Gas, Energy Transition, Chemical, Power"/>
+<meta property="og:description" content="Deep expertise across Oil &amp; Gas, Energy Transition, Chemical and Power Plants. 115 in-house engineers delivering full-scope multidisciplinary engineering worldwide."/>
+<meta property="og:image" content="https://proecosrl.it/team-bg.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:locale:alternate" content="it_IT"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="PROECO — Market Sectors: Oil &amp; Gas, Energy Transition, Chemical, Power"/>
+<meta name="twitter:description" content="Deep engineering expertise across Oil &amp; Gas, Energy Transition, Chemical and Power Plants. Part of Parlym Group."/>
+<meta name="twitter:image" content="https://proecosrl.it/team-bg.jpg"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
@@ -405,13 +432,136 @@
   .hero-stat-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.08);}
   nav.nav-scrolled{box-shadow:0 1px 40px rgba(0,0,0,0.08);}
   @media(max-width:768px){
-    .sector-hero{padding:120px 0 60px;}
-    body{cursor:auto!important;}
-    .cursor-dot,.cursor-ring{display:none!important;}
-    .sector-block .grid.md\:grid-cols-2{grid-template-columns:1fr!important;}
+
+  /* ── Global ── */
+  .sector-hero{padding:100px 0 48px;}
+  body{cursor:auto!important;}
+  .cursor-dot,.cursor-ring{display:none!important;}
+
+  /* Restore pointer on interactive elements */
+  .back-link,.sector-card,.hero-stat-card,.sub-nav-link{cursor:pointer!important;}
+
+  /* ── Sector hero: stack grid ── */
+  .sector-hero .max-w-7xl{padding-left:20px!important;padding-right:20px!important;}
+  .sector-hero .grid.md\:grid-cols-2{gap:1.5rem!important;}
+  .hero-stat-card{padding:14px 16px!important;}
+
+  /* ── Sub-nav: match real nav height on mobile ── */
+  .sub-nav{top:64px!important;}
+  .sub-nav-link{padding:10px 14px!important;font-size:10px!important;letter-spacing:.08em!important;}
+
+  /* sector-block scroll offset = nav(64) + sub-nav(≈44) + 8px buffer */
+  .sector-block{scroll-margin-top:120px!important;}
+
+  /* ── CRITICAL: collapse the hardcoded 1fr 1fr inline-style split panels ── */
+  .sector-block [style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr!important;
+    min-height:auto!important;
   }
 
+  /* Cap image-panel height when stacked */
+  .sector-block [style*="min-height:480px"]{
+    min-height:240px!important;
+  }
+
+  /* Reduce text-panel padding when stacked */
+  .sector-block [style*="padding:40px"]{
+    padding:24px 20px!important;
+  }
+
+  /* Section outer padding */
+  .sector-block .max-w-7xl{padding-left:20px!important;padding-right:20px!important;}
+
+  /* Sector detail cards below split panel: single col */
+  .sector-block .grid.md\:grid-cols-2{
+    grid-template-columns:1fr!important;
+    gap:14px!important;
+  }
+
+  /* Touch-friendly contact buttons */
+  #contact .btn-contact{width:100%!important;justify-content:center!important;}
+  #contact .flex-wrap{flex-direction:column!important;gap:12px!important;}
+}
+
+@media(max-width:480px){
+  .sector-hero{padding:88px 0 36px!important;}
+  .hero-stat-card{padding:12px 14px!important;}
+  .sector-block [style*="min-height:480px"]{min-height:200px!important;}
+  .sector-block [style*="padding:40px"]{padding:18px 16px!important;}
+  .sub-nav-link{padding:8px 12px!important;font-size:9.5px!important;}
+}
+
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://proecosrl.it/proeco-sectors.html#webpage",
+      "url": "https://proecosrl.it/proeco-sectors.html",
+      "name": "PROECO — Market Sectors",
+      "description": "PROECO operates across Oil & Gas, Energy Transition, Chemical and Power Plants sectors, delivering full-scope multidisciplinary engineering from concept to commissioning.",
+      "isPartOf": { "@id": "https://proecosrl.it/#website" },
+      "about": { "@id": "https://proecosrl.it/#organization" },
+      "inLanguage": "en",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://proecosrl.it/" },
+          { "@type": "ListItem", "position": 2, "name": "Market Sectors", "item": "https://proecosrl.it/proeco-sectors.html" }
+        ]
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://proecosrl.it/proeco-sectors.html#oilgas",
+      "name": "Oil & Gas Engineering",
+      "description": "Full-scope multidisciplinary engineering for offshore platforms, FPSO, onshore upstream facilities, pipelines and drilling.",
+      "provider": { "@id": "https://proecosrl.it/#organization" },
+      "areaServed": "Worldwide",
+      "serviceType": "Oil & Gas Engineering",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Oil & Gas Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Offshore Platforms & FPSO Engineering" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Onshore Oil & Gas Upstream Engineering" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pipeline & Transport Engineering" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Drilling Engineering" } }
+        ]
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://proecosrl.it/proeco-sectors.html#green",
+      "name": "Energy Transition Engineering",
+      "description": "Engineering services for renewable energy plants, combined cycle power stations and industrial energy efficiency programs.",
+      "provider": { "@id": "https://proecosrl.it/#organization" },
+      "areaServed": "Worldwide",
+      "serviceType": "Energy Transition Engineering"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://proecosrl.it/proeco-sectors.html#chemical",
+      "name": "Chemical & Petrochemical Engineering",
+      "description": "Process engineering for chemical plants, refineries and petrochemical facilities. ATEX, SEVESO and REACH compliant.",
+      "provider": { "@id": "https://proecosrl.it/#organization" },
+      "areaServed": "Worldwide",
+      "serviceType": "Chemical & Petrochemical Engineering"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://proecosrl.it/proeco-sectors.html#power",
+      "name": "Power Plants Engineering",
+      "description": "Electrical and control engineering for gas turbine, steam turbine, combined cycle and HV/MV/LV distribution.",
+      "provider": { "@id": "https://proecosrl.it/#organization" },
+      "areaServed": "Worldwide",
+      "serviceType": "Power Plants Engineering"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div id="minimal-bg" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
@@ -948,23 +1098,35 @@ document.querySelectorAll('a,button').forEach(function(el){
   el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(0,0,0,0.4)';});
 });
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+// Cache DOM refs — avoid repeated querySelector on every scroll
+var _nav=document.querySelector('nav');
+var _sections=['oilgas','green','chemical','power'];
+var _subLinks=document.querySelectorAll('.sub-nav-link');
+var _sectionEls=_sections.map(function(id){return document.getElementById(id);});
+var _rafPending=false;
+
+// Single passive scroll listener throttled via rAF
 window.addEventListener('scroll',function(){
-  var nav=document.querySelector('nav');
-  nav.style.background=window.scrollY>50?'rgba(247,247,248,0.98)':'#f8f8f8';
-  nav.classList.toggle('nav-scrolled',window.scrollY>50);
-});
+  if(_rafPending)return;
+  _rafPending=true;
+  requestAnimationFrame(function(){
+    _rafPending=false;
+    // nav background
+    var scrolled=window.scrollY>50;
+    _nav.style.background=scrolled?'rgba(247,247,248,0.98)':'#f8f8f8';
+    _nav.classList.toggle('nav-scrolled',scrolled);
+    // sub-nav active link
+    var current='';
+    _sectionEls.forEach(function(el,i){if(el&&el.getBoundingClientRect().top<=160)current=_sections[i];});
+    _subLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+current);});
+  });
+},{passive:true});
+
 window.addEventListener('load',function(){
   if(window.location.hash){
     var el=document.querySelector(window.location.hash);
-    if(el){setTimeout(function(){var top=el.getBoundingClientRect().top+window.scrollY-90;window.scrollTo({top:top,behavior:'smooth'});},100);}
+    if(el){setTimeout(function(){var top=el.getBoundingClientRect().top+window.scrollY-120;window.scrollTo({top:top,behavior:'smooth'});},100);}
   }
-});
-var sections=['oilgas','green','chemical','power'];
-var subLinks=document.querySelectorAll('.sub-nav-link');
-window.addEventListener('scroll',function(){
-  var current='';
-  sections.forEach(function(id){var el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=160)current=id;});
-  subLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+current);});
 });
 </script>
 
@@ -977,29 +1139,32 @@ window.addEventListener('scroll',function(){
   function setSize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   setSize();
   function count(){ return Math.floor(canvas.width * canvas.height / 8000); }
+  var _now = performance.now();
   function make(){
     var fd = Math.random()*600+100;
     return { x:Math.random()*canvas.width, y:Math.random()*canvas.height,
-             speed:Math.random()/5+0.1, opacity:0.6,
-             fadeDelay:fd, fadeStart:Date.now()+fd, fadingOut:false };
+             speed:Math.random()/5+0.1, opacity:0.6, h:Math.random()*2+1,
+             fadeDelay:fd, fadeStart:_now+fd, fadingOut:false };
   }
-  function reset(p){
+  function reset(p,ts){
     p.x=Math.random()*canvas.width; p.y=Math.random()*canvas.height;
-    p.speed=Math.random()/5+0.1; p.opacity=0.6;
-    p.fadeDelay=Math.random()*600+100; p.fadeStart=Date.now()+p.fadeDelay; p.fadingOut=false;
+    p.speed=Math.random()/5+0.1; p.opacity=0.6; p.h=Math.random()*2+1;
+    p.fadeDelay=Math.random()*600+100; p.fadeStart=ts+p.fadeDelay; p.fadingOut=false;
   }
   var particles=[], raf=0;
-  function init(){ particles=[]; for(var i=0;i<count();i++) particles.push(make()); }
-  function draw(){
+  function init(){ particles=[]; _now=performance.now(); for(var i=0;i<count();i++) particles.push(make()); }
+  function draw(ts){
     ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='rgb(55,60,70)';
     particles.forEach(function(p){
       p.y-=p.speed;
-      if(p.y<0) reset(p);
-      if(!p.fadingOut && Date.now()>p.fadeStart) p.fadingOut=true;
-      if(p.fadingOut){ p.opacity-=0.008; if(p.opacity<=0) reset(p); }
-      ctx.fillStyle='rgba(55,60,70,'+p.opacity+')';
-      ctx.fillRect(p.x, p.y, 0.7, Math.random()*2+1);
+      if(p.y<0) reset(p,ts);
+      if(!p.fadingOut && ts>p.fadeStart) p.fadingOut=true;
+      if(p.fadingOut){ p.opacity-=0.008; if(p.opacity<=0){ reset(p,ts); return; } }
+      ctx.globalAlpha=p.opacity;
+      ctx.fillRect(p.x, p.y, 0.7, p.h);
     });
+    ctx.globalAlpha=1;
     raf=requestAnimationFrame(draw);
   }
   window.addEventListener('resize',function(){ setSize(); init(); },{passive:true});
