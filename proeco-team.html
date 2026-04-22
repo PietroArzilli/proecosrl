@@ -4,6 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>PROECO — Our Team &amp; Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
@@ -421,7 +424,50 @@
   .back-link:hover{color:#1a1a1a;}
   .btn-orange{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:14px 36px;border:1px solid rgba(232,120,48,0.5);border-radius:100px;color:#e87830;background:transparent;transition:all 0.25s;cursor:none;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
   .btn-orange:hover{background:rgba(232,120,48,0.1);border-color:#e87830;color:#ff8840;}
-  @media(max-width:768px){body{cursor:auto!important;}.cursor-dot,.cursor-ring{display:none!important;}}
+  @media(max-width:768px){
+
+  /* ── Global ── */
+  body{cursor:auto!important;}
+  .cursor-dot,.cursor-ring{display:none!important;}
+
+  /* Restore pointer on interactive elements */
+  .back-link,.btn-orange,.btn-contact,.sub-nav-link,.disc-tag,.value-card{cursor:pointer!important;}
+
+  /* ── Sub-nav: sit flush under the 64px nav ── */
+  .sub-nav{top:64px!important;}
+  .sub-nav-link{padding:10px 14px!important;font-size:10px!important;letter-spacing:.08em!important;}
+
+  /* Section scroll offset = nav(64) + sub-nav(~44) + 8px buffer */
+  #group,#team,#values,#quotes{scroll-margin-top:120px!important;}
+
+  /* ── #group: reduce vertical gap when columns stack ── */
+  #group .grid.md\:grid-cols-2{gap:2rem!important;}
+
+  /* Org chart card: reduce padding ── */
+  #group [style*="padding:40px"]{padding:24px 20px!important;}
+
+  /* SVG org chart: make sure it stays within bounds ── */
+  #group svg[viewBox="0 0 340 340"]{max-width:100%!important;}
+
+  /* ── #team stat cards: reduce inline padding ── */
+  #team [style*="padding:28px"]{padding:20px!important;}
+
+  /* ── value-card and quote-card: tighten padding ── */
+  .value-card{padding:20px!important;}
+  .quote-card{padding:18px 20px!important;}
+
+  /* ── CTA: stack buttons full-width ── */
+  .flex.flex-wrap.justify-center{flex-direction:column!important;align-items:stretch!important;gap:12px!important;}
+  .btn-orange,.btn-contact{width:100%!important;justify-content:center!important;text-align:center!important;}
+}
+
+@media(max-width:480px){
+  .sub-nav-link{padding:8px 12px!important;font-size:9.5px!important;}
+  #group [style*="padding:40px"]{padding:18px 16px!important;}
+  #team [style*="padding:28px"]{padding:16px!important;}
+  .value-card{padding:16px!important;}
+  .quote-card{padding:14px 16px!important;}
+}
 
 </style>
 </head>
@@ -785,18 +831,29 @@ document.querySelectorAll('a,button').forEach(function(el){
   el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(0,0,0,0.4)';});
 });
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+// Cache DOM refs — avoid repeated querySelector on every scroll
+var _nav=document.querySelector('nav');
+var _sections=['group','team','values','quotes'];
+var _subLinks=document.querySelectorAll('.sub-nav-link');
+var _sectionEls=_sections.map(function(id){return document.getElementById(id);});
+var _rafPending=false;
+
+// Single passive scroll listener throttled via rAF
 window.addEventListener('scroll',function(){
-  var nav=document.querySelector('nav');
-  nav.style.background=window.scrollY>50?'rgba(247,247,248,0.98)':'#f8f8f8';
-  nav.classList.toggle('nav-scrolled',window.scrollY>50);
-});
-var sections=['group','team','values','quotes'];
-var subLinks=document.querySelectorAll('.sub-nav-link');
-window.addEventListener('scroll',function(){
-  var current='';
-  sections.forEach(function(id){var el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=160)current=id;});
-  subLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+current);});
-});
+  if(_rafPending)return;
+  _rafPending=true;
+  requestAnimationFrame(function(){
+    _rafPending=false;
+    // nav background
+    var scrolled=window.scrollY>50;
+    _nav.style.background=scrolled?'rgba(247,247,248,0.98)':'#f8f8f8';
+    _nav.classList.toggle('nav-scrolled',scrolled);
+    // sub-nav active link
+    var current='';
+    _sectionEls.forEach(function(el,i){if(el&&el.getBoundingClientRect().top<=160)current=_sections[i];});
+    _subLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+current);});
+  });
+},{passive:true});
 var barObserver=new IntersectionObserver(function(entries){
   entries.forEach(function(entry){
     if(entry.isIntersecting){
@@ -819,29 +876,32 @@ if(barsSection)barObserver.observe(barsSection.closest('.grid'));
   function setSize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   setSize();
   function count(){ return Math.floor(canvas.width * canvas.height / 8000); }
+  var _now = performance.now();
   function make(){
     var fd = Math.random()*600+100;
     return { x:Math.random()*canvas.width, y:Math.random()*canvas.height,
-             speed:Math.random()/5+0.1, opacity:0.6,
-             fadeDelay:fd, fadeStart:Date.now()+fd, fadingOut:false };
+             speed:Math.random()/5+0.1, opacity:0.6, h:Math.random()*2+1,
+             fadeDelay:fd, fadeStart:_now+fd, fadingOut:false };
   }
-  function reset(p){
+  function reset(p,ts){
     p.x=Math.random()*canvas.width; p.y=Math.random()*canvas.height;
-    p.speed=Math.random()/5+0.1; p.opacity=0.6;
-    p.fadeDelay=Math.random()*600+100; p.fadeStart=Date.now()+p.fadeDelay; p.fadingOut=false;
+    p.speed=Math.random()/5+0.1; p.opacity=0.6; p.h=Math.random()*2+1;
+    p.fadeDelay=Math.random()*600+100; p.fadeStart=ts+p.fadeDelay; p.fadingOut=false;
   }
   var particles=[], raf=0;
-  function init(){ particles=[]; for(var i=0;i<count();i++) particles.push(make()); }
-  function draw(){
+  function init(){ particles=[]; _now=performance.now(); for(var i=0;i<count();i++) particles.push(make()); }
+  function draw(ts){
     ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='rgb(55,60,70)';
     particles.forEach(function(p){
       p.y-=p.speed;
-      if(p.y<0) reset(p);
-      if(!p.fadingOut && Date.now()>p.fadeStart) p.fadingOut=true;
-      if(p.fadingOut){ p.opacity-=0.008; if(p.opacity<=0) reset(p); }
-      ctx.fillStyle='rgba(55,60,70,'+p.opacity+')';
-      ctx.fillRect(p.x, p.y, 0.7, Math.random()*2+1);
+      if(p.y<0) reset(p,ts);
+      if(!p.fadingOut && ts>p.fadeStart) p.fadingOut=true;
+      if(p.fadingOut){ p.opacity-=0.008; if(p.opacity<=0){ reset(p,ts); return; } }
+      ctx.globalAlpha=p.opacity;
+      ctx.fillRect(p.x, p.y, 0.7, p.h);
     });
+    ctx.globalAlpha=1;
     raf=requestAnimationFrame(draw);
   }
   window.addEventListener('resize',function(){ setSize(); init(); },{passive:true});
