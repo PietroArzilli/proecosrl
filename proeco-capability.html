@@ -4,6 +4,33 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>PROECO — Full-Spectrum Capability</title>
+<meta name="description" content="PROECO Full-Spectrum Capability: 6 engineering disciplines, project services, certified packages and 25+ years of plant history. One partner for the entire plant lifecycle."/>
+<meta name="keywords" content="plant engineering capability Italy, process piping mechanical structural civil electrical instrumentation, SmartPlant project services, PROECO engineering disciplines, Parlym Group"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="PROECO S.r.l."/>
+<link rel="canonical" href="https://proecosrl.it/proeco-capability.html"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://proecosrl.it/proeco-capability.html"/>
+<meta property="og:site_name" content="PROECO S.r.l."/>
+<meta property="og:title" content="PROECO — Full-Spectrum Engineering Capability"/>
+<meta property="og:description" content="6 disciplines, 25+ years, one partner. PROECO delivers full-spectrum plant engineering — from process &amp; piping to civil, electrical and instrumentation."/>
+<meta property="og:image" content="https://proecosrl.it/team-bg.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:locale:alternate" content="it_IT"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="PROECO — Full-Spectrum Engineering Capability"/>
+<meta name="twitter:description" content="6 engineering disciplines, certified project services and 25+ years of industrial plant history. PROECO — part of Parlym Group."/>
+<meta name="twitter:image" content="https://proecosrl.it/team-bg.jpg"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
@@ -92,7 +119,76 @@
   .sub-nav-link{font-family:'Inter',sans-serif;font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim);padding:14px 20px;white-space:nowrap;transition:color .2s;border-bottom:2px solid transparent;display:block;text-decoration:none;}
   .sub-nav-link:hover,.sub-nav-link.active{color:#1a1a1a;border-bottom-color:var(--silver);}
   nav.nav-scrolled{box-shadow:0 1px 40px rgba(0,0,0,0.08);}
-  @media(max-width:768px){body{cursor:auto!important;}.cursor-dot,.cursor-ring{display:none!important;}}
+  @media(max-width:768px){
+
+  /* ── Global ── */
+  body{cursor:auto!important;}
+  .cursor-dot,.cursor-ring{display:none!important;}
+
+  /* Restore pointer on interactive elements */
+  a,button,.btn-contact,.btn-orange,.back-link,.footer-link,.nav-link,.client-tag{cursor:pointer!important;}
+
+  /* ── Section padding reduction ── */
+  .py-20{padding-top:3rem!important;padding-bottom:3rem!important;}
+  .py-24{padding-top:3.5rem!important;padding-bottom:3.5rem!important;}
+  .py-28,.md\:py-28{padding-top:3.5rem!important;padding-bottom:3.5rem!important;}
+
+  /* Section outer padding */
+  .max-w-7xl.mx-auto{padding-left:20px!important;padding-right:20px!important;}
+
+  /* Section title */
+  .section-title{font-size:clamp(26px,7vw,38px)!important;line-height:1.15!important;}
+
+  /* ── Mobile menu ── */
+  .mobile-menu{padding:20px!important;gap:14px!important;}
+  .mobile-menu .btn-contact{width:100%!important;text-align:center!important;}
+
+  /* ── #disciplines: disc-card padding ── */
+  .disc-card{padding:20px!important;}
+  .disc-title{font-size:14px!important;}
+  .disc-desc{font-size:12px!important;}
+  .disc-list li{font-size:11px!important;}
+  .disc-icon{width:38px!important;height:38px!important;margin-bottom:14px!important;}
+
+  /* ── #project-services: reduce gap when 2-col stacks ── */
+  #project-services .grid.md\:grid-cols-2{gap:2rem!important;}
+  .area-block{padding:18px!important;}
+  .area-title{font-size:12px!important;}
+  .area-list li{font-size:11px!important;}
+
+  /* ── #packages: 4-col → 2-col on tablet, 1-col on phone ── */
+  #packages .grid{grid-template-columns:1fr 1fr!important;gap:12px!important;}
+
+  /* ── #history: timeline SVG scrolls horizontally (overflow-x:auto already set inline) ── */
+  /* Hint for touch: ensure momentum scrolling */
+  #history [style*="overflow-x:auto"]{-webkit-overflow-scrolling:touch!important;}
+  /* 2025 description box: reduce padding */
+  #history [style*="padding:20px 24px"]{padding:16px 18px!important;gap:12px!important;}
+
+  /* ── #certifications: reduce gap, cert-badge full-width ── */
+  #certifications .grid.md\:grid-cols-2{gap:2rem!important;}
+  .cert-badge{width:100%!important;padding:12px 14px!important;}
+  .cert-title{font-size:12px!important;}
+  .cert-sub{font-size:10px!important;}
+
+  /* ── #clients: narrow the logo fade mask ── */
+  #logoSliderWrap{
+    mask-image:linear-gradient(to right,transparent,black 40px,black calc(100% - 40px),transparent)!important;
+    -webkit-mask-image:linear-gradient(to right,transparent,black 40px,black calc(100% - 40px),transparent)!important;
+  }
+
+  /* ── CTA buttons: stack full-width ── */
+  .flex.flex-wrap.justify-center{flex-direction:column!important;align-items:stretch!important;gap:12px!important;}
+  .flex.flex-wrap.justify-center .btn-contact{width:100%!important;justify-content:center!important;text-align:center!important;}
+}
+
+@media(max-width:480px){
+  .disc-card{padding:16px!important;}
+  .area-block{padding:14px!important;}
+  #packages .grid{grid-template-columns:1fr!important;}
+  .cert-badge{padding:10px 12px!important;}
+  .section-title{font-size:clamp(23px,8vw,32px)!important;}
+}
   /* Logo cloud slider */
   .logo-text-tag{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--silver);opacity:0.45;white-space:nowrap;flex-shrink:0;transition:opacity .3s;cursor:default;user-select:none;}
   .logo-text-tag:hover{opacity:0.85;}
@@ -100,6 +196,57 @@
   .logo-img:hover{opacity:0.85;}
   #logoSliderTrack{display:flex;align-items:center;width:max-content;}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://proecosrl.it/proeco-capability.html#webpage",
+      "url": "https://proecosrl.it/proeco-capability.html",
+      "name": "PROECO — Full-Spectrum Capability",
+      "description": "Complete engineering capability across 6 disciplines: Process & Piping, Mechanical, Structural & Civil, Electrical, Instrumentation & Control, HSE. Full plant lifecycle from FEED to decommissioning.",
+      "isPartOf": { "@id": "https://proecosrl.it/#website" },
+      "about": { "@id": "https://proecosrl.it/#organization" },
+      "inLanguage": "en",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://proecosrl.it/" },
+          { "@type": "ListItem", "position": 2, "name": "Capability", "item": "https://proecosrl.it/proeco-capability.html" }
+        ]
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://proecosrl.it/proeco-capability.html#disciplines",
+      "name": "Engineering Disciplines",
+      "description": "Six fully integrated engineering disciplines: Process & Piping, Mechanical Equipment, Structural & Civil, Electrical, Instrumentation & Control, and HSE. Delivered in-house for seamless coordination.",
+      "provider": { "@id": "https://proecosrl.it/#organization" },
+      "areaServed": "Worldwide",
+      "serviceType": "Multidisciplinary Engineering"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://proecosrl.it/proeco-capability.html#project-services",
+      "name": "Project Services",
+      "description": "End-to-end project services including project management, planning & scheduling, cost control, procurement support and quality assurance across all project phases.",
+      "provider": { "@id": "https://proecosrl.it/#organization" },
+      "areaServed": "Worldwide",
+      "serviceType": "Project Management Services"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://proecosrl.it/proeco-capability.html#packages",
+      "name": "Certified Engineering Packages",
+      "description": "Standardised and certified engineering packages for rotating equipment, pressure vessels, heat exchangers, electrical switchgear and instrumentation systems.",
+      "provider": { "@id": "https://proecosrl.it/#organization" },
+      "areaServed": "Worldwide",
+      "serviceType": "Certified Engineering Packages"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div id="minimal-bg" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
@@ -736,18 +883,29 @@ var capObserver = new IntersectionObserver(function(entries) {
 }, { threshold: 0.3 });
 var permEl = document.getElementById('count-perm');
 if (permEl) capObserver.observe(permEl.closest('section'));
+// Cache DOM refs — avoid repeated querySelector on every scroll
+var _nav=document.querySelector('nav');
+var _sections=['disciplines','project-services','packages','history','certifications','clients'];
+var _subLinks=document.querySelectorAll('.sub-nav-link');
+var _sectionEls=_sections.map(function(id){return document.getElementById(id);});
+var _rafPending=false;
+
+// Single passive scroll listener throttled via rAF
 window.addEventListener('scroll',function(){
-  var nav=document.querySelector('nav');
-  nav.style.background=window.scrollY>50?'rgba(247,247,248,0.98)':'#f8f8f8';
-  nav.classList.toggle('nav-scrolled',window.scrollY>50);
-});
-var sections=['disciplines','project-services','packages','history','certifications','clients'];
-var subLinks=document.querySelectorAll('.sub-nav-link');
-window.addEventListener('scroll',function(){
-  var current='';
-  sections.forEach(function(id){var el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=160)current=id;});
-  subLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+current);});
-});
+  if(_rafPending)return;
+  _rafPending=true;
+  requestAnimationFrame(function(){
+    _rafPending=false;
+    // nav background
+    var scrolled=window.scrollY>50;
+    _nav.style.background=scrolled?'rgba(247,247,248,0.98)':'#f8f8f8';
+    _nav.classList.toggle('nav-scrolled',scrolled);
+    // sub-nav active link
+    var current='';
+    _sectionEls.forEach(function(el,i){if(el&&el.getBoundingClientRect().top<=160)current=_sections[i];});
+    _subLinks.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+current);});
+  });
+},{passive:true});
 </script>
 <script>
 /* MINIMAL PARTICLES */
@@ -758,29 +916,32 @@ window.addEventListener('scroll',function(){
   function setSize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   setSize();
   function count(){ return Math.floor(canvas.width * canvas.height / 8000); }
+  var _now = performance.now();
   function make(){
     var fd = Math.random()*600+100;
     return { x:Math.random()*canvas.width, y:Math.random()*canvas.height,
-             speed:Math.random()/5+0.1, opacity:0.6,
-             fadeDelay:fd, fadeStart:Date.now()+fd, fadingOut:false };
+             speed:Math.random()/5+0.1, opacity:0.6, h:Math.random()*2+1,
+             fadeDelay:fd, fadeStart:_now+fd, fadingOut:false };
   }
-  function reset(p){
+  function reset(p,ts){
     p.x=Math.random()*canvas.width; p.y=Math.random()*canvas.height;
-    p.speed=Math.random()/5+0.1; p.opacity=0.6;
-    p.fadeDelay=Math.random()*600+100; p.fadeStart=Date.now()+p.fadeDelay; p.fadingOut=false;
+    p.speed=Math.random()/5+0.1; p.opacity=0.6; p.h=Math.random()*2+1;
+    p.fadeDelay=Math.random()*600+100; p.fadeStart=ts+p.fadeDelay; p.fadingOut=false;
   }
   var particles=[], raf=0;
-  function init(){ particles=[]; for(var i=0;i<count();i++) particles.push(make()); }
-  function draw(){
+  function init(){ particles=[]; _now=performance.now(); for(var i=0;i<count();i++) particles.push(make()); }
+  function draw(ts){
     ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='rgb(55,60,70)';
     particles.forEach(function(p){
       p.y-=p.speed;
-      if(p.y<0) reset(p);
-      if(!p.fadingOut && Date.now()>p.fadeStart) p.fadingOut=true;
-      if(p.fadingOut){ p.opacity-=0.008; if(p.opacity<=0) reset(p); }
-      ctx.fillStyle='rgba(55,60,70,'+p.opacity+')';
-      ctx.fillRect(p.x, p.y, 0.7, Math.random()*2+1);
+      if(p.y<0) reset(p,ts);
+      if(!p.fadingOut && ts>p.fadeStart) p.fadingOut=true;
+      if(p.fadingOut){ p.opacity-=0.008; if(p.opacity<=0){ reset(p,ts); return; } }
+      ctx.globalAlpha=p.opacity;
+      ctx.fillRect(p.x, p.y, 0.7, p.h);
     });
+    ctx.globalAlpha=1;
     raf=requestAnimationFrame(draw);
   }
   window.addEventListener('resize',function(){ setSize(); init(); },{passive:true});
