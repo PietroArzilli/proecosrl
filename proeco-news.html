@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PROECO — News & Updates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
+<style>
+  :root{--silver:#3a4a5c;--silver-dim:#536070;--steel:#1a2535;--border:rgba(0,0,0,0.09);--border-bright:rgba(0,0,0,0.16);}
+  *{box-sizing:border-box;}
+  html{background:#f8f8f8;}
+  body{background:#f8f8f8;color:#1a1a1a;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+  .cursor-dot{width:6px;height:6px;background:#555;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;will-change:transform;}
+  .cursor-ring{width:32px;height:32px;border:1px solid rgba(0,0,0,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s;will-change:transform;}
+  ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#f8f8f8;}::-webkit-scrollbar-thumb{background:#b0bec5;border-radius:2px;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:500;background:#f8f8f8!important;border-bottom:1px solid rgba(0,0,0,0.09)!important;transition:background 0.3s;}
+  .nav-link{font-family:'Inter',sans-serif;font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);transition:color 0.2s;position:relative;text-decoration:none;}
+  .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--silver);transform:scaleX(0);transition:transform 0.2s;}
+  .nav-link:hover::after,.nav-link.active-page::after{transform:scaleX(1);}
+  .nav-link.active-page{color:#1a1a1a;font-weight:500;}
+  .btn-contact{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border:1px solid rgba(58,74,92,0.4);border-radius:100px;font-size:11px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:all 0.2s;cursor:none;}
+  .btn-contact:hover{background:rgba(58,74,92,0.06);border-color:var(--silver);}
+  .btn-cta-orange{background:linear-gradient(135deg,rgba(232,120,48,0.1),rgba(232,120,48,0.04));border-color:rgba(232,120,48,0.4)!important;color:rgba(200,80,20,0.95)!important;}
+  .btn-cta-orange:hover{background:linear-gradient(135deg,rgba(232,120,48,0.2),rgba(232,120,48,0.08))!important;border-color:rgba(232,120,48,0.7)!important;color:#e87830!important;}
+  .mobile-menu{display:none;flex-direction:column;gap:16px;padding:24px;border-bottom:1px solid var(--border);background:#f8f8f8;}
+  .mobile-menu.open{display:flex;}
+  .section-label{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(232,120,48,0.85);}
+  .section-label::before{content:'';width:18px;height:1px;background:rgba(232,120,48,0.6);}
+  .section-title{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,56px);font-weight:700;color:#1a1a1a;line-height:1.1;letter-spacing:-0.02em;}
+  .orange-grad{background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .footer-link{font-size:11px;font-weight:300;color:var(--silver-dim);text-decoration:none;transition:color 0.2s;cursor:none;}
+  .footer-link:hover{color:#1a1a1a;}
+  .footer-motto{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--silver);letter-spacing:0.08em;}
+
+  /* ── News cards ── */
+  .news-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.3s cubic-bezier(0.4,0,0.2,1),box-shadow 0.3s,border-color 0.3s;cursor:none;}
+  .news-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(232,120,48,0.13),0 4px 16px rgba(0,0,0,0.07);border-color:rgba(232,120,48,0.3);}
+  .news-bar{height:4px;background:linear-gradient(90deg,#e87830,transparent);transition:background 0.3s;}
+  .news-card:hover .news-bar{background:linear-gradient(90deg,#ff6b00,#e87830,transparent);}
+  .news-read-more{font-size:11px;color:rgba(232,120,48,0.7);letter-spacing:.06em;display:flex;align-items:center;gap:5px;margin-top:20px;transition:gap 0.2s,color 0.2s;}
+  .news-card:hover .news-read-more{color:#e87830;gap:9px;}
+
+  /* ── Category badge ── */
+  .cat-badge{font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;}
+  .cat-project{color:#e87830;background:rgba(232,120,48,0.08);}
+  .cat-technology{color:#3a4a5c;background:rgba(58,74,92,0.08);}
+  .cat-company{color:#536070;background:rgba(83,96,112,0.1);}
+  .cat-sustainability{color:#4a7c59;background:rgba(74,124,89,0.08);}
+  .cat-partnership{color:#7c4a6e;background:rgba(124,74,110,0.08);}
+
+  /* ── Filter bar ── */
+  .filter-btn{font-size:10px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;padding:7px 16px;border-radius:100px;border:1px solid rgba(0,0,0,0.12);background:transparent;color:var(--silver-dim);cursor:none;transition:all 0.2s;}
+  .filter-btn:hover{border-color:rgba(232,120,48,0.4);color:#e87830;}
+  .filter-btn.active{background:#e87830;border-color:#e87830;color:#fff;}
+
+  /* ── Article view ── */
+  #article-view{display:none;}
+  .article-body{font-size:15px;font-weight:300;line-height:1.85;color:#2d2d2d;}
+  .article-body p{margin-bottom:1.4em;}
+  .article-body h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:600;color:#1a1a1a;margin:2em 0 0.6em;}
+  .article-body ul{list-style:none;padding:0;margin-bottom:1.4em;}
+  .article-body ul li{padding-left:1.4em;position:relative;margin-bottom:0.5em;}
+  .article-body ul li::before{content:'';position:absolute;left:0;top:0.7em;width:6px;height:1px;background:#e87830;}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver-dim);background:none;border:none;cursor:none;transition:color 0.2s;padding:0;}
+  .back-btn:hover{color:#1a1a1a;}
+  .article-divider{width:40px;height:2px;background:linear-gradient(90deg,#e87830,transparent);margin:20px 0 32px;}
+
+  /* ── Hidden utility ── */
+  .hidden-filter{display:none!important;}
+
+  /* ── Mobile ── */
+  @media(max-width:768px){
+    body{cursor:auto!important;}
+    .cursor-dot,.cursor-ring{display:none!important;}
+    a,button,.btn-contact,.filter-btn,.back-btn,.news-card,.footer-link,.nav-link{cursor:pointer!important;}
+    .section-title{font-size:clamp(28px,8vw,44px)!important;}
+    .max-w-7xl.mx-auto{padding-left:20px!important;padding-right:20px!important;}
+  }
+  @media(max-width:480px){
+    .news-grid-cols{grid-template-columns:1fr!important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+    <a href="index.html" style="display:flex;align-items:center;text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 72" height="44" style="display:block">
+        <circle cx="35.7" cy="35.7" r="35.4" fill="rgba(0,0,0,0.06)"/>
+        <circle cx="35.7" cy="35.7" r="23.9" fill="#1a2535"/>
+        <rect x="27.2" y="27.9" width="16.6" height="16.6" rx="1" fill="#e87830"/>
+        <text x="82" y="53" font-family="'Montserrat',sans-serif" font-weight="400" font-size="38" letter-spacing="2"><tspan fill="#1a1a1a">PRO</tspan><tspan fill="#e87830">ECO</tspan></text>
+      </svg>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="proeco-sectors.html" class="nav-link">Sectors</a>
+      <a href="proeco-team.html" class="nav-link">Team</a>
+      <a href="proeco-digital.html" class="nav-link">Technology</a>
+      <a href="proeco-capability.html" class="nav-link">Services</a>
+      <a href="proeco-news.html" class="nav-link active-page">News</a>
+      <a href="index.html#contact" class="nav-link">Contact</a>
+    </div>
+    <div class="hidden md:flex items-center gap-4">
+      <span style="font-size:11px;letter-spacing:.08em;color:var(--silver-dim);font-weight:300">Part of <span style="color:var(--silver)">Parlym Group</span></span>
+      <a href="index.html#contact" class="btn-contact btn-cta-orange">Contact</a>
+    </div>
+    <button class="md:hidden text-gray-500 hover:text-gray-800 transition-colors cursor-none" onclick="toggleMenu()" style="background:none;border:none;padding:4px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="proeco-sectors.html" class="nav-link" onclick="toggleMenu()">Sectors</a>
+  <a href="proeco-team.html" class="nav-link" onclick="toggleMenu()">Team</a>
+  <a href="proeco-digital.html" class="nav-link" onclick="toggleMenu()">Technology</a>
+  <a href="proeco-capability.html" class="nav-link" onclick="toggleMenu()">Services</a>
+  <a href="proeco-news.html" class="nav-link active-page" onclick="toggleMenu()">News</a>
+  <a href="index.html#contact" class="btn-contact text-center" onclick="toggleMenu()">Get in Touch</a>
+</div>
+
+<!-- ═══ LIST VIEW ═══ -->
+<div id="list-view">
+
+  <!-- HERO -->
+  <section class="pt-32 pb-16 md:pt-40 md:pb-20 border-b" style="border-color:var(--border)">
+    <div class="max-w-7xl mx-auto px-6 md:px-10">
+      <div data-aos="fade-up">
+        <div class="section-label mb-5">Latest News</div>
+        <h1 class="section-title mb-4">From the<br/><span class="orange-grad">Field</span></h1>
+        <p class="text-sm font-light leading-relaxed" style="color:var(--silver-dim);max-width:440px">Project awards, technology milestones and company updates from PROECO and the Parlym Group.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="max-w-7xl mx-auto px-6 md:px-10 py-8" data-aos="fade-up">
+    <div class="flex flex-wrap gap-3" id="filterBar">
+      <button class="filter-btn active" data-filter="all" onclick="filterNews(this,'all')">All</button>
+      <button class="filter-btn" data-filter="Project Award" onclick="filterNews(this,'Project Award')">Project Award</button>
+      <button class="filter-btn" data-filter="Technology" onclick="filterNews(this,'Technology')">Technology</button>
+      <button class="filter-btn" data-filter="Company" onclick="filterNews(this,'Company')">Company</button>
+      <button class="filter-btn" data-filter="Sustainability" onclick="filterNews(this,'Sustainability')">Sustainability</button>
+      <button class="filter-btn" data-filter="Partnership" onclick="filterNews(this,'Partnership')">Partnership</button>
+    </div>
+  </div>
+
+  <!-- NEWS GRID -->
+  <div class="max-w-7xl mx-auto px-6 md:px-10 pb-24">
+    <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 news-grid-cols"></div>
+    <div id="emptyState" style="display:none;text-align:center;padding:80px 0;">
+      <p style="font-size:13px;color:var(--silver-dim)">No articles in this category yet.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ ARTICLE VIEW ═══ -->
+<div id="article-view" class="pt-28">
+
+  <!-- Back + meta -->
+  <div class="max-w-3xl mx-auto px-6 md:px-10 pt-10 pb-4">
+    <button class="back-btn" onclick="closeArticle()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to News
+    </button>
+  </div>
+
+  <div class="max-w-3xl mx-auto px-6 md:px-10 pb-24">
+    <div id="articleMeta" class="mb-6"></div>
+    <h1 id="articleTitle" class="section-title mb-0" style="font-size:clamp(26px,3.5vw,44px);line-height:1.15;"></h1>
+    <div class="article-divider"></div>
+    <div id="articleBody" class="article-body"></div>
+
+    <!-- Related articles -->
+    <div id="relatedWrap" class="mt-20 pt-10" style="border-top:1px solid var(--border);">
+      <div class="section-label mb-8">More News</div>
+      <div id="relatedGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="py-6 md:py-8" style="border-top:1px solid var(--border)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+      <div>
+        <div class="mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 72" height="40" style="display:block">
+            <circle cx="35.7" cy="35.7" r="35.4" fill="#ffffff"/>
+            <circle cx="35.7" cy="35.7" r="23.9" fill="#0d0d0d"/>
+            <rect x="27.2" y="27.9" width="16.6" height="16.6" rx="1" fill="#e87830"/>
+            <text x="82" y="53" font-family="'Montserrat',sans-serif" font-weight="400" font-size="38" letter-spacing="2"><tspan fill="#ffffff">PRO</tspan><tspan fill="#e87830">ECO</tspan></text>
+          </svg>
+        </div>
+        <div class="footer-motto">Proud to Develop Solutions</div>
+        <div class="text-xs font-light mt-2" style="color:var(--silver-dim)">Part of Parlym Group &middot; Proeco S.r.l.</div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-4 text-left">
+        <div>
+          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Navigate</div>
+          <div class="flex flex-col gap-2">
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="proeco-sectors.html" class="footer-link">Sectors</a>
+            <a href="proeco-digital.html" class="footer-link">Digital Eng.</a>
+            <a href="proeco-capability.html" class="footer-link">Capability</a>
+            <a href="proeco-team.html" class="footer-link">Our Team</a>
+            <a href="proeco-news.html" class="footer-link" style="color:#1a1a1a">News</a>
+            <a href="index.html#contact" class="footer-link">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Categories</div>
+          <div class="flex flex-col gap-2">
+            <a href="#" class="footer-link" onclick="filterNews(null,'Project Award');return false;">Project Award</a>
+            <a href="#" class="footer-link" onclick="filterNews(null,'Technology');return false;">Technology</a>
+            <a href="#" class="footer-link" onclick="filterNews(null,'Company');return false;">Company</a>
+            <a href="#" class="footer-link" onclick="filterNews(null,'Sustainability');return false;">Sustainability</a>
+            <a href="#" class="footer-link" onclick="filterNews(null,'Partnership');return false;">Partnership</a>
+          </div>
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <div class="text-xs font-medium mb-3 uppercase tracking-widest" style="color:var(--silver-dim)">Headquarters</div>
+          <div class="text-xs font-light leading-relaxed" style="color:var(--silver-dim)">
+            Via Cervese 162/D<br/>47122 Forl&igrave; (FC), Italy<br/><br/>
+            <a href="mailto:proeco@proecosrl.it" class="footer-link">proeco@proecosrl.it</a><br/>
+            <span style="color:var(--silver)">+39 0543 795830</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid var(--border)">
+      <div class="text-xs font-light" style="color:var(--silver-dim)">&copy; 2025 PROECO S.r.l. All rights reserved.</div>
+      <div class="text-xs font-light" style="color:var(--silver-dim)">P.IVA 03418890408</div>
+    </div>
+  </div>
+</footer>
+
+<!-- AOS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+/* ── News data ──────────────────────────────────────────────────────────────
+   Replace this array with a Supabase fetch when the backend is ready.
+   Each article: { id, category, date, title, excerpt, body }
+   body: HTML string for full article content.
+─────────────────────────────────────────────────────────────────────────── */
+var NEWS = [
+  {
+    id: 1,
+    category: 'Project Award',
+    date: 'March 2025',
+    title: 'PROECO Awarded Engineering Contract for LNG Terminal Expansion in West Africa',
+    excerpt: 'Our multidisciplinary team has been selected to lead the FEED and detailed engineering for a major LNG terminal capacity upgrade, covering process, civil, mechanical and instrumentation disciplines.',
+    body: '<p>PROECO has been awarded a full-scope engineering contract for the expansion of an LNG terminal on the West African coast. The scope covers Front-End Engineering Design (FEED) and detailed engineering across six disciplines: process, piping, civil/structural, mechanical, electrical and instrumentation &amp; control.</p><h3>Project Scope</h3><p>The terminal expansion will increase throughput capacity by approximately 40%, requiring the addition of two new liquefaction trains, associated utilities and a dedicated marine loading arm. PROECO will lead the multidisciplinary engineering effort from concept freeze through to issued-for-construction documentation.</p><ul><li>Process simulation and heat &amp; mass balance for the new trains</li><li>Full P&amp;ID development and HAZOP facilitation</li><li>Civil and structural design for new foundations and pipe racks</li><li>Electrical load list, SLD and switchgear specifications</li><li>Instrumentation index, datasheet package and DCS architecture</li></ul><h3>Timeline</h3><p>The FEED phase is scheduled to complete within six months, with detailed engineering commencing immediately after client approval. First deliverables are targeted for Q3 2025.</p><p>This award reinforces PROECO\'s position as a leading independent engineering partner for LNG and gas processing infrastructure across Africa and the Middle East.</p>'
+  },
+  {
+    id: 2,
+    category: 'Technology',
+    date: 'February 2025',
+    title: 'Digital Twin Delivery: First Full 3D As-Built Model for Offshore Refinery Platform',
+    excerpt: 'Using Aveva E3D and laser scanning technology, PROECO completed the first fully integrated digital twin for an offshore refinery platform, achieving sub-2mm scan accuracy across 14 decks.',
+    body: '<p>PROECO\'s Digital Engineering team has successfully delivered the first fully integrated 3D as-built digital twin for an offshore refinery platform, combining high-density laser scanning with intelligent modelling in Aveva E3D.</p><h3>Methodology</h3><p>The project involved a 360° laser scan campaign across 14 production decks, generating a point cloud dataset exceeding 4 billion measurement points. The raw scan data was then processed and registered to produce a millimetre-accurate geometric reference model, which served as the foundation for the intelligent E3D model build.</p><ul><li>Scan accuracy: ±1.8mm across all decks</li><li>4.2 billion point cloud measurements</li><li>14 decks fully modelled — piping, structure, equipment and HVAC</li><li>Automated clash detection: 847 clashes identified and resolved pre-construction</li></ul><h3>Outcome</h3><p>The completed digital twin is now live as a connected asset model, enabling the operator\'s engineering and maintenance teams to plan future interventions, simulate modifications and generate accurate material take-offs without requiring physical access to the platform.</p><p>This project marks a milestone in PROECO\'s Digital Engineering capability and demonstrates the full value chain from laser acquisition to operational digital twin delivery.</p>'
+  },
+  {
+    id: 3,
+    category: 'Company',
+    date: 'January 2025',
+    title: 'PROECO Expands Engineering Team to 115 Permanent Specialists',
+    excerpt: 'Following a record year in project deliveries, PROECO has grown its permanent in-house team to 115 specialists, reinforcing its commitment to zero-outsourcing of core engineering.',
+    body: '<p>Following a record year in project deliveries and a significant increase in contracted backlog, PROECO has completed a major recruitment drive, bringing its permanent specialist headcount to 115 engineers and technical professionals.</p><h3>Growth Across All Disciplines</h3><p>New additions span all six core engineering disciplines, with particular growth in Digital Engineering, Process and Instrumentation &amp; Control — three areas where client demand has accelerated significantly over the past 18 months.</p><ul><li>Digital Engineering team: +8 specialists (laser scanning, E3D modelling, BIM)</li><li>Process &amp; Piping: +6 engineers (senior and intermediate levels)</li><li>Instrumentation &amp; Control: +5 engineers (DCS, SIL assessment)</li><li>Civil &amp; Structural: +4 engineers (offshore and onshore structures)</li></ul><h3>Our Philosophy</h3><p>PROECO\'s founding principle is that core engineering work must be done in-house, by permanent employees who share the company\'s standards and culture. We do not outsource our deliverables or use sub-contracting as a staffing mechanism. Every engineer you work with is a PROECO specialist — directly employed, continuously trained and fully accountable for their output.</p><p>This expansion consolidates our position as one of the largest independent engineering teams in Italy, fully capable of delivering complex multidisciplinary projects from a single, integrated base.</p>'
+  },
+  {
+    id: 4,
+    category: 'Project Award',
+    date: 'December 2024',
+    title: 'PROECO Selected for Offshore Platform Life Extension Study — North Sea',
+    excerpt: 'A major North Sea operator has engaged PROECO to conduct a full life extension engineering assessment for a fixed offshore production platform, covering structural, process and safety systems.',
+    body: '<p>PROECO has been selected by a major North Sea operator to perform a comprehensive Life Extension Engineering Study (LEES) for a fixed production platform currently scheduled for end-of-design-life in 2028. The study will determine the technical and economic feasibility of extending the platform\'s operational life by a further 10 years.</p><h3>Scope of Work</h3><p>The study spans four engineering disciplines and will culminate in a Life Extension Report acceptable to the relevant regulatory authorities.</p><ul><li>Structural integrity assessment of the jacket and topsides</li><li>Process systems review — degradation, capacity and safety margins</li><li>Safety case gap analysis against current regulatory requirements</li><li>Remaining equipment life assessment and prioritised replacement schedule</li></ul><h3>Delivery</h3><p>The study is structured in two phases: a rapid screening phase (8 weeks) to identify the highest-risk items, followed by a detailed engineering phase (6 months) producing full documentation for regulatory submission. PROECO will work with the operator\'s in-house team embedded at our Forlì office throughout the programme.</p>'
+  },
+  {
+    id: 5,
+    category: 'Sustainability',
+    date: 'November 2024',
+    title: 'PROECO Completes Green Hydrogen Feasibility Study for Industrial Cluster',
+    excerpt: 'Working with a consortium of Italian industrial partners, PROECO has delivered a full feasibility study for a green hydrogen production and distribution hub serving a chemical and power generation cluster.',
+    body: '<p>PROECO has completed a comprehensive green hydrogen feasibility study for a multi-site industrial cluster in northern Italy, examining the technical and economic viability of producing, storing and distributing green hydrogen to replace natural gas in chemical processes and power generation applications.</p><h3>Study Highlights</h3><p>The study evaluated three electrolysis technologies — alkaline, PEM and solid oxide — across five demand scenarios ranging from partial blending to full hydrogen substitution.</p><ul><li>Electrolyser sizing from 20MW to 150MW across scenarios</li><li>Hydrogen storage: compressed gas and liquid storage options assessed</li><li>Distribution infrastructure: pipeline injection vs. tube trailer logistics</li><li>Levelised cost of hydrogen (LCOH) calculated for each scenario</li><li>CO₂ reduction potential: up to 68,000 tonnes/year at full substitution</li></ul><h3>Next Steps</h3><p>Based on PROECO\'s feasibility findings, the consortium has approved funding for a FEED study covering the preferred 40MW PEM scenario, with potential investment decision in Q2 2025. PROECO has been retained to lead the FEED phase.</p>'
+  },
+  {
+    id: 6,
+    category: 'Technology',
+    date: 'October 2024',
+    title: 'PROECO Digital Team Achieves Aveva E3D Expert Certification',
+    excerpt: 'Five members of PROECO\'s Digital Engineering team have passed the Aveva E3D Expert certification programme, making PROECO one of the most credentialed E3D practices in Italy.',
+    body: '<p>PROECO\'s Digital Engineering team has achieved a significant professional milestone: five team members have successfully completed the Aveva E3D Expert certification programme, the highest level of platform qualification offered by Aveva for 3D intelligent modelling software.</p><h3>What This Means</h3><p>The E3D Expert certification validates advanced competency in intelligent 3D plant design, including discipline-specific modelling, design rules configuration, automated drawing production and integration with Aveva\'s engineering information management ecosystem.</p><ul><li>5 certified E3D Experts — Process/Piping, Structural, HVAC, Electrical, Civil</li><li>Full AVEVA PDMS to E3D migration capability confirmed</li><li>Automated isometric and GA drawing production now fully in-house</li><li>Integration with SmartPlant Foundation validated</li></ul><h3>Capability Impact</h3><p>This certification reinforces PROECO\'s ability to deliver complete intelligent 3D models as a primary deliverable — not just as a visualisation tool, but as a live engineering database that drives downstream documentation, procurement and construction activities automatically. Clients can expect shorter drawing cycles, fewer revision rounds and higher first-pass accuracy on E3D-based projects going forward.</p>'
+  },
+  {
+    id: 7,
+    category: 'Partnership',
+    date: 'September 2024',
+    title: 'PROECO and Parlym Group Formalise Cross-Border Engineering Collaboration Framework',
+    excerpt: 'As part of the Parlym Group, PROECO has signed a formal cross-border collaboration agreement with group sister companies, enabling seamless resource sharing and joint project execution across four continents.',
+    body: '<p>PROECO and its sister companies within the Parlym Group have formalised a cross-border engineering collaboration framework, enabling the group to deploy integrated multidisciplinary teams across its global network on complex international projects.</p><h3>Framework Structure</h3><p>The agreement defines protocols for technical resource sharing, quality assurance alignment and deliverable ownership across jurisdictions — ensuring that international projects benefit from PROECO\'s Italian engineering depth while drawing on the wider group\'s local knowledge and client relationships.</p><ul><li>Shared document control and revision management standards</li><li>Inter-company secondment and embedded team protocols</li><li>Joint bid framework for projects exceeding single-entity capacity</li><li>Unified QHSE management system across all Parlym entities</li></ul><h3>Strategic Significance</h3><p>For PROECO\'s clients, this framework means access to a genuinely integrated international engineering capability — not a network of independent subcontractors, but a coordinated group operating to a single quality standard under unified technical management. Projects requiring simultaneous activity in multiple geographies can now be handled within the group structure without quality or coordination risk.</p>'
+  },
+  {
+    id: 8,
+    category: 'Project Award',
+    date: 'August 2024',
+    title: 'PROECO Wins Revamping Contract for Major Petrochemical Plant in Southern Italy',
+    excerpt: 'A large-scale revamping of an existing polyethylene production unit has been awarded to PROECO, covering full multidisciplinary engineering from process re-design through to issued-for-construction documentation.',
+    body: '<p>PROECO has been awarded a multidisciplinary revamping contract for a polyethylene production unit at a major petrochemical site in southern Italy. The project involves the re-design of the reactor system and associated process utilities to increase production capacity by 25% while achieving a 15% reduction in energy consumption per tonne of product.</p><h3>Engineering Scope</h3><p>The revamping scope touches all six PROECO disciplines, with particular complexity in the process re-design and instrumentation update required to meet current functional safety standards.</p><ul><li>Process re-design: reactor configuration, heat integration optimisation</li><li>Piping: full P&amp;ID revision and pipe stress analysis for all modified lines</li><li>Civil/structural: foundation upgrades for new reactor supports</li><li>Electrical: motor control centre replacement and cable routing</li><li>Instrumentation: SIL assessment, safety instrumented system (SIS) upgrade</li><li>HSE: HAZOP revalidation and updated safety case</li></ul><h3>Execution</h3><p>The project will be executed in three phases to allow continued production during engineering — a critical constraint agreed with the client at project outset. PROECO\'s phased execution plan was a key differentiator in the selection process. Engineering delivery is scheduled for Q1 2025, with construction support through to Q3 2025.</p>'
+  },
+  {
+    id: 9,
+    category: 'Sustainability',
+    date: 'July 2024',
+    title: 'PROECO Launches Internal Carbon Footprint Reduction Programme',
+    excerpt: 'PROECO has initiated a structured programme to measure, reduce and offset its own operational carbon footprint, targeting a 40% reduction in Scope 1 and 2 emissions by 2027.',
+    body: '<p>PROECO has launched a formal internal sustainability programme targeting a measurable reduction in its own operational carbon footprint, alongside continued growth in the volume of low-carbon projects it delivers for clients.</p><h3>Programme Structure</h3><p>The programme is structured across three pillars: Measure, Reduce and Offset. The first phase — measurement — has already been completed, establishing a verified baseline for Scope 1 (direct) and Scope 2 (indirect energy) emissions for 2023.</p><ul><li>Scope 1 &amp; 2 baseline established: 187 tonnes CO₂e (2023)</li><li>Target: 40% reduction by 2027 vs. 2023 baseline</li><li>Fleet electrification programme: 60% of company vehicles to EV by 2026</li><li>Office energy: renewable electricity contract from January 2025</li><li>Travel policy: mandatory video-conference preference for meetings under 300km</li></ul><h3>Client Alignment</h3><p>This programme responds directly to requests from several of PROECO\'s major clients, who require supply chain partners to demonstrate active carbon management as a condition of preferred supplier status. PROECO will publish an annual sustainability report from 2025 onwards, providing independently verified emissions data and progress against targets.</p><p>Sustainability is not a marketing exercise for PROECO — it is a commercial necessity and an engineering responsibility. The same rigour we apply to client projects we now apply to our own operations.</p>'
+  }
+];
+
+/* ── Category badge class map ─────────────────────────────────────────── */
+var CAT_CLASS = {
+  'Project Award': 'cat-project',
+  'Technology':    'cat-technology',
+  'Company':       'cat-company',
+  'Sustainability':'cat-sustainability',
+  'Partnership':   'cat-partnership'
+};
+
+/* ── Render a single card HTML ───────────────────────────────────────── */
+function cardHTML(n) {
+  return '<article class="news-card" onclick="openArticle(' + n.id + ')" data-category="' + n.category + '">' +
+    '<div class="news-bar"></div>' +
+    '<div style="padding:28px;flex:1;display:flex;flex-direction:column;">' +
+      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">' +
+        '<span class="cat-badge ' + (CAT_CLASS[n.category] || 'cat-company') + '">' + n.category + '</span>' +
+        '<span style="font-size:10px;color:rgba(0,0,0,0.35);font-weight:300;">' + n.date + '</span>' +
+      '</div>' +
+      '<h3 style="font-family:\'Syne\',sans-serif;font-size:16px;font-weight:600;color:#1a1a1a;line-height:1.4;margin-bottom:10px;">' + n.title + '</h3>' +
+      '<p style="font-size:12px;font-weight:300;color:rgba(0,0,0,0.55);line-height:1.7;flex:1;">' + n.excerpt + '</p>' +
+      '<div class="news-read-more">' +
+        '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>' +
+        'Read more' +
+      '</div>' +
+    '</div>' +
+  '</article>';
+}
+
+/* ── Render grid ─────────────────────────────────────────────────────── */
+function renderGrid(filter) {
+  var grid = document.getElementById('newsGrid');
+  var empty = document.getElementById('emptyState');
+  var filtered = filter === 'all' ? NEWS : NEWS.filter(function(n){ return n.category === filter; });
+  if (filtered.length === 0) {
+    grid.style.display = 'none';
+    empty.style.display = 'block';
+  } else {
+    grid.style.display = '';
+    empty.style.display = 'none';
+    grid.innerHTML = filtered.map(cardHTML).join('');
+  }
+}
+
+/* ── Filter button click ─────────────────────────────────────────────── */
+function filterNews(btn, filter) {
+  /* close article view if open */
+  if (document.getElementById('article-view').style.display !== 'none') {
+    closeArticle();
+  }
+  /* update active button */
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) {
+    btn.classList.add('active');
+  } else {
+    /* called from footer links — activate matching button */
+    document.querySelectorAll('.filter-btn').forEach(function(b){
+      if (b.dataset.filter === filter) b.classList.add('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  renderGrid(filter);
+}
+
+/* ── Open article ────────────────────────────────────────────────────── */
+function openArticle(id) {
+  var n = NEWS.find(function(x){ return x.id === id; });
+  if (!n) return;
+
+  document.getElementById('articleMeta').innerHTML =
+    '<div style="display:flex;align-items:center;gap:10px;">' +
+      '<span class="cat-badge ' + (CAT_CLASS[n.category] || 'cat-company') + '">' + n.category + '</span>' +
+      '<span style="font-size:11px;color:rgba(0,0,0,0.4);font-weight:300;">' + n.date + '</span>' +
+    '</div>';
+
+  document.getElementById('articleTitle').textContent = n.title;
+  document.getElementById('articleBody').innerHTML = n.body;
+
+  /* related: up to 2 other articles */
+  var related = NEWS.filter(function(x){ return x.id !== id; }).slice(0, 2);
+  document.getElementById('relatedGrid').innerHTML = related.map(cardHTML).join('');
+
+  document.getElementById('list-view').style.display = 'none';
+  document.getElementById('article-view').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Close article ───────────────────────────────────────────────────── */
+function closeArticle() {
+  document.getElementById('article-view').style.display = 'none';
+  document.getElementById('list-view').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── Mobile menu ─────────────────────────────────────────────────────── */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ── Cursor ──────────────────────────────────────────────────────────── */
+(function(){
+  var dot = document.getElementById('cursorDot');
+  var ring = document.getElementById('cursorRing');
+  if (!dot || !ring) return;
+  var mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; });
+  (function tick(){
+    dot.style.transform = 'translate(' + (mx-3) + 'px,' + (my-3) + 'px)';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.transform = 'translate(' + (rx-16) + 'px,' + (ry-16) + 'px)';
+    requestAnimationFrame(tick);
+  })();
+  document.addEventListener('mousedown', function(){ ring.style.width='24px';ring.style.height='24px'; });
+  document.addEventListener('mouseup', function(){ ring.style.width='32px';ring.style.height='32px'; });
+})();
+
+/* ── Init ────────────────────────────────────────────────────────────── */
+AOS.init({ duration: 600, once: true, offset: 40 });
+renderGrid('all');
+</script>
+
+</body>
+</html>
