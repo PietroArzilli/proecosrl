@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PROECO — Dashboard Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
+<style>
+  :root{--silver:#3a4a5c;--silver-dim:#536070;--border:rgba(0,0,0,0.09);--border-bright:rgba(0,0,0,0.16);}
+  *{box-sizing:border-box;}
+  html{background:#f8f8f8;}
+  body{background:#f8f8f8;color:#1a1a1a;font-family:'Inter',sans-serif;font-weight:300;min-height:100vh;}
+  ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#f8f8f8;}::-webkit-scrollbar-thumb{background:#b0bec5;border-radius:2px;}
+
+  /* Topbar */
+  .topbar{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);height:60px;}
+
+  /* Section label */
+  .section-label{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(232,120,48,0.85);}
+  .section-label::before{content:'';width:18px;height:1px;background:rgba(232,120,48,0.6);}
+
+  /* Buttons */
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:linear-gradient(135deg,#ff9a3c,#ff6b00);border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#fff;cursor:pointer;text-decoration:none;transition:opacity 0.2s,transform 0.15s;}
+  .btn-primary:hover{opacity:0.88;transform:translateY(-1px);}
+  .btn-primary:active{transform:translateY(0);}
+
+  .btn-ghost{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--border-bright);border-radius:6px;font-family:'Inter',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.06em;color:var(--silver-dim);cursor:pointer;background:transparent;text-decoration:none;transition:all 0.2s;}
+  .btn-ghost:hover{border-color:var(--silver);color:#1a1a1a;background:rgba(58,74,92,0.04);}
+
+  .btn-edit{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border:1px solid rgba(58,74,92,0.25);border-radius:6px;font-size:11px;font-weight:400;color:var(--silver);background:transparent;cursor:pointer;text-decoration:none;transition:all 0.2s;white-space:nowrap;}
+  .btn-edit:hover{border-color:var(--silver);background:rgba(58,74,92,0.06);color:#1a1a1a;}
+
+  .btn-delete{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border:1px solid rgba(220,38,38,0.2);border-radius:6px;font-size:11px;font-weight:400;color:#b91c1c;background:transparent;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+  .btn-delete:hover{border-color:rgba(220,38,38,0.5);background:rgba(220,38,38,0.05);}
+
+  .btn-logout{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid rgba(220,38,38,0.2);border-radius:6px;font-size:11px;font-weight:400;color:#b91c1c;cursor:pointer;background:transparent;transition:all 0.2s;}
+  .btn-logout:hover{border-color:rgba(220,38,38,0.4);background:rgba(220,38,38,0.05);}
+
+  /* Card */
+  .admin-card{background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.05),0 1px 4px rgba(0,0,0,0.04);}
+
+  /* Table */
+  .news-table{width:100%;border-collapse:collapse;}
+  .news-table th{font-size:10px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--silver-dim);padding:12px 20px;text-align:left;border-bottom:1px solid var(--border);background:#fafafa;}
+  .news-table th:first-child{border-radius:10px 0 0 0;}
+  .news-table th:last-child{border-radius:0 10px 0 0;text-align:right;}
+  .news-table td{padding:16px 20px;border-bottom:1px solid var(--border);vertical-align:middle;font-size:13px;}
+  .news-table tr:last-child td{border-bottom:none;}
+  .news-table tr:last-child td:first-child{border-radius:0 0 0 10px;}
+  .news-table tr:last-child td:last-child{border-radius:0 0 10px 0;}
+  .news-table tbody tr{transition:background 0.15s;}
+  .news-table tbody tr:hover{background:rgba(232,120,48,0.03);}
+
+  /* Category badge */
+  .cat-badge{font-size:9px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;padding:3px 9px;border-radius:100px;display:inline-block;}
+  .cat-project{color:#e87830;background:rgba(232,120,48,0.1);}
+  .cat-technology{color:#3a4a5c;background:rgba(58,74,92,0.08);}
+  .cat-company{color:#536070;background:rgba(83,96,112,0.1);}
+  .cat-sustainability{color:#4a7c59;background:rgba(74,124,89,0.08);}
+  .cat-partnership{color:#7c4a6e;background:rgba(124,74,110,0.08);}
+
+  /* Empty state */
+  .empty-state{text-align:center;padding:64px 32px;}
+
+  /* Toast */
+  .toast{position:fixed;bottom:28px;right:28px;padding:12px 20px;border-radius:8px;font-size:12px;font-weight:400;color:#fff;z-index:9999;transform:translateY(16px);opacity:0;transition:all 0.3s;pointer-events:none;}
+  .toast.show{transform:translateY(0);opacity:1;}
+  .toast.success{background:#15803d;}
+  .toast.error{background:#b91c1c;}
+
+  /* Loader */
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spinner{width:20px;height:20px;border:2px solid rgba(232,120,48,0.2);border-top-color:#e87830;border-radius:50%;animation:spin 0.8s linear infinite;}
+
+  /* Stat pill */
+  .stat-pill{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px 20px;display:flex;flex-direction:column;gap:4px;}
+  .stat-pill .stat-val{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#1a1a1a;}
+  .stat-pill .stat-lbl{font-size:10px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver-dim);}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+  1. Configurazione Supabase (script normale — si esegue per primo)
+═══════════════════════════════════════════════════════════════════════════ -->
+<script>
+  window.SUPABASE_URL = 'https://rxfdswgokcqsdoebzclr.supabase.co';
+  window.SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4ZmRzd2dva2Nxc2RvZWJ6Y2xyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNjY5NDEsImV4cCI6MjA5Mjg0Mjk0MX0.j1mtZaniHx-LX0AoIsTj4tmFMtPkP2GGBjia5x2ZTm0';
+</script>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+  2. Inizializzazione client Supabase
+═══════════════════════════════════════════════════════════════════════════ -->
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+  window.supabase = createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+</script>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+  3. Logica dashboard
+═══════════════════════════════════════════════════════════════════════════ -->
+<script type="module">
+
+/* ── Utilità ─────────────────────────────────────────────────────────────── */
+function formatDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+function catClass(cat) {
+  const map = {
+    'Project Award': 'cat-project',
+    'Technology':    'cat-technology',
+    'Company':       'cat-company',
+    'Sustainability':'cat-sustainability',
+    'Partnership':   'cat-partnership'
+  };
+  return map[cat] || 'cat-company';
+}
+
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type;
+  void t.offsetWidth;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* ── Render tabella ──────────────────────────────────────────────────────── */
+function renderTable(news) {
+  const container = document.getElementById('newsContainer');
+
+  if (!news || news.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div style="font-size:40px;margin-bottom:16px;">📰</div>
+        <p style="font-size:14px;font-weight:400;color:var(--silver);">Nessuna news pubblicata.</p>
+        <p style="font-size:12px;font-weight:300;color:var(--silver-dim);margin-top:6px;">
+          Clicca su <strong style="font-weight:500;">+ Nuova News</strong> per aggiungere il primo articolo.
+        </p>
+      </div>`;
+    document.getElementById('countBadge').textContent = '0 articoli';
+    return;
+  }
+
+  document.getElementById('countBadge').textContent =
+    news.length === 1 ? '1 articolo' : news.length + ' articoli';
+
+  const rows = news.map(n => `
+    <tr>
+      <td>
+        <span style="font-weight:500;color:#1a1a1a;font-size:13px;">${escHtml(n.title || '—')}</span>
+      </td>
+      <td>
+        <span class="cat-badge ${catClass(n.category)}">${escHtml(n.category || '—')}</span>
+      </td>
+      <td style="color:var(--silver-dim);font-size:12px;white-space:nowrap;">
+        ${formatDate(n.created_at)}
+      </td>
+      <td style="text-align:right;">
+        <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
+          <a href="admin-modifica.html?id=${escHtml(String(n.id))}" class="btn-edit">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Modifica
+          </a>
+          <button class="btn-delete" onclick="handleDelete('${escHtml(String(n.id))}', ${escHtml(JSON.stringify(n.title || ''))})">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+            Elimina
+          </button>
+        </div>
+      </td>
+    </tr>`).join('');
+
+  container.innerHTML = `
+    <table class="news-table">
+      <thead>
+        <tr>
+          <th>Titolo</th>
+          <th>Categoria</th>
+          <th>Data</th>
+          <th style="text-align:right;">Azioni</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+/* ── Escape HTML ─────────────────────────────────────────────────────────── */
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/* ── Carica news ─────────────────────────────────────────────────────────── */
+async function loadNews() {
+  const loader = document.getElementById('loader');
+  const container = document.getElementById('newsContainer');
+  loader.style.display = 'flex';
+  container.style.display = 'none';
+
+  const { data, error } = await window.supabase
+    .from('news')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  loader.style.display = 'none';
+  container.style.display = 'block';
+
+  if (error) {
+    container.innerHTML = `<div class="empty-state">
+      <p style="color:#b91c1c;font-size:13px;">Errore nel caricamento: ${escHtml(error.message)}</p>
+    </div>`;
+    return;
+  }
+
+  renderTable(data);
+}
+
+/* ── Elimina news ────────────────────────────────────────────────────────── */
+window.handleDelete = async function(id, title) {
+  const ok = confirm(`Eliminare l'articolo "${title}"?\n\nQuesta operazione è irreversibile.`);
+  if (!ok) return;
+
+  const { error } = await window.supabase.from('news').delete().eq('id', id);
+
+  if (error) {
+    showToast('Errore: ' + error.message, 'error');
+    return;
+  }
+
+  showToast('Articolo eliminato con successo.', 'success');
+  loadNews();
+};
+
+/* ── Logout ──────────────────────────────────────────────────────────────── */
+window.handleLogout = async function() {
+  await window.supabase.auth.signOut();
+  window.location.href = 'index.html';
+};
+
+/* ── Controllo sessione + init ───────────────────────────────────────────── */
+const { data: { session } } = await window.supabase.auth.getSession();
+if (!session) {
+  window.location.href = 'login.html';
+} else {
+  // Mostra email utente
+  const emailEl = document.getElementById('userEmail');
+  if (emailEl) emailEl.textContent = session.user.email;
+  // Carica dati
+  loadNews();
+}
+
+</script>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+  LAYOUT
+═══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="max-w-5xl mx-auto px-6 h-full flex items-center justify-between gap-4">
+
+    <!-- Logo -->
+    <a href="index.html" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 72" height="34" style="display:block">
+        <circle cx="35.7" cy="35.7" r="35.4" fill="#1a1a1a"/>
+        <circle cx="35.7" cy="35.7" r="23.9" fill="#f8f8f8"/>
+        <rect x="27.2" y="27.9" width="16.6" height="16.6" rx="1" fill="#e87830"/>
+        <text x="82" y="53" font-family="'Montserrat',sans-serif" font-weight="400" font-size="38" letter-spacing="2"><tspan fill="#1a1a1a">PRO</tspan><tspan fill="#e87830">ECO</tspan></text>
+      </svg>
+    </a>
+
+    <!-- Right actions -->
+    <div class="flex items-center gap-3">
+      <span style="font-size:11px;font-weight:300;color:var(--silver-dim);" id="userEmail"></span>
+      <a href="index.html" class="btn-ghost">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </a>
+      <button class="btn-logout" onclick="handleLogout()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Esci
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Main content -->
+<main class="max-w-5xl mx-auto px-6 py-12">
+
+  <!-- Header sezione -->
+  <div class="mb-10" data-aos="fade-up">
+    <div class="section-label mb-3">Area Riservata</div>
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+      <div>
+        <h1 style="font-family:'Syne',sans-serif;font-size:32px;font-weight:700;color:#1a1a1a;line-height:1.1;letter-spacing:-0.02em;">
+          Dashboard Admin
+        </h1>
+        <p style="font-size:13px;font-weight:300;color:var(--silver-dim);margin-top:6px;">
+          Gestisci le news pubblicate sul sito PROECO.
+        </p>
+      </div>
+      <a href="admin-nuova.html" class="btn-primary" style="flex-shrink:0;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Nuova News
+      </a>
+    </div>
+  </div>
+
+  <!-- Contatore -->
+  <div class="mb-4 flex items-center justify-between" data-aos="fade-up" data-aos-delay="50">
+    <span id="countBadge" style="font-size:11px;font-weight:400;letter-spacing:0.08em;color:var(--silver-dim);text-transform:uppercase;"></span>
+  </div>
+
+  <!-- Card principale -->
+  <div class="admin-card overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+
+    <!-- Loader -->
+    <div id="loader" style="display:flex;align-items:center;justify-content:center;padding:64px 32px;gap:12px;">
+      <div class="spinner"></div>
+      <span style="font-size:13px;color:var(--silver-dim);">Caricamento in corso…</span>
+    </div>
+
+    <!-- Contenuto tabella -->
+    <div id="newsContainer" style="display:none;"></div>
+
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto px-6 py-8 mt-4">
+  <div style="border-top:1px solid var(--border);padding-top:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;">
+    <span style="font-size:10px;font-weight:300;color:rgba(83,96,112,0.5);letter-spacing:0.06em;">
+      &copy; 2025 PROECO S.r.l. &mdash; Tutti i diritti riservati
+    </span>
+    <span style="font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:rgba(232,120,48,0.6);">
+      Accesso riservato al personale autorizzato
+    </span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>AOS.init({ duration: 500, once: true, offset: 0 });</script>
+</body>
+</html>
