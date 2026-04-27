@@ -83,11 +83,13 @@
   3. Logica pagina
 ═══════════════════════════════════════════════════════════════════════════ -->
 <script type="module">
+(async () => {
 
 /* ── Controllo sessione ───────────────────────────────────────────────────── */
 const { data: { session } } = await window.supabase.auth.getSession();
 if (!session) {
   window.location.href = 'login.html';
+  return;
 }
 
 /* ── Leggi id dalla query string ─────────────────────────────────────────── */
@@ -209,6 +211,7 @@ document.getElementById('news-form').addEventListener('submit', async function(e
   window.location.href = 'admin.html';
 });
 
+})();
 </script>
 
 <!-- ══════════════════════════════════════════════════════════════════════════
