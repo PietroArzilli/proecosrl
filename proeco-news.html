@@ -255,6 +255,14 @@
 </footer>
 
 <!-- AOS -->
+<script>
+  window.SUPABASE_URL = 'https://rxfdswgokcqsdoebzclr.supabase.co';
+  window.SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4ZmRzd2dva2Nxc2RvZWJ6Y2xyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNjY5NDEsImV4cCI6MjA5Mjg0Mjk0MX0.j1mtZaniHx-LX0AoIsTj4tmFMtPkP2GGBjia5x2ZTm0';
+</script>
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+  window.supabase = createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 <script>
@@ -415,7 +423,8 @@ function cardHTML(n) {
   var title   = it   ? it.titleIT   : n.title;
   var excerpt = it   ? it.excerptIT : n.excerpt;
   var readMore = isIT ? 'Leggi di pi\u00f9' : 'Read more';
-  return '<article class="news-card" onclick="openArticle(' + n.id + ')" data-category="' + n.category + '">' +
+  var _idRef = typeof n.id === 'string' && n.id.indexOf('-') !== -1 ? "'" + n.id + "'" : n.id;
+  return '<article class="news-card" onclick="openArticle(' + _idRef + ')" data-category="' + n.category + '">' +
     '<div class="news-bar"></div>' +
     '<div style="padding:28px;flex:1;display:flex;flex-direction:column;">' +
       '<div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">' +
@@ -527,6 +536,32 @@ window.__newsLang = localStorage.getItem('proeco-lang') || 'en';
 window.renderGrid = renderGrid;
 AOS.init({ duration: 600, once: true, offset: 40 });
 renderGrid('all');
+</script>
+
+<script type="module">
+(async () => {
+  if (!window.supabase) return;
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var { data, error } = await window.supabase
+    .from('news')
+    .select('id,title,category,excerpt,content,created_at')
+    .order('created_at', { ascending: false });
+  if (error || !data || data.length === 0) return;
+  var mapped = data.map(function(row) {
+    var d = new Date(row.created_at);
+    var body = (row.content || '').replace(/\r?\n\r?\n/g, '</p><p>').replace(/\r?\n/g, '<br/>');
+    return {
+      id: row.id,
+      category: row.category || 'Company',
+      date: months[d.getMonth()] + ' ' + d.getFullYear(),
+      title: row.title,
+      excerpt: row.excerpt || '',
+      body: '<p>' + body + '</p>'
+    };
+  });
+  window.NEWS = mapped.concat(window.NEWS);
+  if (window.renderGrid) window.renderGrid(window.__newsFilter || 'all');
+})();
 </script>
 
 
