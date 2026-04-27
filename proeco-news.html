@@ -211,7 +211,7 @@
             <text x="82" y="53" font-family="'Montserrat',sans-serif" font-weight="400" font-size="38" letter-spacing="2"><tspan fill="#ffffff">PRO</tspan><tspan fill="#e87830">ECO</tspan></text>
           </svg>
         </div>
-        <div class="footer-motto">We develop what others can't</div>
+        <div class="footer-motto">PROUD TO DEVELOP SOLUTIONS</div>
         <div class="text-xs font-light mt-2" style="color:var(--silver-dim)">Part of Parlym Group &middot; Proeco S.r.l.</div>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-4 text-left">
@@ -338,6 +338,65 @@ var NEWS = [
   }
 ];
 
+/* ── Italian content lookup ───────────────────────────────────────────── */
+var IT_CONTENT = {
+  1: {
+    titleIT: "PROECO aggiudica contratto di ingegneria per l’espansione del terminale LNG in Africa Occidentale",
+    excerptIT: "Il nostro team multidisciplinare è stato selezionato per guidare FEED e ingegneria di dettaglio per un importante ampliamento della capacità di un terminale LNG, nelle discipline di processo, civile, meccanica e strumentazione."
+  },
+  2: {
+    titleIT: "Digital Twin Consegnato: Primo Modello 3D As-Built Completo per Piattaforma di Raffineria Offshore",
+    excerptIT: "Utilizzando Aveva E3D e il laser scanning, PROECO ha completato il primo digital twin completamente integrato per una piattaforma di raffineria offshore, raggiungendo una precisione di scansione inferiore a 2mm su 14 ponti."
+  },
+  3: {
+    titleIT: "PROECO amplia il team di ingegneria a 115 specialisti permanenti",
+    excerptIT: "Dopo un anno record nelle consegne di progetto, PROECO ha portato il team interno permanente a 115 specialisti, rafforzando l’impegno verso lo zero-outsourcing dell’ingegneria core."
+  },
+  4: {
+    titleIT: "PROECO selezionata per lo studio di Life Extension — Mare del Nord",
+    excerptIT: "Un importante operatore del Mare del Nord ha incaricato PROECO di condurre una valutazione ingegneristica completa per l’estensione della vita di una piattaforma offshore fissa, coprendo strutture, processo e sistemi di sicurezza."
+  },
+  5: {
+    titleIT: "PROECO completa lo studio di fattibilità sull’idrogeno verde per un cluster industriale",
+    excerptIT: "In collaborazione con un consorzio di partner industriali italiani, PROECO ha consegnato uno studio di fattibilità completo per un hub di produzione e distribuzione di idrogeno verde a servizio di un cluster chimico-energetico."
+  },
+  6: {
+    titleIT: "Il team Digital di PROECO consegue la certificazione Aveva E3D Expert",
+    excerptIT: "Cinque membri del team Digital Engineering di PROECO hanno superato il programma di certificazione Aveva E3D Expert, rendendo PROECO una delle realtà più certificate su E3D in Italia."
+  },
+  7: {
+    titleIT: "PROECO e Parlym Group formalizzano il framework di collaborazione ingegneristica internazionale",
+    excerptIT: "Come parte del Gruppo Parlym, PROECO ha firmato un accordo di collaborazione transnazionale con le società del gruppo, abilitando la condivisione fluida di risorse e l’esecuzione congiunta di progetti su quattro continenti."
+  },
+  8: {
+    titleIT: "PROECO si aggiudica il contratto di revamping per un importante impianto petrolchimico nel Sud Italia",
+    excerptIT: "A PROECO è stato assegnato il revamping su larga scala di un’unità di produzione di polietilene, con ingegneria multidisciplinare completa dalla riprogettazione del processo alla documentazione issued-for-construction."
+  },
+  9: {
+    titleIT: "PROECO lancia il programma interno di riduzione dell’impronta carbonica",
+    excerptIT: "PROECO ha avviato un programma strutturato per misurare, ridurre e compensare la propria impronta di carbonio operativa, puntando a una riduzione del 40% delle emissioni Scope 1 e 2 entro il 2027."
+  }
+};
+
+var CAT_IT = {
+  'Project Award':'Aggiudicazione Progetto',
+  'Technology':'Tecnologia',
+  'Company':'Azienda',
+  'Sustainability':'Sostenibilità',
+  'Partnership':'Partnership'
+};
+
+var MONTH_IT = {
+  'January':'Gennaio','February':'Febbraio','March':'Marzo',
+  'April':'Aprile','May':'Maggio','June':'Giugno',
+  'July':'Luglio','August':'Agosto','September':'Settembre',
+  'October':'Ottobre','November':'Novembre','December':'Dicembre'
+};
+
+function translateDate(d) {
+  return d.replace(/^([A-Za-z]+)/, function(m, mon) { return MONTH_IT[mon] || mon; });
+}
+
 /* ── Category badge class map ─────────────────────────────────────────── */
 var CAT_CLASS = {
   'Project Award': 'cat-project',
@@ -349,18 +408,25 @@ var CAT_CLASS = {
 
 /* ── Render a single card HTML ───────────────────────────────────────── */
 function cardHTML(n) {
+  var isIT = window.__newsLang === 'it';
+  var it = isIT ? IT_CONTENT[n.id] : null;
+  var cat     = isIT && CAT_IT[n.category]   ? CAT_IT[n.category]   : n.category;
+  var date    = isIT ? translateDate(n.date) : n.date;
+  var title   = it   ? it.titleIT   : n.title;
+  var excerpt = it   ? it.excerptIT : n.excerpt;
+  var readMore = isIT ? 'Leggi di pi\u00f9' : 'Read more';
   return '<article class="news-card" onclick="openArticle(' + n.id + ')" data-category="' + n.category + '">' +
     '<div class="news-bar"></div>' +
     '<div style="padding:28px;flex:1;display:flex;flex-direction:column;">' +
       '<div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">' +
-        '<span class="cat-badge ' + (CAT_CLASS[n.category] || 'cat-company') + '">' + n.category + '</span>' +
-        '<span style="font-size:10px;color:rgba(0,0,0,0.35);font-weight:300;">' + n.date + '</span>' +
+        '<span class="cat-badge ' + (CAT_CLASS[n.category] || 'cat-company') + '">' + cat + '</span>' +
+        '<span style="font-size:10px;color:rgba(0,0,0,0.35);font-weight:300;">' + date + '</span>' +
       '</div>' +
-      '<h3 style="font-family:\'Syne\',sans-serif;font-size:16px;font-weight:600;color:#1a1a1a;line-height:1.4;margin-bottom:10px;">' + n.title + '</h3>' +
-      '<p style="font-size:12px;font-weight:300;color:rgba(0,0,0,0.55);line-height:1.7;flex:1;">' + n.excerpt + '</p>' +
+      '<h3 style="font-family:\'Syne\',sans-serif;font-size:16px;font-weight:600;color:#1a1a1a;line-height:1.4;margin-bottom:10px;">' + title + '</h3>' +
+      '<p style="font-size:12px;font-weight:300;color:rgba(0,0,0,0.55);line-height:1.7;flex:1;">' + excerpt + '</p>' +
       '<div class="news-read-more">' +
         '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>' +
-        'Read more' +
+        readMore +
       '</div>' +
     '</div>' +
   '</article>';
@@ -383,6 +449,7 @@ function renderGrid(filter) {
 
 /* ── Filter button click ─────────────────────────────────────────────── */
 function filterNews(btn, filter) {
+  window.__newsFilter = filter;
   /* close article view if open */
   if (document.getElementById('article-view').style.display !== 'none') {
     closeArticle();
@@ -412,7 +479,8 @@ function openArticle(id) {
       '<span style="font-size:11px;color:rgba(0,0,0,0.4);font-weight:300;">' + n.date + '</span>' +
     '</div>';
 
-  document.getElementById('articleTitle').textContent = n.title;
+  var _it = window.__newsLang === 'it' ? IT_CONTENT[n.id] : null;
+  document.getElementById('articleTitle').textContent = _it ? _it.titleIT : n.title;
   document.getElementById('articleBody').innerHTML = n.body;
 
   /* related: up to 2 other articles */
@@ -454,6 +522,9 @@ function toggleMenu() {
 })();
 
 /* ── Init ────────────────────────────────────────────────────────────── */
+window.__newsFilter = 'all';
+window.__newsLang = localStorage.getItem('proeco-lang') || 'en';
+window.renderGrid = renderGrid;
 AOS.init({ duration: 600, once: true, offset: 40 });
 renderGrid('all');
 </script>
@@ -482,7 +553,7 @@ var T = {
 // Footer
 "Navigate":"Navigazione","Categories":"Categorie","Headquarters":"Sede Centrale",
 "Home":"Home","Digital Eng.":"Ing. Digitale","Capability":"Capacit\u00e0","Our Team":"Il Nostro Team",
-"We develop what others can\'t":"Sviluppiamo ci\u00f2 che gli altri non possono.",
+"PROUD TO DEVELOP SOLUTIONS":"Orgogliosi di sviluppare soluzioni.",
 "Part of Parlym Group \u00b7 Proeco S.r.l.":"Parte del Gruppo Parlym \u00b7 Proeco S.r.l.",
 "\u00a9 2025 PROECO S.r.l. All rights reserved.":"\u00a9 2025 PROECO S.r.l. Tutti i diritti riservati.",
 "Website by Pubby S.r.l.":"Website by Pubby S.r.l.",
@@ -525,6 +596,8 @@ function apply(l) {
       if (orig !== undefined) textNode.textContent = orig;
     }
   });
+  window.__newsLang = l;
+  if (window.renderGrid) window.renderGrid(window.__newsFilter || 'all');
 }
 
 function init() {
