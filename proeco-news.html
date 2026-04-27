@@ -531,9 +531,9 @@ function init() {
   var ph = document.getElementById('lang-switch-placeholder');
   if (!ph) return;
   ph.innerHTML =
-    '<span id="lang-en" style="cursor:pointer;font-size:11px;letter-spacing:.08em;transition:all .2s;color:#1a1a1a;font-weight:600" onclick="window.__i18n('en')">EN</span>' +
+    '<span id="lang-en" style="cursor:pointer;font-size:11px;letter-spacing:.08em;transition:all .2s;color:#1a1a1a;font-weight:600" onclick="window.__i18n(\'en\')">EN</span>' +
     '<span style="font-size:10px;color:rgba(26,26,26,0.25);margin:0 4px">/</span>' +
-    '<span id="lang-it" style="cursor:pointer;font-size:11px;letter-spacing:.08em;transition:all .2s;color:rgba(58,74,92,0.5)" onclick="window.__i18n('it')">IT</span>';
+    '<span id="lang-it" style="cursor:pointer;font-size:11px;letter-spacing:.08em;transition:all .2s;color:rgba(58,74,92,0.5)" onclick="window.__i18n(\'it\')">IT</span>';
   apply(lang);
 }
 
