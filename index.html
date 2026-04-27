@@ -1292,7 +1292,7 @@
       </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="landingNewsGrid">
 
       <!-- Card 1 -->
       <article data-aos="fade-up" data-aos-delay="0" class="news-card">
@@ -1426,6 +1426,49 @@
   </div>
 </footer>
 
+<script>
+  window.SUPABASE_URL = 'https://rxfdswgokcqsdoebzclr.supabase.co';
+  window.SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4ZmRzd2dva2Nxc2RvZWJ6Y2xyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNjY5NDEsImV4cCI6MjA5Mjg0Mjk0MX0.j1mtZaniHx-LX0AoIsTj4tmFMtPkP2GGBjia5x2ZTm0';
+</script>
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+  window.supabase = createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+</script>
+<script type="module">
+(async () => {
+  if (!window.supabase) return;
+  var grid = document.getElementById('landingNewsGrid');
+  if (!grid) return;
+  var { data, error } = await window.supabase
+    .from('news')
+    .select('id,title,category,excerpt,created_at')
+    .order('created_at', { ascending: false })
+    .limit(3);
+  if (error || !data || data.length === 0) return;
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  grid.innerHTML = data.map(function(row, i) {
+    var d = new Date(row.created_at);
+    var dateStr = months[d.getMonth()] + ' ' + d.getFullYear();
+    return '<article class="news-card" onclick="location.href=\'proeco-news.html\'" style="cursor:pointer;">' +
+      '<div class="news-bar"></div>' +
+      '<div style="padding:28px;flex:1;display:flex;flex-direction:column;">' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">' +
+          '<span style="font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#e87830;background:rgba(232,120,48,0.08);padding:4px 10px;border-radius:100px;">' + esc(row.category) + '</span>' +
+          '<span style="font-size:10px;color:rgba(0,0,0,0.35);font-weight:300;">' + esc(dateStr) + '</span>' +
+        '</div>' +
+        '<h3 style="font-family:\'Syne\',sans-serif;font-size:16px;font-weight:600;color:#1a1a1a;line-height:1.4;margin-bottom:10px;">' + esc(row.title) + '</h3>' +
+        '<p style="font-size:12px;font-weight:300;color:rgba(0,0,0,0.55);line-height:1.7;flex:1;">' + esc(row.excerpt || '') + '</p>' +
+        '<div class="news-read-more">' +
+          '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>' +
+          'Read more' +
+        '</div>' +
+      '</div>' +
+      '</article>';
+  }).join('');
+  if (typeof AOS !== 'undefined') AOS.refresh();
+})();
+</script>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 AOS.init({duration:800,easing:'cubic-bezier(0.4,0,0.2,1)',once:true,offset:80});
