@@ -626,25 +626,25 @@
       <div class="grid grid-cols-2 gap-4" data-aos="fade-left" data-aos-delay="120">
         <div class="hero-stat-card">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#e87830,transparent)"></div>
-          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px">40%</div>
+          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px" data-config-key="oil_gas_percent">40%</div>
           <div style="font-size:11px;font-weight:600;color:#1a1a1a;margin-bottom:3px">Oil &amp; Gas</div>
           <div style="font-size:10px;color:var(--silver-dim)">Largest revenue sector</div>
         </div>
         <div class="hero-stat-card">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#e87830,transparent)"></div>
-          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px">25%</div>
+          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px" data-config-key="energy_transition_percent">25%</div>
           <div style="font-size:11px;font-weight:600;color:#1a1a1a;margin-bottom:3px">Energy Transition</div>
           <div style="font-size:10px;color:var(--silver-dim)">Fastest growing sector</div>
         </div>
         <div class="hero-stat-card">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#e87830,transparent)"></div>
-          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px">20%</div>
+          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px" data-config-key="chemical_percent">20%</div>
           <div style="font-size:11px;font-weight:600;color:#1a1a1a;margin-bottom:3px">Chemical</div>
           <div style="font-size:10px;color:var(--silver-dim)">Process &amp; refining</div>
         </div>
         <div class="hero-stat-card">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#e87830,transparent)"></div>
-          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px">15%</div>
+          <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px" data-config-key="power_plants_percent">15%</div>
           <div style="font-size:11px;font-weight:600;color:#1a1a1a;margin-bottom:3px">Power Plants</div>
           <div style="font-size:10px;color:var(--silver-dim)">Generation &amp; distribution</div>
         </div>
@@ -1094,6 +1094,30 @@
   </div>
 </footer>
 
+<script>
+  window.SUPABASE_URL = 'https://rxfdswgokcqsdoebzclr.supabase.co';
+  window.SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4ZmRzd2dva2Nxc2RvZWJ6Y2xyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNjY5NDEsImV4cCI6MjA5Mjg0Mjk0MX0.j1mtZaniHx-LX0AoIsTj4tmFMtPkP2GGBjia5x2ZTm0';
+</script>
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+  window.supabase = createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+</script>
+<script type="module">
+(async () => {
+  if (!window.supabase) return;
+  var pctKeys = {oil_gas_percent:1,energy_transition_percent:1,chemical_percent:1,power_plants_percent:1};
+  var { data, error } = await window.supabase.from('site_config').select('*');
+  if (error || !data) return;
+  var cfg = {};
+  data.forEach(function(row) { cfg[row.key] = row.value; });
+  window.__siteConfig = cfg;
+  document.querySelectorAll('[data-config-key]').forEach(function(el) {
+    var key = el.getAttribute('data-config-key');
+    if (!(key in cfg)) return;
+    el.textContent = pctKeys[key] ? cfg[key] + '%' : cfg[key];
+  });
+})();
+</script>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 AOS.init({duration:800,easing:'cubic-bezier(0.4,0,0.2,1)',once:true,offset:80});
@@ -1239,7 +1263,9 @@ var T={
 "Our electrical engineers work in parallel with process and mechanical disciplines to deliver fully integrated solutions for conventional power plants, cogeneration systems and industrial power networks.":"I nostri ingegneri elettrici lavorano in parallelo con le discipline di processo e meccanica per fornire soluzioni completamente integrate per centrali convenzionali, sistemi di cogenerazione e reti elettriche industriali.",
 "Revenue share":"Quota fatturato","Years experience":"Anni di esperienza","Core sector":"Settore principale",
 "Net 0":"Net 0","Commitment":"Impegno","ATEX":"ATEX","Certified":"Certificato","HV/MV":"AT/MT","Expertise":"Competenza",
-"Oil & Gas":"Oil & Gas","Green Energy":"Energia Verde","Chemical":"Chimico","Power":"Energia"
+"Oil & Gas":"Oil & Gas","Green Energy":"Energia Verde","Chemical":"Chimico","Power":"Energia",
+"Start a Project":"Inizia un Progetto",
+"Tell us about your project scope and timeline. Our multidisciplinary team has the expertise to deliver across every sector we serve.":"Raccontaci il tuo progetto e le tue scadenze. Il nostro team multidisciplinare ha le competenze per operare in ogni settore che serviamo."
 };
 function walkText(node,fn){
   if(!node)return;
