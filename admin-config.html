@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PROECO — Configurazione Numeri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
+<style>
+  :root{--silver:#3a4a5c;--silver-dim:#536070;--border:rgba(0,0,0,0.09);--border-bright:rgba(0,0,0,0.16);}
+  *{box-sizing:border-box;}
+  html{background:#f8f8f8;}
+  body{background:#f8f8f8;color:#1a1a1a;font-family:'Inter',sans-serif;font-weight:300;min-height:100vh;}
+  ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:#f8f8f8;}::-webkit-scrollbar-thumb{background:#b0bec5;border-radius:2px;}
+
+  .section-label{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(232,120,48,0.85);}
+  .section-label::before{content:'';width:18px;height:1px;background:rgba(232,120,48,0.6);}
+
+  .config-card{background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.06),0 2px 8px rgba(0,0,0,0.04);overflow:hidden;}
+
+  .input-number{width:100%;padding:9px 12px;border:1px solid var(--border-bright);border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:#1a1a1a;background:#fafafa;outline:none;transition:border-color 0.2s,box-shadow 0.2s,background 0.2s;text-align:right;}
+  .input-number::-webkit-inner-spin-button{opacity:0.4;}
+  .input-number:focus{border-color:rgba(232,120,48,0.6);box-shadow:0 0 0 3px rgba(232,120,48,0.08);background:#fff;}
+
+  .btn-save{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:8px 14px;background:linear-gradient(135deg,#ff9a3c,#ff6b00);border:none;border-radius:7px;font-family:'Inter',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:#fff;cursor:pointer;transition:opacity 0.2s,transform 0.15s;white-space:nowrap;min-width:64px;}
+  .btn-save:hover:not(:disabled){opacity:0.88;transform:translateY(-1px);}
+  .btn-save:active:not(:disabled){transform:translateY(0);}
+  .btn-save:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+
+  .btn-save-all{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 32px;background:linear-gradient(135deg,#ff9a3c,#ff6b00);border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#fff;cursor:pointer;transition:opacity 0.2s,transform 0.15s;}
+  .btn-save-all:hover:not(:disabled){opacity:0.88;transform:translateY(-1px);}
+  .btn-save-all:active:not(:disabled){transform:translateY(0);}
+  .btn-save-all:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+
+  .btn-ghost{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:300;color:var(--silver-dim);text-decoration:none;letter-spacing:0.04em;transition:color 0.2s;}
+  .btn-ghost:hover{color:#1a1a1a;}
+
+  .feedback{font-size:11px;font-weight:400;letter-spacing:0.03em;opacity:0;transition:opacity 0.25s;}
+  .feedback.ok{color:#15803d;opacity:1;}
+  .feedback.err{color:#b91c1c;opacity:1;}
+
+  .table-header{background:#f8f8f8;border-bottom:1px solid var(--border);}
+  .table-row{border-bottom:1px solid var(--border);transition:background 0.15s;}
+  .table-row:last-child{border-bottom:none;}
+  .table-row:hover{background:rgba(232,120,48,0.018);}
+
+  .key-badge{font-family:'Montserrat',monospace;font-size:10px;font-weight:400;color:var(--silver);background:rgba(58,74,92,0.07);padding:3px 9px;border-radius:5px;letter-spacing:0.04em;display:inline-block;}
+
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spinner{width:11px;height:11px;border:2px solid rgba(255,255,255,0.35);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block;flex-shrink:0;}
+  .spinner-page{width:22px;height:22px;border:2px solid rgba(232,120,48,0.2);border-top-color:#e87830;border-radius:50%;animation:spin 0.8s linear infinite;}
+
+  .topbar{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);height:60px;}
+  .error-global{display:none;padding:12px 16px;background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.2);border-radius:8px;font-size:12px;font-weight:400;color:#b91c1c;line-height:1.6;margin-bottom:24px;}
+  .error-global.visible{display:block;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+  1. Configurazione Supabase
+═══════════════════════════════════════════════════════════════════════════ -->
+<script>
+  window.SUPABASE_URL = 'https://rxfdswgokcqsdoebzclr.supabase.co';
+  window.SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4ZmRzd2dva2Nxc2RvZWJ6Y2xyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNjY5NDEsImV4cCI6MjA5Mjg0Mjk0MX0.j1mtZaniHx-LX0AoIsTj4tmFMtPkP2GGBjia5x2ZTm0';
+</script>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+  2. Inizializzazione client Supabase
+═══════════════════════════════════════════════════════════════════════════ -->
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+  window.supabase = createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+</script>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+  3. Logica pagina
+═══════════════════════════════════════════════════════════════════════════ -->
+<script type="module">
+(async () => {
+
+/* ── Controllo sessione ── */
+const { data: { session } } = await window.supabase.auth.getSession();
+if (!session) {
+  window.location.href = 'login.html';
+  return;
+}
+
+/* ── Definizione variabili ── */
+const CONFIGS = [
+  { key: 'revenue_target',                  desc: 'Revenue target this year' },
+  { key: 'internal_experts',                desc: 'Internal experts' },
+  { key: 'years_experience',                desc: 'Years of experience' },
+  { key: 'countries_operating',             desc: 'Countries where we operate' },
+  { key: 'oil_gas_percent',                 desc: 'Oil & Gas %' },
+  { key: 'energy_transition_percent',       desc: 'Energy Transition and Environment %' },
+  { key: 'chemical_percent',                desc: 'Chemical %' },
+  { key: 'power_plants_percent',            desc: 'Power Plants %' },
+  { key: 'total_engineers',                 desc: 'Total engineers' },
+  { key: 'annual_man_hours',                desc: 'Annual man hours' },
+  { key: 'process_experts',                 desc: 'Process experts' },
+  { key: 'mechanical_piping_experts',       desc: 'Mechanical & Piping experts' },
+  { key: 'electrical_instrumental_experts', desc: 'Electrical & Instrumental experts' },
+  { key: 'civil_structural_experts',        desc: 'Civil & Structural experts' },
+  { key: 'fire_gas_safety_experts',         desc: 'Fire & Gas Safety experts' },
+  { key: 'automation_control_experts',      desc: 'Automation & Control experts' },
+  { key: 'lci_digitalisation_experts',      desc: 'LCI & Digitalisation experts' },
+  { key: 'management_experts',              desc: 'Management experts' },
+  { key: 'engineering_centers',             desc: 'Engineering centers' },
+];
+
+/* ── Riferimenti DOM ── */
+const loader      = document.getElementById('loader');
+const tableWrap   = document.getElementById('tableWrap');
+const saveAllWrap = document.getElementById('saveAllWrap');
+const globalError = document.getElementById('globalError');
+
+/* ── Carica configurazioni ── */
+const { data: rows, error: loadError } = await window.supabase
+  .from('site_config')
+  .select('*');
+
+loader.style.display = 'none';
+
+if (loadError) {
+  globalError.textContent = 'Errore nel caricamento dei dati: ' + loadError.message;
+  globalError.classList.add('visible');
+  return;
+}
+
+/* ── Mappa chiave → valore ── */
+const valueMap = {};
+(rows || []).forEach(r => { valueMap[r.key] = r.value; });
+
+/* ── Rendering righe tabella ── */
+const tbody = document.getElementById('configTbody');
+tbody.innerHTML = CONFIGS.map(cfg => {
+  const val = valueMap[cfg.key] !== undefined ? Number(valueMap[cfg.key]) : '';
+  return `
+    <tr class="table-row">
+      <td style="padding:13px 20px;vertical-align:middle;">
+        <span class="key-badge">${cfg.key}</span>
+      </td>
+      <td style="padding:13px 20px;vertical-align:middle;font-size:12px;font-weight:300;color:var(--silver-dim);line-height:1.4;">${cfg.desc}</td>
+      <td style="padding:13px 20px;vertical-align:middle;width:150px;">
+        <input
+          id="input-${cfg.key}"
+          type="number"
+          class="input-number"
+          value="${val}"
+          step="any"
+          min="0"
+        />
+      </td>
+      <td style="padding:13px 20px;vertical-align:middle;width:160px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button class="btn-save" id="btn-${cfg.key}" onclick="window.saveRow('${cfg.key}')">Salva</button>
+          <span id="fb-${cfg.key}" class="feedback"></span>
+        </div>
+      </td>
+    </tr>`;
+}).join('');
+
+tableWrap.style.display = 'block';
+saveAllWrap.style.display = 'flex';
+
+/* ── Salva singola riga ── */
+window.saveRow = async function(key) {
+  const input = document.getElementById('input-' + key);
+  const fb    = document.getElementById('fb-' + key);
+  const btn   = document.getElementById('btn-' + key);
+  const value = parseFloat(input.value);
+
+  if (isNaN(value)) {
+    showFeedback(fb, '✗ Valore non valido', false);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>';
+
+  const { error } = await window.supabase
+    .from('site_config')
+    .update({ value })
+    .eq('key', key);
+
+  btn.disabled = false;
+  btn.innerHTML = 'Salva';
+  showFeedback(fb, error ? '✗ Errore' : '✓ Salvato', !error);
+};
+
+/* ── Salva tutto ── */
+window.saveAll = async function() {
+  const btn    = document.getElementById('saveAllBtn');
+  const allFb  = document.getElementById('saveAllFeedback');
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Salvataggio…';
+
+  const results = await Promise.all(CONFIGS.map(async cfg => {
+    const input = document.getElementById('input-' + cfg.key);
+    const value = parseFloat(input.value);
+    if (isNaN(value)) return { key: cfg.key, ok: false };
+    const { error } = await window.supabase
+      .from('site_config')
+      .update({ value })
+      .eq('key', cfg.key);
+    return { key: cfg.key, ok: !error };
+  }));
+
+  btn.disabled = false;
+  btn.innerHTML =
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+    '<path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v14a2 2 0 01-2 2z"/>' +
+    '<polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Salva tutto';
+
+  results.forEach(r => {
+    const fb = document.getElementById('fb-' + r.key);
+    if (fb) showFeedback(fb, r.ok ? '✓ Salvato' : '✗ Errore', r.ok);
+  });
+
+  const allOk = results.every(r => r.ok);
+  allFb.textContent = allOk ? '✓ Tutti i valori aggiornati' : '✗ Alcuni valori non sono stati salvati';
+  allFb.className = 'feedback ' + (allOk ? 'ok' : 'err');
+  setTimeout(() => { allFb.className = 'feedback'; }, 4000);
+};
+
+/* ── Helper feedback ── */
+function showFeedback(el, msg, ok) {
+  el.textContent = msg;
+  el.className = 'feedback ' + (ok ? 'ok' : 'err');
+  setTimeout(() => { el.className = 'feedback'; }, 3000);
+}
+
+})();
+</script>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+  LAYOUT
+═══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- Top bar -->
+<header class="topbar">
+  <div class="max-w-5xl mx-auto px-6 h-full flex items-center justify-between gap-4">
+    <a href="admin.html" class="btn-ghost">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Torna alla dashboard
+    </a>
+    <a href="index.html" style="display:flex;align-items:center;text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 72" height="32" style="display:block">
+        <circle cx="35.7" cy="35.7" r="35.4" fill="#1a1a1a"/>
+        <circle cx="35.7" cy="35.7" r="23.9" fill="#f8f8f8"/>
+        <rect x="27.2" y="27.9" width="16.6" height="16.6" rx="1" fill="#e87830"/>
+        <text x="82" y="53" font-family="'Montserrat',sans-serif" font-weight="400" font-size="38" letter-spacing="2"><tspan fill="#1a1a1a">PRO</tspan><tspan fill="#e87830">ECO</tspan></text>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="max-w-5xl mx-auto px-6 py-12">
+
+  <!-- Intestazione -->
+  <div class="mb-8" data-aos="fade-up">
+    <div class="section-label mb-3">Configurazione Sito</div>
+    <h1 style="font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:#1a1a1a;line-height:1.15;letter-spacing:-0.02em;">
+      Numeri Aziendali
+    </h1>
+    <p style="font-size:12px;font-weight:300;color:var(--silver-dim);margin-top:6px;line-height:1.6;">
+      Aggiorna i valori numerici visualizzati sul sito. Salva ogni riga singolarmente oppure usa
+      <strong style="font-weight:500;">Salva tutto</strong> per aggiornare tutti i campi in una sola operazione.
+    </p>
+  </div>
+
+  <!-- Errore globale -->
+  <div id="globalError" class="error-global"></div>
+
+  <!-- Card tabella -->
+  <div class="config-card" data-aos="fade-up" data-aos-delay="60">
+
+    <!-- Loader -->
+    <div id="loader" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:64px 32px;">
+      <div class="spinner-page"></div>
+      <span style="font-size:13px;color:var(--silver-dim);">Caricamento configurazione…</span>
+    </div>
+
+    <!-- Tabella -->
+    <div id="tableWrap" style="display:none;overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;min-width:600px;">
+        <thead class="table-header">
+          <tr>
+            <th style="padding:12px 20px;text-align:left;font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver-dim);white-space:nowrap;">Chiave</th>
+            <th style="padding:12px 20px;text-align:left;font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver-dim);">Descrizione</th>
+            <th style="padding:12px 20px;text-align:right;font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--silver-dim);white-space:nowrap;">Valore attuale</th>
+            <th style="padding:12px 20px;width:160px;"></th>
+          </tr>
+        </thead>
+        <tbody id="configTbody"></tbody>
+      </table>
+    </div>
+
+  </div><!-- /config-card -->
+
+  <!-- Salva tutto -->
+  <div id="saveAllWrap" style="display:none;align-items:center;gap:16px;flex-wrap:wrap;margin-top:24px;" data-aos="fade-up" data-aos-delay="80">
+    <button id="saveAllBtn" class="btn-save-all" onclick="window.saveAll()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v14a2 2 0 01-2 2z"/>
+        <polyline points="17 21 17 13 7 13 7 21"/>
+        <polyline points="7 3 7 8 15 8"/>
+      </svg>
+      Salva tutto
+    </button>
+    <span id="saveAllFeedback" class="feedback" style="font-size:12px;"></span>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto px-6 py-8 mt-4">
+  <div style="border-top:1px solid var(--border);padding-top:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;">
+    <span style="font-size:10px;font-weight:300;color:rgba(83,96,112,0.5);letter-spacing:0.06em;">
+      &copy; 2025 PROECO S.r.l. &mdash; Tutti i diritti riservati
+    </span>
+    <span style="font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:rgba(232,120,48,0.6);">
+      Accesso riservato al personale autorizzato
+    </span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>AOS.init({ duration: 500, once: true, offset: 0 });</script>
+</body>
+</html>
