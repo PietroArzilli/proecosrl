@@ -600,6 +600,7 @@ function walkText(node, fn) {
   if (tag === 'H1' || tag === 'H2') return;
   if (node.classList && (node.classList.contains('hero-tagline') || node.classList.contains('section-title'))) return;
   if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') return;
+  if (node.id === 'newsGrid' || node.id === 'article-view') return;
   if (node.nodeType === 3) {
     fn(node);
   } else {
