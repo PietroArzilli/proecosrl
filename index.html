@@ -769,7 +769,7 @@
         <div class="section-label mb-5" style="color:rgba(255,255,255,0.6);">
           <span style="display:inline-block;width:32px;height:1px;background:rgba(255,255,255,0.4);margin-right:12px;vertical-align:middle;"></span>The People</div>
         <h2 class="section-title mb-6" style="color:#ffffff;">Engineering is<br/>a team<br/><span style="background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">sport.</span></h2>
-        <p class="text-sm font-light leading-relaxed mb-8" style="color:rgba(255,255,255,0.8);max-width:420px">Behind every project delivery, every precision calculation and every on-time handover is a team of 115 engineers who chose to build their careers around excellence. Part of Parlym Group, PROECO brings together specialists across a wide range of disciplines — united by a shared commitment to solving the problems others find extremely difficult to address.</p>
+        <p class="text-sm font-light leading-relaxed mb-8" style="color:rgba(255,255,255,0.8);max-width:420px">Behind every project delivery, every precision calculation and every on-time handover is a team of <span data-config-key="internal_experts">115</span> engineers who chose to build their careers around excellence. Part of Parlym Group, PROECO brings together specialists across a wide range of disciplines — united by a shared commitment to solving the problems others find extremely difficult to address.</p>
 
         <!-- Quotes -->
         <div class="quote-block" style="border-left:2px solid rgba(232,120,48,0.6);padding-left:20px;margin-bottom:28px;">
@@ -780,17 +780,17 @@
         <!-- Mini stats -->
         <div class="flex gap-8 mb-10">
           <div>
-            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">115</div>
+            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1" data-config-key="internal_experts">115</div>
             <div style="font-size:11px;color:rgba(255,255,255,0.85);margin-top:4px;letter-spacing:.06em">Permanent Engineers</div>
           </div>
           <div style="width:1px;background:rgba(255,255,255,0.2)"></div>
           <div>
-            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">160+</div>
+            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1" data-config-key="total_engineers">160+</div>
             <div style="font-size:11px;color:rgba(255,255,255,0.85);margin-top:4px;letter-spacing:.06em">Total Engineers</div>
           </div>
           <div style="width:1px;background:rgba(255,255,255,0.2)"></div>
           <div>
-            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">250k+</div>
+            <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1" data-config-key="annual_man_hours">250k+</div>
             <div style="font-size:11px;color:rgba(255,255,255,0.85);margin-top:4px;letter-spacing:.06em">Annual Man Hours</div>
           </div>
         </div>
@@ -1208,7 +1208,7 @@
       <!-- Intro text + CTA -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-14">
         <p class="text-sm font-light leading-relaxed md:max-w-lg" style="color:var(--silver-dim)" data-aos="fade-right">
-          An integrated team of <strong style="color:var(--silver);font-weight:500">115 Internal Specialists and 160+ Total Engineers</strong> covering every engineering discipline required for complex industrial projects.
+          An integrated team of <strong style="color:var(--silver);font-weight:500"><span data-config-key="internal_experts">115</span> Internal Specialists and 160+ Total Engineers</strong> covering every engineering discipline required for complex industrial projects.
         </p>
         <a href="proeco-capability.html" class="btn-contact inline-flex items-center gap-2 cursor-none shrink-0" style="border-color:rgba(255,120,40,0.35);color:rgba(255,150,60,0.9);font-size:11px;padding:9px 20px" data-aos="fade-left">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -1472,7 +1472,9 @@
 <script type="module">
 (async () => {
   if (!window.supabase) return;
-  var pctKeys = {oil_gas_percent:1,energy_transition_percent:1,chemical_percent:1,power_plants_percent:1};
+  var pctKeys  = {oil_gas_percent:1,energy_transition_percent:1,chemical_percent:1,power_plants_percent:1};
+  var kplusKeys = {annual_man_hours:1};
+  var plusKeys  = {total_engineers:1};
   var { data, error } = await window.supabase.from('site_config').select('*');
   if (error || !data) return;
   var cfg = {};
@@ -1481,7 +1483,7 @@
   document.querySelectorAll('[data-config-key]').forEach(function(el) {
     var key = el.getAttribute('data-config-key');
     if (!(key in cfg)) return;
-    el.textContent = pctKeys[key] ? cfg[key] + '%' : cfg[key];
+    el.textContent = pctKeys[key] ? cfg[key] + '%' : kplusKeys[key] ? cfg[key] + 'k+' : plusKeys[key] ? cfg[key] + '+' : cfg[key];
   });
 })();
 </script>
