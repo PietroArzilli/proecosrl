@@ -10,6 +10,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=Montserrat:wght@400&display=swap" rel="stylesheet"/>
+<link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet"/>
 <style>
   :root{--silver:#3a4a5c;--silver-dim:#536070;--border:rgba(0,0,0,0.09);--border-bright:rgba(0,0,0,0.16);}
   *{box-sizing:border-box;}
@@ -47,6 +48,22 @@
   .error-box.visible{display:block;}
 
   .divider{height:1px;background:var(--border);margin:28px 0;}
+
+  /* Quill editor */
+  .ql-toolbar.ql-snow{border:1px solid var(--border-bright)!important;border-bottom:none!important;border-radius:8px 8px 0 0!important;background:#f2f2f2;font-family:'Inter',sans-serif!important;padding:8px 10px!important;}
+  .ql-container.ql-snow{border:1px solid var(--border-bright)!important;border-radius:0 0 8px 8px!important;font-family:'Inter',sans-serif!important;font-size:13px!important;background:#fafafa;transition:border-color 0.2s,box-shadow 0.2s,background 0.2s;}
+  .ql-editor{min-height:260px;line-height:1.7;color:#1a1a1a;padding:14px 16px!important;font-weight:300;}
+  .ql-editor.ql-blank::before{color:rgba(83,96,112,0.5)!important;font-style:normal!important;}
+  #editor-wrapper.focused .ql-toolbar.ql-snow{border-color:rgba(232,120,48,0.6)!important;}
+  #editor-wrapper.focused .ql-container.ql-snow{border-color:rgba(232,120,48,0.6)!important;box-shadow:0 0 0 3px rgba(232,120,48,0.08);background:#fff;}
+  .ql-snow .ql-stroke{stroke:#536070!important;}
+  .ql-snow .ql-fill{fill:#536070!important;}
+  .ql-snow.ql-toolbar button:hover .ql-stroke,.ql-snow.ql-toolbar button.ql-active .ql-stroke{stroke:#e87830!important;}
+  .ql-snow.ql-toolbar button:hover .ql-fill,.ql-snow.ql-toolbar button.ql-active .ql-fill{fill:#e87830!important;}
+  .ql-snow .ql-picker{color:#536070!important;}
+  .ql-snow .ql-picker:hover,.ql-snow .ql-picker.ql-expanded{color:#e87830!important;}
+  .ql-snow .ql-picker-label::before{color:inherit;}
+  .ql-snow .ql-picker-options{border:1px solid var(--border-bright)!important;border-radius:6px!important;box-shadow:0 4px 16px rgba(0,0,0,0.08)!important;}
 
   @keyframes spin{to{transform:rotate(360deg)}}
   .spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block;flex-shrink:0;}
@@ -98,7 +115,7 @@ function bindCharCount(fieldId, countId, max) {
 }
 bindCharCount('title',   'countTitle',   120);
 bindCharCount('excerpt', 'countExcerpt', 280);
-bindCharCount('content', 'countContent', null);
+// char count for content handled via Quill text-change event (see bottom script)
 
 /* ── Submit form ─────────────────────────────────────────────────────────── */
 document.getElementById('news-form').addEventListener('submit', async function(e) {
@@ -107,7 +124,9 @@ document.getElementById('news-form').addEventListener('submit', async function(e
   const title    = document.getElementById('title').value.trim();
   const category = document.getElementById('category').value;
   const excerpt  = document.getElementById('excerpt').value.trim();
-  const content  = document.getElementById('content').value.trim();
+  const quill    = window.quillEditor;
+  const content  = quill ? quill.root.innerHTML : '';
+  const contentText = quill ? quill.getText().trim() : '';
   const btn      = document.getElementById('submitBtn');
   const errorBox = document.getElementById('errorBox');
 
@@ -122,10 +141,10 @@ document.getElementById('news-form').addEventListener('submit', async function(e
     document.getElementById('title').focus();
     return;
   }
-  if (!content) {
+  if (!contentText) {
     errorBox.textContent = 'Il contenuto dell\'articolo è obbligatorio.';
     errorBox.classList.add('visible');
-    document.getElementById('content').focus();
+    if (quill) quill.focus();
     return;
   }
 
@@ -241,17 +260,13 @@ document.getElementById('news-form').addEventListener('submit', async function(e
 
       <!-- Contenuto -->
       <div class="mb-8">
-        <label class="input-label" for="content">
+        <label class="input-label">
           Contenuto <span class="required">*</span>
-          <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:10px;color:rgba(83,96,112,0.6);margin-left:6px;">(corpo completo dell'articolo)</span>
+          <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:10px;color:rgba(83,96,112,0.6);margin-left:6px;">(corpo completo dell'articolo — puoi incollare da Word)</span>
         </label>
-        <textarea
-          id="content"
-          class="input-field"
-          placeholder="Scrivi qui il testo completo dell'articolo…"
-          style="min-height:260px;"
-          required
-        ></textarea>
+        <div id="editor-wrapper">
+          <div id="editor-content"></div>
+        </div>
         <div id="countContent" class="char-count">0 caratteri</div>
       </div>
 
@@ -294,5 +309,36 @@ document.getElementById('news-form').addEventListener('submit', async function(e
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>AOS.init({ duration: 500, once: true, offset: 0 });</script>
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+<script>
+window.quillEditor = new Quill('#editor-content', {
+  theme: 'snow',
+  placeholder: 'Scrivi qui il testo completo dell\'articolo…',
+  modules: {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link'],
+      ['clean']
+    ]
+  }
+});
+
+/* Contatore caratteri */
+var countEl = document.getElementById('countContent');
+function updateQuillCount() {
+  var len = window.quillEditor.getText().replace(/\n$/, '').length;
+  if (countEl) countEl.textContent = len + ' caratteri';
+}
+window.quillEditor.on('text-change', updateQuillCount);
+
+/* Focus style (bordo arancione come gli altri input) */
+window.quillEditor.on('selection-change', function(range) {
+  var wrapper = document.getElementById('editor-wrapper');
+  if (range) wrapper.classList.add('focused');
+  else wrapper.classList.remove('focused');
+});
+</script>
 </body>
 </html>
