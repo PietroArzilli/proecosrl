@@ -642,7 +642,7 @@
         <div class="stat-pill"><div class="stat-pill-num">&#177;2mm</div><div class="stat-pill-label">Scan accuracy</div></div>
         <div class="stat-pill"><div class="stat-pill-num">360&#176;</div><div class="stat-pill-label">Coverage</div></div>
         <div class="stat-pill"><div class="stat-pill-num">30%</div><div class="stat-pill-label">Fewer site clashes</div></div>
-        <div class="stat-pill"><div class="stat-pill-num">25+</div><div class="stat-pill-label">Years of expertise</div></div>
+        <div class="stat-pill"><div class="stat-pill-num" data-config-key="years_experience">25+</div><div class="stat-pill-label">Years of expertise</div></div>
       </div>
     </div>
   </div>
@@ -754,7 +754,7 @@
       <div data-aos="fade-right">
         <div class="section-label mb-5">Why Choose PROECO</div>
         <h2 class="section-title mb-6">The value is in<br/>the<br/><span class="orange-grad">outcomes.</span></h2>
-        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">Digital tools are only as valuable as the engineering team that uses them. At PROECO, our 75+ internal specialists combine deep technical expertise with hands-on mastery of the most advanced digital platforms in the industry.</p>
+        <p class="text-sm font-light leading-relaxed mb-8" style="color:var(--silver-dim)">Digital tools are only as valuable as the engineering team that uses them. At PROECO, our <span data-config-key="internal_experts">75+</span> internal specialists combine deep technical expertise with hands-on mastery of the most advanced digital platforms in the industry.</p>
         <a href="index.html#contact" class="btn-contact btn-cta-orange" style="padding:14px 36px;font-size:12px">Talk to our team</a>
       </div>
       <div data-aos="fade-left">
@@ -862,6 +862,30 @@
   </div>
 </footer>
 
+<script>
+window.SUPABASE_URL = 'https://arlpjntvbbdzstzklsla.supabase.co';
+window.SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFybHBqbnR2YmJkenN0emtsc2xhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1OTU3MDAsImV4cCI6MjA2MTE3MTcwMH0.9ZRZE1wJvWFKKAkVIkPeqKMH7rAIOmQFRpFSKEr5anU';
+</script>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+window.supabase = createClient(window.SUPABASE_URL, window.SUPABASE_KEY);
+</script>
+<script type="module">
+(async () => {
+  if (!window.supabase) return;
+  var plusKeys = {years_experience:1, internal_experts:1};
+  var { data, error } = await window.supabase.from('site_config').select('*');
+  if (error || !data) return;
+  var cfg = {};
+  data.forEach(function(row) { cfg[row.key] = row.value; });
+  window.__siteConfig = cfg;
+  document.querySelectorAll('[data-config-key]').forEach(function(el) {
+    var key = el.getAttribute('data-config-key');
+    if (!(key in cfg)) return;
+    el.textContent = plusKeys[key] ? cfg[key] + '+' : cfg[key];
+  });
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
 AOS.init({duration:800,easing:'cubic-bezier(0.4,0,0.2,1)',once:true,offset:80});
