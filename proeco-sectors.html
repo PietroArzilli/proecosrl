@@ -682,12 +682,12 @@
         <div style="position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(to top,rgba(10,8,6,0.92) 0%,transparent 100%)">
           <div style="display:flex;gap:24px">
             <div>
-              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">40%</div>
+              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1" data-config-key="oil_gas_percent">40%</div>
               <div style="font-size:10px;color:rgba(200,208,216,0.65);letter-spacing:.08em;margin-top:3px">Revenue share</div>
             </div>
             <div style="width:1px;background:rgba(200,208,216,0.15)"></div>
             <div>
-              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">25+</div>
+              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1" data-config-key="years_experience">25+</div>
               <div style="font-size:10px;color:rgba(200,208,216,0.65);letter-spacing:.08em;margin-top:3px">Years experience</div>
             </div>
             <div style="width:1px;background:rgba(200,208,216,0.15)"></div>
@@ -834,7 +834,7 @@
         <div style="position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(to top,rgba(10,8,6,0.92) 0%,transparent 100%)">
           <div style="display:flex;gap:24px">
             <div>
-              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">25%</div>
+              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1" data-config-key="energy_transition_percent">25%</div>
               <div style="font-size:10px;color:rgba(200,208,216,0.65);letter-spacing:.08em;margin-top:3px">Revenue share</div>
             </div>
             <div style="width:1px;background:rgba(200,208,216,0.15)"></div>
@@ -924,7 +924,7 @@
         <div style="position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(to top,rgba(10,8,6,0.92) 0%,transparent 100%)">
           <div style="display:flex;gap:24px">
             <div>
-              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">20%</div>
+              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1" data-config-key="chemical_percent">20%</div>
               <div style="font-size:10px;color:rgba(200,208,216,0.65);letter-spacing:.08em;margin-top:3px">Revenue share</div>
             </div>
             <div style="width:1px;background:rgba(200,208,216,0.15)"></div>
@@ -967,7 +967,7 @@
         <div style="position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(to top,rgba(10,8,6,0.92) 0%,transparent 100%)">
           <div style="display:flex;gap:24px">
             <div>
-              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1">15%</div>
+              <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,#ff9a3c,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1" data-config-key="power_plants_percent">15%</div>
               <div style="font-size:10px;color:rgba(200,208,216,0.65);letter-spacing:.08em;margin-top:3px">Revenue share</div>
             </div>
             <div style="width:1px;background:rgba(200,208,216,0.15)"></div>
@@ -1105,7 +1105,8 @@
 <script type="module">
 (async () => {
   if (!window.supabase) return;
-  var pctKeys = {oil_gas_percent:1,energy_transition_percent:1,chemical_percent:1,power_plants_percent:1};
+  var pctKeys  = {oil_gas_percent:1,energy_transition_percent:1,chemical_percent:1,power_plants_percent:1};
+  var plusKeys = {years_experience:1};
   var { data, error } = await window.supabase.from('site_config').select('*');
   if (error || !data) return;
   var cfg = {};
@@ -1114,7 +1115,7 @@
   document.querySelectorAll('[data-config-key]').forEach(function(el) {
     var key = el.getAttribute('data-config-key');
     if (!(key in cfg)) return;
-    el.textContent = pctKeys[key] ? cfg[key] + '%' : cfg[key];
+    el.textContent = pctKeys[key] ? cfg[key] + '%' : plusKeys[key] ? cfg[key] + '+' : cfg[key];
   });
 })();
 </script>
