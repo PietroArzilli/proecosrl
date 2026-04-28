@@ -62,10 +62,19 @@
   #article-view{display:none;}
   .article-body{font-size:15px;font-weight:300;line-height:1.85;color:#2d2d2d;}
   .article-body p{margin-bottom:1.4em;}
+  .article-body h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:#1a1a1a;margin:2em 0 0.6em;}
+  .article-body h2{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#1a1a1a;margin:2em 0 0.6em;}
   .article-body h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:600;color:#1a1a1a;margin:2em 0 0.6em;}
+  .article-body strong{font-weight:600;color:#1a1a1a;}
+  .article-body em{font-style:italic;}
+  .article-body u{text-decoration:underline;}
+  .article-body a{color:#e87830;text-decoration:none;border-bottom:1px solid rgba(232,120,48,0.3);transition:border-color 0.2s;}
+  .article-body a:hover{border-color:#e87830;}
   .article-body ul{list-style:none;padding:0;margin-bottom:1.4em;}
   .article-body ul li{padding-left:1.4em;position:relative;margin-bottom:0.5em;}
   .article-body ul li::before{content:'';position:absolute;left:0;top:0.7em;width:6px;height:1px;background:#e87830;}
+  .article-body ol{padding-left:1.4em;margin-bottom:1.4em;}
+  .article-body ol li{margin-bottom:0.5em;}
   .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver-dim);background:none;border:none;cursor:none;transition:color 0.2s;padding:0;}
   .back-btn:hover{color:#1a1a1a;}
   .article-divider{width:40px;height:2px;background:linear-gradient(90deg,#e87830,transparent);margin:20px 0 32px;}
@@ -549,7 +558,10 @@ renderGrid('all');
   if (error || !data || data.length === 0) return;
   var mapped = data.map(function(row) {
     var d = new Date(row.created_at);
-    var body = (row.content || '').replace(/\r?\n\r?\n/g, '</p><p>').replace(/\r?\n/g, '<br/>');
+    var raw = row.content || '';
+    var body = raw.trimStart().startsWith('<')
+      ? raw
+      : raw.replace(/\r?\n\r?\n/g, '</p><p>').replace(/\r?\n/g, '<br/>');
     return {
       id: row.id,
       category: row.category || 'Company',
