@@ -57,6 +57,33 @@
   .topbar{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);height:60px;}
   .error-global{display:none;padding:12px 16px;background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.2);border-radius:8px;font-size:12px;font-weight:400;color:#b91c1c;line-height:1.6;margin-bottom:24px;}
   .error-global.visible{display:block;}
+
+  /* ── Responsive ──────────────────────────────────────────────────────────── */
+  @media(max-width:640px){
+    /* Tabella config → card per riga */
+    #tableWrap{overflow-x:visible!important;}
+    #tableWrap table{min-width:unset!important;width:100%!important;}
+    #tableWrap .table-header{display:none!important;}
+    #tableWrap .table-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      column-gap:12px;row-gap:6px;
+      padding:14px 16px!important;
+    }
+    #tableWrap .table-row td{display:block!important;padding:0!important;border:none!important;}
+    #tableWrap .table-row td:nth-child(1){grid-column:1/-1;} /* chiave */
+    #tableWrap .table-row td:nth-child(2){grid-column:1/-1;font-size:12px;} /* descrizione */
+    #tableWrap .table-row td:nth-child(3){grid-column:1/2;grid-row:3;} /* input */
+    #tableWrap .table-row td:nth-child(4){grid-column:2/3;grid-row:3;display:flex;align-items:center;} /* salva */
+    .input-number{text-align:left!important;min-height:40px;}
+    .btn-save{min-height:40px;padding:8px 16px!important;}
+    .btn-save-all{width:100%;}
+    #saveAllWrap{flex-direction:column!important;align-items:stretch!important;}
+  }
+  @media(max-width:400px){
+    main{padding-left:16px!important;padding-right:16px!important;}
+    header .max-w-5xl{padding-left:16px!important;padding-right:16px!important;}
+  }
 </style>
 </head>
 <body>
