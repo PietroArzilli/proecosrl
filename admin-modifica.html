@@ -68,7 +68,23 @@
   .ql-snow .ql-picker-label::before{color:inherit;}
   .ql-snow .ql-picker-options{border:1px solid var(--border-bright)!important;border-radius:6px!important;box-shadow:0 4px 16px rgba(0,0,0,0.08)!important;}
   /* Tooltip toolbar */
-  .ql-toolbar.ql-snow{overflow:visible!important;}
+  @media(min-width:641px){.ql-toolbar.ql-snow{overflow:visible!important;}}
+
+  /* ── Responsive ──────────────────────────────────────────────────────────── */
+  @media(max-width:640px){
+    .form-card{border-radius:12px;}
+    #formWrap{padding:24px!important;}
+    .ql-toolbar.ql-snow{padding:6px 8px!important;flex-wrap:wrap;}
+    .ql-formats{margin-right:4px!important;}
+    .btn-primary{min-height:48px;font-size:13px!important;}
+    .input-field{font-size:16px!important;} /* evita zoom automatico su iOS */
+    textarea.input-field{font-size:16px!important;}
+    .id-badge{font-size:9px;}
+  }
+  @media(max-width:400px){
+    main{padding-left:16px!important;padding-right:16px!important;}
+    header .max-w-3xl{padding-left:16px!important;padding-right:16px!important;}
+  }
   .ql-toolbar button[title],.ql-toolbar .ql-picker-label[title]{position:relative;}
   .ql-toolbar button[title]::after,.ql-toolbar .ql-picker-label[title]::after{content:attr(title);position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;font-size:10px;font-family:'Inter',sans-serif;font-weight:400;letter-spacing:0.04em;white-space:nowrap;padding:4px 8px;border-radius:4px;pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:500;}
   .ql-toolbar button[title]:hover::after,.ql-toolbar .ql-picker-label[title]:hover::after{opacity:1;}
