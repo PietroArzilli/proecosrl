@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8"/>
@@ -275,125 +275,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
 <script>
-/* ── News data ──────────────────────────────────────────────────────────────
-   Replace this array with a Supabase fetch when the backend is ready.
-   Each article: { id, category, date, title, excerpt, body }
-   body: HTML string for full article content.
-─────────────────────────────────────────────────────────────────────────── */
-var NEWS = [
-  {
-    id: 1,
-    category: 'Project Award',
-    date: 'March 2025',
-    title: 'PROECO Awarded Engineering Contract for LNG Terminal Expansion in West Africa',
-    excerpt: 'Our multidisciplinary team has been selected to lead the FEED and detailed engineering for a major LNG terminal capacity upgrade, covering process, civil, mechanical and instrumentation disciplines.',
-    body: '<p>PROECO has been awarded a full-scope engineering contract for the expansion of an LNG terminal on the West African coast. The scope covers Front-End Engineering Design (FEED) and detailed engineering across six disciplines: process, piping, civil/structural, mechanical, electrical and instrumentation &amp; control.</p><h3>Project Scope</h3><p>The terminal expansion will increase throughput capacity by approximately 40%, requiring the addition of two new liquefaction trains, associated utilities and a dedicated marine loading arm. PROECO will lead the multidisciplinary engineering effort from concept freeze through to issued-for-construction documentation.</p><ul><li>Process simulation and heat &amp; mass balance for the new trains</li><li>Full P&amp;ID development and HAZOP facilitation</li><li>Civil and structural design for new foundations and pipe racks</li><li>Electrical load list, SLD and switchgear specifications</li><li>Instrumentation index, datasheet package and DCS architecture</li></ul><h3>Timeline</h3><p>The FEED phase is scheduled to complete within six months, with detailed engineering commencing immediately after client approval. First deliverables are targeted for Q3 2025.</p><p>This award reinforces PROECO\'s position as a leading independent engineering partner for LNG and gas processing infrastructure across Africa and the Middle East.</p>'
-  },
-  {
-    id: 2,
-    category: 'Technology',
-    date: 'February 2025',
-    title: 'Digital Twin Delivery: First Full 3D As-Built Model for Offshore Refinery Platform',
-    excerpt: 'Using Aveva E3D and laser scanning technology, PROECO completed the first fully integrated digital twin for an offshore refinery platform, achieving sub-2mm scan accuracy across 14 decks.',
-    body: '<p>PROECO\'s Digital Engineering team has successfully delivered the first fully integrated 3D as-built digital twin for an offshore refinery platform, combining high-density laser scanning with intelligent modelling in Aveva E3D.</p><h3>Methodology</h3><p>The project involved a 360° laser scan campaign across 14 production decks, generating a point cloud dataset exceeding 4 billion measurement points. The raw scan data was then processed and registered to produce a millimetre-accurate geometric reference model, which served as the foundation for the intelligent E3D model build.</p><ul><li>Scan accuracy: ±1.8mm across all decks</li><li>4.2 billion point cloud measurements</li><li>14 decks fully modelled — piping, structure, equipment and HVAC</li><li>Automated clash detection: 847 clashes identified and resolved pre-construction</li></ul><h3>Outcome</h3><p>The completed digital twin is now live as a connected asset model, enabling the operator\'s engineering and maintenance teams to plan future interventions, simulate modifications and generate accurate material take-offs without requiring physical access to the platform.</p><p>This project marks a milestone in PROECO\'s Digital Engineering capability and demonstrates the full value chain from laser acquisition to operational digital twin delivery.</p>'
-  },
-  {
-    id: 3,
-    category: 'Company',
-    date: 'January 2025',
-    title: 'PROECO Expands Engineering Team to 115 Permanent Specialists',
-    excerpt: 'Following a record year in project deliveries, PROECO has grown its permanent in-house team to 115 specialists, reinforcing its commitment to zero-outsourcing of core engineering.',
-    body: '<p>Following a record year in project deliveries and a significant increase in contracted backlog, PROECO has completed a major recruitment drive, bringing its permanent specialist headcount to 115 engineers and technical professionals.</p><h3>Growth Across All Disciplines</h3><p>New additions span all six core engineering disciplines, with particular growth in Digital Engineering, Process and Instrumentation &amp; Control — three areas where client demand has accelerated significantly over the past 18 months.</p><ul><li>Digital Engineering team: +8 specialists (laser scanning, E3D modelling, BIM)</li><li>Process &amp; Piping: +6 engineers (senior and intermediate levels)</li><li>Instrumentation &amp; Control: +5 engineers (DCS, SIL assessment)</li><li>Civil &amp; Structural: +4 engineers (offshore and onshore structures)</li></ul><h3>Our Philosophy</h3><p>PROECO\'s founding principle is that core engineering work must be done in-house, by permanent employees who share the company\'s standards and culture. We do not outsource our deliverables or use sub-contracting as a staffing mechanism. Every engineer you work with is a PROECO specialist — directly employed, continuously trained and fully accountable for their output.</p><p>This expansion consolidates our position as one of the largest independent engineering teams in Italy, fully capable of delivering complex multidisciplinary projects from a single, integrated base.</p>'
-  },
-  {
-    id: 4,
-    category: 'Project Award',
-    date: 'December 2024',
-    title: 'PROECO Selected for Offshore Platform Life Extension Study — North Sea',
-    excerpt: 'A major North Sea operator has engaged PROECO to conduct a full life extension engineering assessment for a fixed offshore production platform, covering structural, process and safety systems.',
-    body: '<p>PROECO has been selected by a major North Sea operator to perform a comprehensive Life Extension Engineering Study (LEES) for a fixed production platform currently scheduled for end-of-design-life in 2028. The study will determine the technical and economic feasibility of extending the platform\'s operational life by a further 10 years.</p><h3>Scope of Work</h3><p>The study spans four engineering disciplines and will culminate in a Life Extension Report acceptable to the relevant regulatory authorities.</p><ul><li>Structural integrity assessment of the jacket and topsides</li><li>Process systems review — degradation, capacity and safety margins</li><li>Safety case gap analysis against current regulatory requirements</li><li>Remaining equipment life assessment and prioritised replacement schedule</li></ul><h3>Delivery</h3><p>The study is structured in two phases: a rapid screening phase (8 weeks) to identify the highest-risk items, followed by a detailed engineering phase (6 months) producing full documentation for regulatory submission. PROECO will work with the operator\'s in-house team embedded at our Forlì office throughout the programme.</p>'
-  },
-  {
-    id: 5,
-    category: 'Sustainability',
-    date: 'November 2024',
-    title: 'PROECO Completes Green Hydrogen Feasibility Study for Industrial Cluster',
-    excerpt: 'Working with a consortium of Italian industrial partners, PROECO has delivered a full feasibility study for a green hydrogen production and distribution hub serving a chemical and power generation cluster.',
-    body: '<p>PROECO has completed a comprehensive green hydrogen feasibility study for a multi-site industrial cluster in northern Italy, examining the technical and economic viability of producing, storing and distributing green hydrogen to replace natural gas in chemical processes and power generation applications.</p><h3>Study Highlights</h3><p>The study evaluated three electrolysis technologies — alkaline, PEM and solid oxide — across five demand scenarios ranging from partial blending to full hydrogen substitution.</p><ul><li>Electrolyser sizing from 20MW to 150MW across scenarios</li><li>Hydrogen storage: compressed gas and liquid storage options assessed</li><li>Distribution infrastructure: pipeline injection vs. tube trailer logistics</li><li>Levelised cost of hydrogen (LCOH) calculated for each scenario</li><li>CO₂ reduction potential: up to 68,000 tonnes/year at full substitution</li></ul><h3>Next Steps</h3><p>Based on PROECO\'s feasibility findings, the consortium has approved funding for a FEED study covering the preferred 40MW PEM scenario, with potential investment decision in Q2 2025. PROECO has been retained to lead the FEED phase.</p>'
-  },
-  {
-    id: 6,
-    category: 'Technology',
-    date: 'October 2024',
-    title: 'PROECO Digital Team Achieves Aveva E3D Expert Certification',
-    excerpt: 'Five members of PROECO\'s Digital Engineering team have passed the Aveva E3D Expert certification programme, making PROECO one of the most credentialed E3D practices in Italy.',
-    body: '<p>PROECO\'s Digital Engineering team has achieved a significant professional milestone: five team members have successfully completed the Aveva E3D Expert certification programme, the highest level of platform qualification offered by Aveva for 3D intelligent modelling software.</p><h3>What This Means</h3><p>The E3D Expert certification validates advanced competency in intelligent 3D plant design, including discipline-specific modelling, design rules configuration, automated drawing production and integration with Aveva\'s engineering information management ecosystem.</p><ul><li>5 certified E3D Experts — Process/Piping, Structural, HVAC, Electrical, Civil</li><li>Full AVEVA PDMS to E3D migration capability confirmed</li><li>Automated isometric and GA drawing production now fully in-house</li><li>Integration with SmartPlant Foundation validated</li></ul><h3>Capability Impact</h3><p>This certification reinforces PROECO\'s ability to deliver complete intelligent 3D models as a primary deliverable — not just as a visualisation tool, but as a live engineering database that drives downstream documentation, procurement and construction activities automatically. Clients can expect shorter drawing cycles, fewer revision rounds and higher first-pass accuracy on E3D-based projects going forward.</p>'
-  },
-  {
-    id: 7,
-    category: 'Partnership',
-    date: 'September 2024',
-    title: 'PROECO and Parlym Group Formalise Cross-Border Engineering Collaboration Framework',
-    excerpt: 'As part of the Parlym Group, PROECO has signed a formal cross-border collaboration agreement with group sister companies, enabling seamless resource sharing and joint project execution across four continents.',
-    body: '<p>PROECO and its sister companies within the Parlym Group have formalised a cross-border engineering collaboration framework, enabling the group to deploy integrated multidisciplinary teams across its global network on complex international projects.</p><h3>Framework Structure</h3><p>The agreement defines protocols for technical resource sharing, quality assurance alignment and deliverable ownership across jurisdictions — ensuring that international projects benefit from PROECO\'s Italian engineering depth while drawing on the wider group\'s local knowledge and client relationships.</p><ul><li>Shared document control and revision management standards</li><li>Inter-company secondment and embedded team protocols</li><li>Joint bid framework for projects exceeding single-entity capacity</li><li>Unified QHSE management system across all Parlym entities</li></ul><h3>Strategic Significance</h3><p>For PROECO\'s clients, this framework means access to a genuinely integrated international engineering capability — not a network of independent subcontractors, but a coordinated group operating to a single quality standard under unified technical management. Projects requiring simultaneous activity in multiple geographies can now be handled within the group structure without quality or coordination risk.</p>'
-  },
-  {
-    id: 8,
-    category: 'Project Award',
-    date: 'August 2024',
-    title: 'PROECO Wins Revamping Contract for Major Petrochemical Plant in Southern Italy',
-    excerpt: 'A large-scale revamping of an existing polyethylene production unit has been awarded to PROECO, covering full multidisciplinary engineering from process re-design through to issued-for-construction documentation.',
-    body: '<p>PROECO has been awarded a multidisciplinary revamping contract for a polyethylene production unit at a major petrochemical site in southern Italy. The project involves the re-design of the reactor system and associated process utilities to increase production capacity by 25% while achieving a 15% reduction in energy consumption per tonne of product.</p><h3>Engineering Scope</h3><p>The revamping scope touches all six PROECO disciplines, with particular complexity in the process re-design and instrumentation update required to meet current functional safety standards.</p><ul><li>Process re-design: reactor configuration, heat integration optimisation</li><li>Piping: full P&amp;ID revision and pipe stress analysis for all modified lines</li><li>Civil/structural: foundation upgrades for new reactor supports</li><li>Electrical: motor control centre replacement and cable routing</li><li>Instrumentation: SIL assessment, safety instrumented system (SIS) upgrade</li><li>HSE: HAZOP revalidation and updated safety case</li></ul><h3>Execution</h3><p>The project will be executed in three phases to allow continued production during engineering — a critical constraint agreed with the client at project outset. PROECO\'s phased execution plan was a key differentiator in the selection process. Engineering delivery is scheduled for Q1 2025, with construction support through to Q3 2025.</p>'
-  },
-  {
-    id: 9,
-    category: 'Sustainability',
-    date: 'July 2024',
-    title: 'PROECO Launches Internal Carbon Footprint Reduction Programme',
-    excerpt: 'PROECO has initiated a structured programme to measure, reduce and offset its own operational carbon footprint, targeting a 40% reduction in Scope 1 and 2 emissions by 2027.',
-    body: '<p>PROECO has launched a formal internal sustainability programme targeting a measurable reduction in its own operational carbon footprint, alongside continued growth in the volume of low-carbon projects it delivers for clients.</p><h3>Programme Structure</h3><p>The programme is structured across three pillars: Measure, Reduce and Offset. The first phase — measurement — has already been completed, establishing a verified baseline for Scope 1 (direct) and Scope 2 (indirect energy) emissions for 2023.</p><ul><li>Scope 1 &amp; 2 baseline established: 187 tonnes CO₂e (2023)</li><li>Target: 40% reduction by 2027 vs. 2023 baseline</li><li>Fleet electrification programme: 60% of company vehicles to EV by 2026</li><li>Office energy: renewable electricity contract from January 2025</li><li>Travel policy: mandatory video-conference preference for meetings under 300km</li></ul><h3>Client Alignment</h3><p>This programme responds directly to requests from several of PROECO\'s major clients, who require supply chain partners to demonstrate active carbon management as a condition of preferred supplier status. PROECO will publish an annual sustainability report from 2025 onwards, providing independently verified emissions data and progress against targets.</p><p>Sustainability is not a marketing exercise for PROECO — it is a commercial necessity and an engineering responsibility. The same rigour we apply to client projects we now apply to our own operations.</p>'
-  }
-];
+/* ── News data (populated from Supabase) ────────────────────────────────── */
+var NEWS = [/* placeholder – filled by Supabase module below */];
 
-/* ── Italian content lookup ───────────────────────────────────────────── */
-var IT_CONTENT = {
-  1: {
-    titleIT: "PROECO aggiudica contratto di ingegneria per l’espansione del terminale LNG in Africa Occidentale",
-    excerptIT: "Il nostro team multidisciplinare è stato selezionato per guidare FEED e ingegneria di dettaglio per un importante ampliamento della capacità di un terminale LNG, nelle discipline di processo, civile, meccanica e strumentazione."
-  },
-  2: {
-    titleIT: "Digital Twin Consegnato: Primo Modello 3D As-Built Completo per Piattaforma di Raffineria Offshore",
-    excerptIT: "Utilizzando Aveva E3D e il laser scanning, PROECO ha completato il primo digital twin completamente integrato per una piattaforma di raffineria offshore, raggiungendo una precisione di scansione inferiore a 2mm su 14 ponti."
-  },
-  3: {
-    titleIT: "PROECO amplia il team di ingegneria a 115 specialisti permanenti",
-    excerptIT: "Dopo un anno record nelle consegne di progetto, PROECO ha portato il team interno permanente a 115 specialisti, rafforzando l’impegno verso lo zero-outsourcing dell’ingegneria core."
-  },
-  4: {
-    titleIT: "PROECO selezionata per lo studio di Life Extension — Mare del Nord",
-    excerptIT: "Un importante operatore del Mare del Nord ha incaricato PROECO di condurre una valutazione ingegneristica completa per l’estensione della vita di una piattaforma offshore fissa, coprendo strutture, processo e sistemi di sicurezza."
-  },
-  5: {
-    titleIT: "PROECO completa lo studio di fattibilità sull’idrogeno verde per un cluster industriale",
-    excerptIT: "In collaborazione con un consorzio di partner industriali italiani, PROECO ha consegnato uno studio di fattibilità completo per un hub di produzione e distribuzione di idrogeno verde a servizio di un cluster chimico-energetico."
-  },
-  6: {
-    titleIT: "Il team Digital di PROECO consegue la certificazione Aveva E3D Expert",
-    excerptIT: "Cinque membri del team Digital Engineering di PROECO hanno superato il programma di certificazione Aveva E3D Expert, rendendo PROECO una delle realtà più certificate su E3D in Italia."
-  },
-  7: {
-    titleIT: "PROECO e Parlym Group formalizzano il framework di collaborazione ingegneristica internazionale",
-    excerptIT: "Come parte del Gruppo Parlym, PROECO ha firmato un accordo di collaborazione transnazionale con le società del gruppo, abilitando la condivisione fluida di risorse e l’esecuzione congiunta di progetti su quattro continenti."
-  },
-  8: {
-    titleIT: "PROECO si aggiudica il contratto di revamping per un importante impianto petrolchimico nel Sud Italia",
-    excerptIT: "A PROECO è stato assegnato il revamping su larga scala di un’unità di produzione di polietilene, con ingegneria multidisciplinare completa dalla riprogettazione del processo alla documentazione issued-for-construction."
-  },
-  9: {
-    titleIT: "PROECO lancia il programma interno di riduzione dell’impronta carbonica",
-    excerptIT: "PROECO ha avviato un programma strutturato per misurare, ridurre e compensare la propria impronta di carbonio operativa, puntando a una riduzione del 40% delle emissioni Scope 1 e 2 entro il 2027."
-  }
-};
+var IT_CONTENT = {};
 
 var CAT_IT = {
   'Project Award':'Aggiudicazione Progetto',
@@ -568,10 +453,15 @@ renderGrid('all');
       date: months[d.getMonth()] + ' ' + d.getFullYear(),
       title: row.title,
       excerpt: row.excerpt || '',
-      body: '<p>' + body + '</p>'
+      body: body.trimStart().startsWith('<') ? body : '<p>' + body + '</p>'
     };
   });
-  window.NEWS = mapped.concat(window.NEWS);
+  /* Se Supabase ha dati, sostituisce gli articoli hardcoded (evita duplicati dopo seed) */
+  if (mapped.length > 0) {
+    window.NEWS = mapped;
+  } else {
+    /* Supabase vuoto: mantieni gli hardcoded come fallback */
+  }
   if (window.renderGrid) window.renderGrid(window.__newsFilter || 'all');
 })();
 </script>
