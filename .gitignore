@@ -1,0 +1,26 @@
+node_modules/
+*.jpg
+*.jpeg
+*.mp4
+*.webp
+# Re-include project-specific images if they exist at root
+!team-bg.jpg
+!avi-logo.png
+!edison-logo.png
+!enel-logo.png
+!eni-logo.png
+!itinera-logo.png
+!nextchem-logo.png
+!parlym-logo.png
+!saipem-logo.png
+!siemens-logo.png
+!snam-logo.png
+!sogin-logo.png
+!tea-sistemi.png
+!techint-logo.png
+!technip-logo.png
+!totalenergies-logo.png
+!versalis-logo.png
+!woodgroup-logo.png
+# Temp scripts
+_fix_*.ps1
