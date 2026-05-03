@@ -1,0 +1,124 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options",        "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy",        "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/output.css",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/:path*.jpg",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/:path*.png",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/:path*.mp4",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
+    }
+  ],
+  "redirects": [
+
+    { "source": "/proeco-capability.html", "destination": "/proeco-capability", "permanent": true },
+    { "source": "/proeco-sectors.html",    "destination": "/proeco-sectors",    "permanent": true },
+    { "source": "/proeco-team.html",       "destination": "/proeco-team",       "permanent": true },
+    { "source": "/proeco-digital.html",    "destination": "/proeco-digital",    "permanent": true },
+    { "source": "/proeco-news.html",       "destination": "/proeco-news",       "permanent": true },
+
+    { "source": "/proeco-ingegneria-multidisciplinare",                  "destination": "/proeco-capability", "permanent": true },
+    { "source": "/proeco-ingegneria-multidisciplinare/vision-mission",   "destination": "/proeco-capability", "permanent": true },
+    { "source": "/proeco-ingegneria-multidisciplinare/sistema-qhse",     "destination": "/proeco-capability", "permanent": true },
+    { "source": "/download",                                             "destination": "/proeco-capability", "permanent": true },
+
+    { "source": "/proeco-ingegneria-multidisciplinare/storia-dellazienda", "destination": "/proeco-team", "permanent": true },
+    { "source": "/proeco-ingegneria-multidisciplinare/management",         "destination": "/proeco-team", "permanent": true },
+
+    { "source": "/settori-e-competenze",                                                                     "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/chemical",                                                            "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/chemical/impianti-chimici",                                          "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/chemical/raffinerie",                                                 "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/chemical/impianti-industriali-processo",                              "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/energy",                                                              "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/energy/centrali-elettriche",                                         "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/energy/centrali-ad-energie-rinnovabili",                             "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/energy/centrali-ciclo-combinato",                                    "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/on-shore",                                                           "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/on-shore/terminals-importexport-lng",                                "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/on-shore/impianti-processo-liquefazione-gas",                        "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/on-shore/pipelines",                                                 "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/on-shore/impianti-oil-gas-upstream",                                 "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/drilling",                                                           "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/drilling/vessel-perforazione-acque-profonde-semi-sommergibili",      "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/drilling/impianti-perforazione-terra",                               "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/drilling/impianti-ausiliari-alla-perforazione",                      "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/off-shore",                                                          "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/off-shore/fpso",                                                     "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/off-shore/piattaforme-off-shore",                                    "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/environment",                                                        "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/environment/impianti-depurazione-acque",                             "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/environment/inceneritori",                                           "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/environment/impianti-trattamento-acque",                             "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/skids-and-packages",                                                 "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/skids-and-packages/sistemi-automatici-controllo",                    "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/skids-and-packages/skids-packages-processo",                         "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/skids-and-packages/packages-cabinati-analisi",                       "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/skids-and-packages/sistemi-idraulici-pneumatici",                    "destination": "/proeco-sectors", "permanent": true },
+    { "source": "/settori-e-competenze/industrial-energy-efficiency-and-sustainability",                    "destination": "/proeco-sectors", "permanent": true },
+
+    { "source": "/servizi",                                          "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/studi-di-fattibilita",                     "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/servizi-di-progetto",                      "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/ingegneria-processo",                      "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/ingegneria-meccanica-piping",              "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/ingegneria-civile-strutturale",            "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/ingegneria-elettro-strumentale",           "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/ingegneria-automazione-controllo",         "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/ingegneria-telecomunicazione",             "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/ingegneria-antincendio-sicurezza",         "destination": "/proeco-capability", "permanent": true },
+    { "source": "/servizi/assistenza-supervisione-lavori",           "destination": "/proeco-capability", "permanent": true },
+
+    { "source": "/servizi/progetti-ad-elevata-tecnologia-3d",       "destination": "/proeco-digital",    "permanent": true },
+
+    { "source": "/news",                                             "destination": "/proeco-news", "permanent": true },
+    { "source": "/news/page/2",                                      "destination": "/proeco-news", "permanent": true },
+    { "source": "/category/novita",                                  "destination": "/proeco-news", "permanent": true },
+    { "source": "/category/novita/page/2",                          "destination": "/proeco-news", "permanent": true },
+    { "source": "/2015/08/19/progetto-argo-cluster-piattaforma-prezioso-k",              "destination": "/proeco-news", "permanent": true },
+    { "source": "/2014/08/08/assegnazione-contratto-quadro-attivita-simultanea-eni",     "destination": "/proeco-news", "permanent": true },
+    { "source": "/2013/06/03/potenziamento-servizi-laser-scanner-3d",                    "destination": "/proeco-news", "permanent": true },
+    { "source": "/2015/07/01/acquisizione-contratto-quadro-eni-spa",                     "destination": "/proeco-news", "permanent": true },
+    { "source": "/2017/05/25/prova",                                                     "destination": "/proeco-news", "permanent": true },
+    { "source": "/2015/03/30/accordo-dintesa-kerui-ltd",                                 "destination": "/proeco-news", "permanent": true },
+    { "source": "/2017/06/13/proeco-raddoppia-propri-uffici",                            "destination": "/proeco-news", "permanent": true },
+    { "source": "/2015/06/30/proeco-ottiene-rating-cerved-b1-2",                         "destination": "/proeco-news", "permanent": true },
+    { "source": "/2017/06/12/proeco-ottiene-rating-legalita",                            "destination": "/proeco-news", "permanent": true },
+    { "source": "/2018/08/08/snam-spa-qualifica-proeco-srl",                             "destination": "/proeco-news", "permanent": true },
+    { "source": "/2018/06/30/decommissioning-nel-nucleare",                              "destination": "/proeco-news", "permanent": true },
+    { "source": "/2018/06/25/acquisizione-contratti-quadro-con-saipem-spa",              "destination": "/proeco-news", "permanent": true },
+    { "source": "/2025/12/11/proeco-srl-acquisisce-il-100-di-tea-sistemi-spa",           "destination": "/proeco-news", "permanent": true },
+    { "source": "/2013/03/01/acquisizione-contratto-quadro-enimed-spa",                  "destination": "/proeco-news", "permanent": true },
+
+    { "source": "/proeco-ingegneria-multidisciplinare/lavora-con-noi",                              "destination": "/proeco-team", "permanent": true },
+    { "source": "/proeco-ingegneria-multidisciplinare/lavora-con-noi/perche-lavorare-con-noi",      "destination": "/proeco-team", "permanent": true },
+    { "source": "/proeco-ingegneria-multidisciplinare/lavora-con-noi/retribuzioni",                 "destination": "/proeco-team", "permanent": true },
+    { "source": "/proeco-ingegneria-multidisciplinare/lavora-con-noi/invia-il-tuo-cv",              "destination": "/proeco-team", "permanent": true },
+    { "source": "/proeco-ingegneria-multidisciplinare/lavora-con-noi/persone",                      "destination": "/proeco-team", "permanent": true },
+
+    { "source": "/contatti",      "destination": "/", "permanent": true },
+    { "source": "/contatti/sedi", "destination": "/", "permanent": true }
+  ]
+}
